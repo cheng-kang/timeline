@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="HomeViewController" customModule="ca" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqn-jI-8Ec">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.80392156859999997" green="0.70980392160000005" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="169" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="m7V-J3-u35">
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="169" id="d4o-im-CB7">
+                                        <rect key="frame" x="0.0" y="1" width="320" height="169"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4o-im-CB7" id="zqs-XN-CDy">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="168.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTJ-YA-uhG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <color key="backgroundColor" red="0.80392156859999997" green="0.70980392160000005" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="8zo-SI-spw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vTJ-YA-uhG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1qx-AM-IrL"/>
+                            <constraint firstItem="vTJ-YA-uhG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="6eN-OD-VZL"/>
+                            <constraint firstItem="Dqn-jI-8Ec" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Mn3-vH-GmN"/>
+                            <constraint firstAttribute="trailing" secondItem="m7V-J3-u35" secondAttribute="trailing" id="Rur-3f-eJ4"/>
+                            <constraint firstItem="Dqn-jI-8Ec" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Tai-fY-vg0"/>
+                            <constraint firstAttribute="trailing" secondItem="Dqn-jI-8Ec" secondAttribute="trailing" id="YMD-Lm-NRo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Dqn-jI-8Ec" secondAttribute="bottom" id="aVV-fh-1gb"/>
+                            <constraint firstItem="m7V-J3-u35" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gVx-eq-Aat"/>
+                            <constraint firstAttribute="trailing" secondItem="vTJ-YA-uhG" secondAttribute="trailing" id="pcZ-nL-kkH"/>
+                            <constraint firstItem="m7V-J3-u35" firstAttribute="top" secondItem="vTJ-YA-uhG" secondAttribute="bottom" id="poP-rw-aex"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="m7V-J3-u35" secondAttribute="bottom" id="wKe-f0-Jfr"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="385"/>
+        </scene>
+    </scenes>
+</document>
