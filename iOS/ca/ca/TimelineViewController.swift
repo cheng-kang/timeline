@@ -343,7 +343,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableview.deselectRowAtIndexPath(indexPath, animated: false)
-        print("aa")
+        
+        let vc = TimelineDetailViewController.timelineDetailViewController()
+        self.presentViewController(vc, animated: true) { 
+            
+        }
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {

@@ -24,6 +24,14 @@
 		EDCFCE781D4371CE00E2B030 /* PopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE771D4371CE00E2B030 /* PopAnimation.swift */; };
 		EDCFCE7A1D43A99400E2B030 /* PopUpImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE791D43A99400E2B030 /* PopUpImageViewController.swift */; };
 		EDCFCE7C1D442FF100E2B030 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE7B1D442FF100E2B030 /* Global.swift */; };
+		EDCFCE7F1D45FA4E00E2B030 /* TopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE7E1D45FA4E00E2B030 /* TopCell.swift */; };
+		EDCFCE811D45FA6200E2B030 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE801D45FA6200E2B030 /* ContentCell.swift */; };
+		EDCFCE831D45FA7200E2B030 /* LoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE821D45FA7200E2B030 /* LoverCell.swift */; };
+		EDCFCE851D45FA7F00E2B030 /* MeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE841D45FA7F00E2B030 /* MeCell.swift */; };
+		EDCFCE871D45FA9A00E2B030 /* CommentTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE861D45FA9A00E2B030 /* CommentTopCell.swift */; };
+		EDCFCE891D45FAA700E2B030 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE881D45FAA700E2B030 /* CommentCell.swift */; };
+		EDCFCE8B1D45FAB600E2B030 /* CommentBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE8A1D45FAB600E2B030 /* CommentBottomCell.swift */; };
+		EDCFCE8D1D46031F00E2B030 /* TimelineDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFCE8C1D46031F00E2B030 /* TimelineDetailViewController.swift */; };
 		EDD08A491D352887001E1459 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD08A481D352887001E1459 /* AppDelegate.swift */; };
 		EDD08A4B1D352887001E1459 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD08A4A1D352887001E1459 /* HomeViewController.swift */; };
 		EDD08A4E1D352887001E1459 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDD08A4C1D352887001E1459 /* Home.storyboard */; };
@@ -77,7 +85,15 @@
 		EDCFCE771D4371CE00E2B030 /* PopAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimation.swift; sourceTree = "<group>"; };
 		EDCFCE791D43A99400E2B030 /* PopUpImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpImageViewController.swift; sourceTree = "<group>"; };
 		EDCFCE7B1D442FF100E2B030 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		EDD08A451D352887001E1459 /* ca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ca.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDCFCE7E1D45FA4E00E2B030 /* TopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopCell.swift; sourceTree = "<group>"; };
+		EDCFCE801D45FA6200E2B030 /* ContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
+		EDCFCE821D45FA7200E2B030 /* LoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoverCell.swift; sourceTree = "<group>"; };
+		EDCFCE841D45FA7F00E2B030 /* MeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeCell.swift; sourceTree = "<group>"; };
+		EDCFCE861D45FA9A00E2B030 /* CommentTopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTopCell.swift; sourceTree = "<group>"; };
+		EDCFCE881D45FAA700E2B030 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		EDCFCE8A1D45FAB600E2B030 /* CommentBottomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentBottomCell.swift; sourceTree = "<group>"; };
+		EDCFCE8C1D46031F00E2B030 /* TimelineDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineDetailViewController.swift; sourceTree = "<group>"; };
+		EDD08A451D352887001E1459 /* CA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD08A481D352887001E1459 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDD08A4A1D352887001E1459 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EDD08A4D1D352887001E1459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
@@ -85,10 +101,10 @@
 		EDD08A521D352887001E1459 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDD08A551D352887001E1459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDD08A571D352887001E1459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDD08A5C1D352888001E1459 /* caTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = caTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDD08A5C1D352888001E1459 /* CA.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CA.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD08A601D352888001E1459 /* caTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caTests.swift; sourceTree = "<group>"; };
 		EDD08A621D352888001E1459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDD08A671D352888001E1459 /* caUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = caUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDD08A671D352888001E1459 /* CA.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CA.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDD08A6B1D352888001E1459 /* caUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caUITests.swift; sourceTree = "<group>"; };
 		EDD08A6D1D352888001E1459 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDD08A8D1D354C0F001E1459 /* Timeline.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
@@ -210,6 +226,20 @@
 			name = TransitionAnimation;
 			sourceTree = "<group>";
 		};
+		EDCFCE7D1D45FA2900E2B030 /* TimelineDetailCells */ = {
+			isa = PBXGroup;
+			children = (
+				EDCFCE7E1D45FA4E00E2B030 /* TopCell.swift */,
+				EDCFCE801D45FA6200E2B030 /* ContentCell.swift */,
+				EDCFCE821D45FA7200E2B030 /* LoverCell.swift */,
+				EDCFCE841D45FA7F00E2B030 /* MeCell.swift */,
+				EDCFCE861D45FA9A00E2B030 /* CommentTopCell.swift */,
+				EDCFCE881D45FAA700E2B030 /* CommentCell.swift */,
+				EDCFCE8A1D45FAB600E2B030 /* CommentBottomCell.swift */,
+			);
+			name = TimelineDetailCells;
+			sourceTree = "<group>";
+		};
 		EDD08A3C1D352887001E1459 = {
 			isa = PBXGroup;
 			children = (
@@ -223,9 +253,9 @@
 		EDD08A461D352887001E1459 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EDD08A451D352887001E1459 /* ca.app */,
-				EDD08A5C1D352888001E1459 /* caTests.xctest */,
-				EDD08A671D352888001E1459 /* caUITests.xctest */,
+				EDD08A451D352887001E1459 /* CA.app */,
+				EDD08A5C1D352888001E1459 /* CA.xctest */,
+				EDD08A671D352888001E1459 /* CA.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -337,6 +367,7 @@
 			children = (
 				EDD08A8F1D355157001E1459 /* TimelineViewController.swift */,
 				EDCFCE6C1D3C73CA00E2B030 /* NewTimelineViewController.swift */,
+				EDCFCE8C1D46031F00E2B030 /* TimelineDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -353,6 +384,7 @@
 			children = (
 				EDD08A8D1D354C0F001E1459 /* Timeline.storyboard */,
 				EDD08A9F1D37CF0A001E1459 /* TimelineCell.swift */,
+				EDCFCE7D1D45FA2900E2B030 /* TimelineDetailCells */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -532,7 +564,7 @@
 			);
 			name = ca;
 			productName = ca;
-			productReference = EDD08A451D352887001E1459 /* ca.app */;
+			productReference = EDD08A451D352887001E1459 /* CA.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EDD08A5B1D352888001E1459 /* caTests */ = {
@@ -550,7 +582,7 @@
 			);
 			name = caTests;
 			productName = caTests;
-			productReference = EDD08A5C1D352888001E1459 /* caTests.xctest */;
+			productReference = EDD08A5C1D352888001E1459 /* CA.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EDD08A661D352888001E1459 /* caUITests */ = {
@@ -568,7 +600,7 @@
 			);
 			name = caUITests;
 			productName = caUITests;
-			productReference = EDD08A671D352888001E1459 /* caUITests.xctest */;
+			productReference = EDD08A671D352888001E1459 /* CA.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -595,7 +627,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EDD08A401D352887001E1459 /* Build configuration list for PBXProject "ca" */;
+			buildConfigurationList = EDD08A401D352887001E1459 /* Build configuration list for PBXProject "CA" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -654,10 +686,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDCFCE6B1D3C6D7A00E2B030 /* PostImageGridItem.swift in Sources */,
+				EDCFCE831D45FA7200E2B030 /* LoverCell.swift in Sources */,
 				EDD08A4B1D352887001E1459 /* HomeViewController.swift in Sources */,
+				EDCFCE851D45FA7F00E2B030 /* MeCell.swift in Sources */,
 				EDD08AA01D37CF0A001E1459 /* TimelineCell.swift in Sources */,
 				EDD08A901D355157001E1459 /* TimelineViewController.swift in Sources */,
 				EDCFCE531D39D3B500E2B030 /* PlacesViewController.swift in Sources */,
+				EDCFCE871D45FA9A00E2B030 /* CommentTopCell.swift in Sources */,
 				EDCFCE751D435CBC00E2B030 /* PlaceViewController.swift in Sources */,
 				EDCFCE7C1D442FF100E2B030 /* Global.swift in Sources */,
 				EDD08A491D352887001E1459 /* AppDelegate.swift in Sources */,
@@ -666,15 +701,20 @@
 				EDCFCE601D3A5B8A00E2B030 /* CircularButton.swift in Sources */,
 				EDD08AA91D385EB4001E1459 /* Constants.swift in Sources */,
 				EDCFCE731D435BF200E2B030 /* PhotoCell.swift in Sources */,
+				EDCFCE8D1D46031F00E2B030 /* TimelineDetailViewController.swift in Sources */,
 				EDD08AA31D37D058001E1459 /* CircularView.swift in Sources */,
+				EDCFCE8B1D45FAB600E2B030 /* CommentBottomCell.swift in Sources */,
 				EDD08A9E1D36A65E001E1459 /* ElasticView.swift in Sources */,
+				EDCFCE811D45FA6200E2B030 /* ContentCell.swift in Sources */,
 				EDCFCE581D39E29000E2B030 /* CircularItemListMenu.swift in Sources */,
 				EDD08AA61D385A1A001E1459 /* RoundedCornerImage.swift in Sources */,
 				EDCFCE781D4371CE00E2B030 /* PopAnimation.swift in Sources */,
 				EDD08A511D352887001E1459 /* ca.xcdatamodeld in Sources */,
 				EDCFCE7A1D43A99400E2B030 /* PopUpImageViewController.swift in Sources */,
 				EDCFCE691D3C6D2000E2B030 /* PostImageGrid.swift in Sources */,
+				EDCFCE7F1D45FA4E00E2B030 /* TopCell.swift in Sources */,
 				EDCFCE551D39E0AF00E2B030 /* PlaceCell.swift in Sources */,
+				EDCFCE891D45FAA700E2B030 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,7 +863,7 @@
 				INFOPLIST_FILE = ca/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.chengkang.ca;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CA;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -837,7 +877,7 @@
 				INFOPLIST_FILE = ca/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.chengkang.ca;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CA;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -849,8 +889,8 @@
 				INFOPLIST_FILE = caTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.chengkang.caTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ca.app/ca";
+				PRODUCT_NAME = CA;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CA.app/CA";
 			};
 			name = Debug;
 		};
@@ -861,8 +901,8 @@
 				INFOPLIST_FILE = caTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.chengkang.caTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ca.app/ca";
+				PRODUCT_NAME = CA;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CA.app/CA";
 			};
 			name = Release;
 		};
@@ -872,7 +912,7 @@
 				INFOPLIST_FILE = caUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.chengkang.caUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CA;
 				TEST_TARGET_NAME = ca;
 			};
 			name = Debug;
@@ -883,7 +923,7 @@
 				INFOPLIST_FILE = caUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.chengkang.caUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CA;
 				TEST_TARGET_NAME = ca;
 			};
 			name = Release;
@@ -891,7 +931,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EDD08A401D352887001E1459 /* Build configuration list for PBXProject "ca" */ = {
+		EDD08A401D352887001E1459 /* Build configuration list for PBXProject "CA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EDD08A6E1D352888001E1459 /* Debug */,

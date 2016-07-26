@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EDD08A441D352887001E1459"
-               BuildableName = "ca.app"
+               BuildableName = "CA.temp_caseinsensitive_rename.app"
                BlueprintName = "ca"
-               ReferencedContainer = "container:ca.xcodeproj">
+               ReferencedContainer = "container:CA.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EDD08A5B1D352888001E1459"
-               BuildableName = "caTests.xctest"
+               BuildableName = "CA.temp_caseinsensitive_rename.xctest"
                BlueprintName = "caTests"
-               ReferencedContainer = "container:ca.xcodeproj">
+               ReferencedContainer = "container:CA.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EDD08A661D352888001E1459"
-               BuildableName = "caUITests.xctest"
+               BuildableName = "CA.temp_caseinsensitive_rename.xctest"
                BlueprintName = "caUITests"
-               ReferencedContainer = "container:ca.xcodeproj">
+               ReferencedContainer = "container:CA.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDD08A441D352887001E1459"
-            BuildableName = "ca.app"
+            BuildableName = "CA.temp_caseinsensitive_rename.app"
             BlueprintName = "ca"
-            ReferencedContainer = "container:ca.xcodeproj">
+            ReferencedContainer = "container:CA.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDD08A441D352887001E1459"
-            BuildableName = "ca.app"
+            BuildableName = "CA.temp_caseinsensitive_rename.app"
             BlueprintName = "ca"
-            ReferencedContainer = "container:ca.xcodeproj">
+            ReferencedContainer = "container:CA.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDD08A441D352887001E1459"
-            BuildableName = "ca.app"
+            BuildableName = "CA.temp_caseinsensitive_rename.app"
             BlueprintName = "ca"
-            ReferencedContainer = "container:ca.xcodeproj">
+            ReferencedContainer = "container:CA.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
