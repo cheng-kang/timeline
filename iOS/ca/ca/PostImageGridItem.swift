@@ -22,11 +22,19 @@ class PostImageGridItem: UIView {
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var plusBtn: UIButton!
     
+    var index = 0
+    
+    var plusBtnClickClosure: (()->())?
+    var deleteBtnClickClosure: ((index: Int)->())?
+    
     var hasImg = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        img.layer.borderColor = GREY_THEME_COLOR.CGColor
+        img.layer.borderWidth = 1
+        img.clipsToBounds = true
         self.clipsToBounds = true
     }
     
@@ -58,6 +66,15 @@ class PostImageGridItem: UIView {
         self.alpha = 0
         
         self.hasImg = false
+    }
+    
+    @IBAction func plusBtnClick(sender: UIButton) {
+        plusBtnClickClosure!()
+    }
+    
+    @IBAction func deleteBtnClick(sender: UIButton) {
+        self.img.image = nil
+        deleteBtnClickClosure!(index: index)
     }
 
 }

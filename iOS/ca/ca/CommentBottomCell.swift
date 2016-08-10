@@ -15,9 +15,9 @@ class CommentBottomCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.cardBottomView.layer.cornerRadius = 10
+        self.cardBottomView.layer.cornerRadius = 6
         self.cardBottomView.clipsToBounds = true
-        self.cardBottomView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.cardBottomView.layer.borderColor = THEME().TextSubColor.CGColor
         self.cardBottomView.layer.borderWidth = 1
     }
 

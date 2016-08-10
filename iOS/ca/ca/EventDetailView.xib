@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="FZYanSJW.TTF">
+            <string>FZYANS_JW--GB1-0</string>
+            <string>FZYANS_JW--GB1-0</string>
+            <string>FZYANS_JW--GB1-0</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EventDetailView" customModule="CA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gc-71-ods">
+                    <rect key="frame" x="10" y="8" width="300" height="384"/>
+                    <subviews>
+                        <view alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whS-SD-DdN">
+                            <rect key="frame" x="46" y="55" width="211" height="1"/>
+                            <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="OFM-Ui-neP"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="FRIDAY / FEB 12 / 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyx-xr-LW7">
+                            <rect key="frame" x="-1" y="0.0" width="304" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="ZDz-rI-Z8n"/>
+                                <constraint firstAttribute="height" constant="25" id="reX-U9-1X8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="19"/>
+                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="reX-U9-1X8"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ALARM AT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR6-sg-CvL">
+                            <rect key="frame" x="-1" y="128" width="304" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="wfu-eh-n7x"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="14"/>
+                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cV-Yp-axu">
+                            <rect key="frame" x="135" y="346" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="AJU-yD-ZEt"/>
+                                <constraint firstAttribute="height" constant="30" id="rnf-dC-9a7"/>
+                            </constraints>
+                            <state key="normal" image="Alarm Clock"/>
+                            <connections>
+                                <action selector="alarmBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="MIz-E2-33s"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02:03:54" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="8nb-lf-PwY">
+                            <rect key="frame" x="0.0" y="68" width="300" height="60"/>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="Xin-sf-RAg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="40"/>
+                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="BKa-4X-2c6" appends="YES" id="QBu-np-3eb"/>
+                            </connections>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="oew-Wf-zFP">
+                            <rect key="frame" x="16" y="157" width="271" height="181"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <string key="text">记得吃饭！！记得吃药！！！
+记得吃药！！！记得吃药！！！记得吃药！！！记得吃饭！！记得吃药！！！
+记得吃药！！！记得吃药！！！记得吃药！！！记得吃饭！！记得吃药！！！
+记得吃药！！！记得吃药！！！记得吃药！！！</string>
+                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="19"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="JR6-sg-CvL" firstAttribute="top" secondItem="8nb-lf-PwY" secondAttribute="bottom" id="7Dp-5Y-078"/>
+                        <constraint firstAttribute="trailing" secondItem="uyx-xr-LW7" secondAttribute="trailing" id="7E6-uy-RXP"/>
+                        <constraint firstItem="oew-Wf-zFP" firstAttribute="top" secondItem="JR6-sg-CvL" secondAttribute="bottom" constant="8" id="A2e-Ck-ADD"/>
+                        <constraint firstAttribute="bottom" secondItem="6cV-Yp-axu" secondAttribute="bottom" constant="8" id="EDu-sV-rEy"/>
+                        <constraint firstAttribute="trailing" secondItem="8nb-lf-PwY" secondAttribute="trailing" id="GKt-R7-2ye"/>
+                        <constraint firstItem="oew-Wf-zFP" firstAttribute="leading" secondItem="8Gc-71-ods" secondAttribute="leading" constant="16" id="I9l-pQ-mmL"/>
+                        <constraint firstItem="6cV-Yp-axu" firstAttribute="top" secondItem="oew-Wf-zFP" secondAttribute="bottom" constant="8" id="KCr-d4-pm9"/>
+                        <constraint firstAttribute="trailing" secondItem="oew-Wf-zFP" secondAttribute="trailing" constant="16" id="LFM-zY-cSA"/>
+                        <constraint firstItem="JR6-sg-CvL" firstAttribute="leading" secondItem="8Gc-71-ods" secondAttribute="leading" id="NYW-Ds-iwj"/>
+                        <constraint firstItem="whS-SD-DdN" firstAttribute="leading" secondItem="8Gc-71-ods" secondAttribute="leading" constant="46" id="RmA-DQ-95k"/>
+                        <constraint firstItem="whS-SD-DdN" firstAttribute="top" secondItem="8Gc-71-ods" secondAttribute="top" constant="55" id="WcE-8l-4n4"/>
+                        <constraint firstItem="uyx-xr-LW7" firstAttribute="leading" secondItem="8Gc-71-ods" secondAttribute="leading" id="YDS-E0-5wT"/>
+                        <constraint firstAttribute="trailing" secondItem="JR6-sg-CvL" secondAttribute="trailing" id="ZdR-qZ-VEw"/>
+                        <constraint firstAttribute="trailing" secondItem="uyx-xr-LW7" secondAttribute="trailing" id="gUL-jb-3bn"/>
+                        <constraint firstItem="8nb-lf-PwY" firstAttribute="top" secondItem="uyx-xr-LW7" secondAttribute="bottom" constant="8" id="gjg-2m-KAF"/>
+                        <constraint firstItem="6cV-Yp-axu" firstAttribute="centerX" secondItem="8Gc-71-ods" secondAttribute="centerX" id="jq5-tn-ea4"/>
+                        <constraint firstItem="uyx-xr-LW7" firstAttribute="leading" secondItem="8Gc-71-ods" secondAttribute="leading" id="n7Q-XU-zGM"/>
+                        <constraint firstItem="uyx-xr-LW7" firstAttribute="top" secondItem="8Gc-71-ods" secondAttribute="top" id="q6k-rD-UaR"/>
+                        <constraint firstItem="8nb-lf-PwY" firstAttribute="leading" secondItem="8Gc-71-ods" secondAttribute="leading" id="vti-NM-5Ng"/>
+                        <constraint firstAttribute="trailing" secondItem="whS-SD-DdN" secondAttribute="trailing" constant="46" id="wAM-D9-4Ja"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="8Gc-71-ods" secondAttribute="bottom" constant="8" id="2SL-ax-R5T"/>
+                <constraint firstItem="8Gc-71-ods" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="QIg-AZ-qIa"/>
+                <constraint firstItem="8Gc-71-ods" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="fD8-aK-8hU"/>
+                <constraint firstAttribute="trailing" secondItem="8Gc-71-ods" secondAttribute="trailing" constant="10" id="sLE-ED-vGn"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="alarmBtn" destination="6cV-Yp-axu" id="xwz-d8-FQi"/>
+                <outlet property="cardView" destination="8Gc-71-ods" id="xmG-ZY-Ese"/>
+                <outlet property="contentTextView" destination="oew-Wf-zFP" id="IMg-Tz-vcx"/>
+                <outlet property="dateLbl" destination="uyx-xr-LW7" id="WlX-nV-oN4"/>
+                <outlet property="timeLbl" destination="8nb-lf-PwY" id="twj-0Y-aDq"/>
+                <outlet property="timeTipLbl" destination="JR6-sg-CvL" id="P2s-mh-az3"/>
+            </connections>
+            <point key="canvasLocation" x="136" y="345"/>
+        </view>
+        <tapGestureRecognizer id="BKa-4X-2c6">
+            <connections>
+                <action selector="switchTimeTipLbl:" destination="iN0-l3-epB" id="fIj-4j-mgH"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="Alarm Clock" width="50" height="50"/>
+    </resources>
+</document>

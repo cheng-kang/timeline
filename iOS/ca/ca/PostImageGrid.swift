@@ -20,14 +20,18 @@ class PostImageGrid: UIView {
     
     @IBOutlet var gridItems: [PostImageGridItem]!
     
-    var imgs = [UIImage]()
+    var imgs = [UIImage]() {
+        didSet {
+            updateView()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imgs.append(UIImage(named: "avatar1")!)
-        imgs.append(UIImage(named: "avatar1")!)
-        imgs.append(UIImage(named: "avatar1")!)
+//        imgs.append(UIImage(named: "avatar1")!)
+//        imgs.append(UIImage(named: "avatar1")!)
+//        imgs.append(UIImage(named: "avatar1")!)
         updateView()
         
     }
@@ -40,7 +44,12 @@ class PostImageGrid: UIView {
     }
     
     func updateView() {
+        for i in 0..<9 {
+            gridItems[i].img.image = nil
+        }
+        
         for i in 0..<imgs.count {
+            gridItems[i].index = i
             gridItems[i].setImage(imgs[i])
             gridItems[i].show()
         }

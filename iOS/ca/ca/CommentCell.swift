@@ -18,7 +18,7 @@ class CommentCell: UITableViewCell {
         // Initialization code
         
         self.cardMiddleView.clipsToBounds = true
-        self.cardMiddleView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.cardMiddleView.layer.borderColor = THEME().TextSubColor.CGColor
         self.cardMiddleView.layer.borderWidth = 1
     }
 

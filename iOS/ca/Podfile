@@ -7,7 +7,13 @@ target 'ca' do
   use_frameworks!
 
   # Pods for ca
+  platform :ios, "9.0"
   pod 'Transform.swift'
+  pod 'Alamofire'
+  pod 'Qiniu'
+  pod 'CryptoSwift'
+  pod 'IDZSwiftCommonCrypto'
+  pod 'Wilddog'
 
   target 'caTests' do
     inherit! :search_paths
@@ -20,3 +26,5 @@ target 'ca' do
   end
 
 end
+
+

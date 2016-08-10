@@ -7,11 +7,57 @@
 //
 
 import UIKit
+import Wilddog
 
-class TimelineDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
-
-    @IBOutlet weak var tableview: UITableView!
+class TimelineDetailViewController: UIViewController {
     
+    @IBOutlet weak var navBarView: UIView!
+    @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var textField: UITextField!
+    
+    var currentTableView: UITableView!
+    
+    var tableviewHeight: CGFloat = 0
+    var commentViewY: CGFloat = 0
+    
+    var contentCellDif: CGFloat = 0
+    
+    var lastScrollViewOffsetY: CGFloat = 0
+    
+    let refreshControl = UIRefreshControl()
+    let upView = PullToLoadView()
+    let downView = PullToLoadView()
+    let pullToLoadViewHeight: CGFloat = 60
+    let pullToLoadViewIconHeight: CGFloat = 18
+    
+    var id: String? {
+        didSet {
+            let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Timeline/\(id)")
+            ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
+                if snapshot.value != nil {
+                    let data = snapshot.value as! [String:AnyObject]
+                    let temp = Timeline()
+                    
+                    temp.id = snapshot.key
+                    temp.type = data["type"] as! String
+                    temp.subtype = data["subtype"] as! String
+                    temp.title = data["title"] as! String
+                    temp.content = data["content"] as! String
+                    temp.location = data["location"] as! String
+                    temp.images = data["images"] as! [String:AnyObject]
+                    temp.icon = data["icon"] as! String
+                    temp.bgColor = data["bgColor"] as! String
+                    temp.createAt = data["createAt"] as! String
+                    temp.updateAt = data["updateAt"] as! String
+                }
+            }
+        }
+    }
+    
+    var currentIndex = 0
+    var timelineList = [Timeline]()
     
     var dataForCell: Dictionary<String, AnyObject?> = [
         "backgroundColor": PINK_THEME_COLOR,
@@ -24,7 +70,7 @@ class TimelineDetailViewController: UIViewController, UITableViewDelegate, UITab
         "date": "23/May/2016",
         "location": "University of Science & Technology",
         "title": "Remember to take the pills!",
-        "content": "Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~",
+        "content": "在学校一起拍照片了！！！开心~~宝贝我爱你！~耶！！！✌️Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~",
         "images": [
             UIImage(named: "infrontofstone")!,
             UIImage(named: "kiss")!,
@@ -82,7 +128,7 @@ class TimelineDetailViewController: UIViewController, UITableViewDelegate, UITab
         "date": "23/May/2016",
         "location": "University of Science & Technology",
         "title": "Remember to take the pills!",
-        "content": "Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~",
+        "content": "Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~",
         "images": [
             UIImage(named: "infrontofstone")!,
             UIImage(named: "kiss")!,
@@ -191,9 +237,12 @@ class TimelineDetailViewController: UIViewController, UITableViewDelegate, UITab
     
     var currentData: Dictionary<String, AnyObject?>? {
         didSet {
-            if oldValue != nil {
-                self.tableview.reloadData()
-            }
+//            if oldValue != nil {
+//                if let tableview = self.currentTableView {
+//                    self.currentTableView.reloadData()
+//                }
+//            }
+            
             getPrevAndNextData()
         }
     }
@@ -202,94 +251,394 @@ class TimelineDetailViewController: UIViewController, UITableViewDelegate, UITab
     
     func getPrevAndNextData() {
         // get prev data
-        prevData = dataForCell
+        prevData = dataForCell1
         
         // get next data
-        nextData = dataForCell
+        nextData = dataForCell2
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableview.dataSource = self
-        self.tableview.delegate = self
-
-        // Do any additional setup after loading the view.
-        let upView = UIView()
-        upView.backgroundColor = UIColor.blueColor()
-        upView.frame = CGRectMake(0, -20, self.view.frame.width, 20)
-        self.tableview.addSubview(upView)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        initTableView()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TimelineDetailViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TimelineDetailViewController.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TimelineDetailViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(TimelineDetailViewController.handleSwipeGesture(_:)))
+        swipeDownGesture.direction = UISwipeGestureRecognizerDirection.Down //不设置是右
+        self.view.addGestureRecognizer(swipeDownGesture)
+        
     }
     
-    class func timelineDetailViewController() -> TimelineDetailViewController {
+    func initTableView() {
+        
+        self.navBarView.backgroundColor = GREEN_THEME_COLOR
+        
+        let newTableView = UITableView()
+        newTableView.tag = 1
+        newTableView.tableFooterView = UIView()
+        newTableView.separatorStyle = .None
+        newTableView.allowsSelection = false
+        newTableView.showsVerticalScrollIndicator = false
+        newTableView.showsHorizontalScrollIndicator = false
+        newTableView.keyboardDismissMode = .Interactive
+        
+        newTableView.dataSource = self
+        newTableView.delegate = self
+        
+        newTableView.registerNib(UINib(nibName: "TopCell", bundle: nil), forCellReuseIdentifier: "TopCell")
+        newTableView.registerNib(UINib(nibName: "ContentCell", bundle: nil), forCellReuseIdentifier: "ContentCell")
+        newTableView.registerNib(UINib(nibName: "LoverCell", bundle: nil), forCellReuseIdentifier: "LoverCell")
+        newTableView.registerNib(UINib(nibName: "MeCell", bundle: nil), forCellReuseIdentifier: "MeCell")
+        newTableView.registerNib(UINib(nibName: "CommentTopCell", bundle: nil), forCellReuseIdentifier: "CommentTopCell")
+        newTableView.registerNib(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
+        newTableView.registerNib(UINib(nibName: "CommentBottomCell", bundle: nil), forCellReuseIdentifier: "CommentBottomCell")
+        
+        newTableView.frame = CGRectMake(0, self.navBarView.frame.height, self.view.frame.width, self.view.frame.height - self.navBarView.frame.height - self.commentView.frame.height)
+        
+        self.view.addSubview(newTableView)
+        self.view.sendSubviewToBack(newTableView)
+        
+        self.currentTableView = newTableView
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.sendBtn.setTitleColor(GREEN_THEME_COLOR, forState: .Normal)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.tableviewHeight = self.currentTableView.frame.height
+        self.commentViewY = self.commentView.frame.origin.y
+        
+        self.currentTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .None)
+        self.upView.updateFrame(pullToLoadViewHeight, superViewWidth: self.currentTableView.frame.width, superViewHeight: self.currentTableView.contentSize.height)
+        self.downView.updateFrame(pullToLoadViewHeight, superViewWidth: self.currentTableView.frame.width, superViewHeight: self.currentTableView.contentSize.height)
+        
+//        self.currentTableView.beginUpdates()
+//        self.currentTableView.endUpdates()
+        
+        self.setPullToLoad()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+    }
+    
+    class func timelineDetailViewController(timelineList: [Timeline],index: Int) -> TimelineDetailViewController {
         
         let sb = UIStoryboard(name: "Timeline", bundle: nil)
         let vc = sb.instantiateViewControllerWithIdentifier("TimelineDetailViewController") as! TimelineDetailViewController
         
-        vc.currentData = vc.dataForCell
+        vc.timelineList = timelineList
+        vc.currentIndex = index
+//        vc.currentData = vc.dataForCell
         
         return vc
+    }
+    
+    func setPullToLoad() {
+        self.currentTableView.endUpdates()
+        self.upView.initView(true,
+                             viewHeight: pullToLoadViewHeight,
+                             superViewWidth: self.view.frame.width,
+                             superViewHeight: self.view.frame.height,
+                             iconHeight: pullToLoadViewIconHeight,
+                             iconTintColor: (GREEN_THEME_COLOR)
+        )
+        self.downView.initView(false,
+                             viewHeight: pullToLoadViewHeight,
+                             superViewWidth: self.view.frame.width,
+                             superViewHeight: self.currentTableView.contentSize.height,
+                             iconHeight: pullToLoadViewIconHeight,
+                             iconTintColor: (GREEN_THEME_COLOR)
+        )
+        self.currentTableView.addSubview(upView)
+        self.currentTableView.addSubview(downView)
+        
+        self.refreshControl.alpha = 0
+//        self.refreshControl.addTarget(self, action: #selector(TimelineDetailViewController.didRefresh(_:)), forControlEvents: .ValueChanged)
+        self.currentTableView.addSubview(self.refreshControl)
+        self.currentTableView.sendSubviewToBack(self.refreshControl)
+    }
+    
+    var hasNew = false
+    var isUp = true
+    func didPull(isUp: Bool) {
+        if self.refreshControl.refreshing {
+            
+            self.hasNew = true
+            self.isUp = isUp
+            
+            self.refreshControl.endRefreshing()
+            
+            let currentTableViewHeight = self.currentTableView.frame.height
+            let currentTableViewWidth = self.currentTableView.frame.width
+            let currentTableViewY = self.currentTableView.frame.origin.y
+            
+            let newTableViewController = TimelineDetailTableViewController()
+            newTableViewController.dataForCell = self.isUp ? self.timelineList[currentIndex-1] : self.timelineList[currentIndex+1]
+            
+            let newTableView = UITableView()
+            newTableView.tag = 2
+            newTableView.tableFooterView = UIView()
+            newTableView.separatorStyle = .None
+            newTableView.allowsSelection = false
+            newTableView.showsVerticalScrollIndicator = false
+            newTableView.showsHorizontalScrollIndicator = false
+            newTableView.keyboardDismissMode = .Interactive
+            
+            newTableView.dataSource = self
+            newTableView.delegate = self
+            
+            newTableView.registerNib(UINib(nibName: "TopCell", bundle: nil), forCellReuseIdentifier: "TopCell")
+            newTableView.registerNib(UINib(nibName: "ContentCell", bundle: nil), forCellReuseIdentifier: "ContentCell")
+            newTableView.registerNib(UINib(nibName: "LoverCell", bundle: nil), forCellReuseIdentifier: "LoverCell")
+            newTableView.registerNib(UINib(nibName: "MeCell", bundle: nil), forCellReuseIdentifier: "MeCell")
+            newTableView.registerNib(UINib(nibName: "CommentTopCell", bundle: nil), forCellReuseIdentifier: "CommentTopCell")
+            newTableView.registerNib(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
+            newTableView.registerNib(UINib(nibName: "CommentBottomCell", bundle: nil), forCellReuseIdentifier: "CommentBottomCell")
+            
+            newTableView.frame = isUp ? CGRectMake(0, -currentTableViewHeight, currentTableViewWidth, currentTableViewHeight) : CGRectMake(0, currentTableViewY + currentTableViewHeight, currentTableViewWidth, currentTableViewHeight)
+            newTableView.alpha = 0
+            
+            self.view.addSubview(newTableView)
+            self.view.sendSubviewToBack(newTableView)
+            
+            let targetNewTableViewCenter = CGPointMake(self.currentTableView.center.x, self.currentTableView.center.y)
+            let targetCurrentTableViewCenter = isUp ? CGPointMake(self.currentTableView.center.x, self.currentTableView.center.y + currentTableViewHeight) : CGPointMake(self.currentTableView.center.x, self.currentTableView.center.y - currentTableViewHeight)
+            
+            let duration = 0.7
+            UIView.animateWithDuration(duration, delay: 0, options: [.CurveEaseOut], animations: {
+                let bgColor = GREEN_THEME_COLOR
+                self.navBarView.backgroundColor = bgColor
+                
+                newTableView.center = targetNewTableViewCenter
+                newTableView.alpha = 1
+                self.currentTableView.center = targetCurrentTableViewCenter
+                }, completion: { (_) in
+            })
+            
+            let timer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: #selector(TimelineDetailViewController.didFinishPull(_:)), userInfo: ["newTableView": newTableView], repeats: false)
+        }
+    }
+    
+    func didFinishPull(sender: NSTimer) {
+        let newTableView = (sender.userInfo as! Dictionary<String, AnyObject>)["newTableView"] as! UITableView
+        self.currentTableView.delegate = nil
+        self.currentTableView.dataSource = nil
+        self.currentTableView.removeFromSuperview()
+        self.currentTableView = nil
+        self.currentTableView = newTableView
+        self.currentTableView.tag = 1
+        
+//        self.currentData = isUp ? prevData : nextData
+        self.currentIndex = self.currentIndex + (isUp ? -1 : 1)
+        
+        self.hasNew = false
+        
+        self.setPullToLoad()
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        
+        print(keyboardHeight)
+        
+        self.currentTableView.frame = CGRectMake(0, self.currentTableView.frame.origin.y, self.currentTableView.frame.width, self.tableviewHeight - keyboardHeight)
+        self.commentView.frame = CGRectMake(0, self.commentViewY - keyboardHeight, self.commentView.frame.width, self.commentView.frame.height)
+    }
+    
+    func keyboardDidShow(notification: NSNotification) {
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        
+        print(keyboardHeight)
+        
+        UIView.animateWithDuration(0.1, delay: 0, options: [.CurveEaseOut], animations: {
+            self.currentTableView.frame = CGRectMake(0, self.currentTableView.frame.origin.y, self.currentTableView.frame.width, self.tableviewHeight - keyboardHeight)
+            self.commentView.frame = CGRectMake(0, self.commentViewY - keyboardHeight, self.commentView.frame.width, self.commentView.frame.height)
+        }) { (complete) in
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        
+        print(keyboardHeight)
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: [.CurveEaseOut], animations: {
+            self.currentTableView.frame = CGRectMake(0, self.currentTableView.frame.origin.y, self.currentTableView.frame.width, self.tableviewHeight)
+            self.commentView.frame = CGRectMake(0, self.commentViewY, self.commentView.frame.width, self.commentView.frame.height)
+        }) { (complete) in
+        }
+    }
+    
+    func handleSwipeGesture(sender: UISwipeGestureRecognizer) {
+        let direction = sender.direction
+        //判断是上下左右
+        switch (direction){
+        case UISwipeGestureRecognizerDirection.Left:
+            print("Left")
+            break
+        case UISwipeGestureRecognizerDirection.Right:
+            print("Right")
+            break
+        case UISwipeGestureRecognizerDirection.Up:
+            print("Up")
+            break
+        case UISwipeGestureRecognizerDirection.Down:
+            print("Down")
+            self.view.endEditing(true)
+            break
+        default:
+            break;
+        }
     }
     
     @IBAction func dismissBtnClick() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func sendBtnClick() {
+        
+    }
 
+    
+    var isFullScreen = false
+    let animateFullScreenDuration = 0.3
+    
+    var justEnter = false
+    func enterFullScreen() {
+        if !isFullScreen && justEnter {
+            let navVarViewCenter = CGPointMake(self.navBarView.center.x, self.navBarView.center.y - self.navBarView.frame.height)
+            let commentViewCenter = CGPointMake(self.commentView.center.x, self.commentView.center.y + self.commentView.frame.height)
+            let tableviewBounds = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+            let tableviewCenter = CGPointMake(self.view.center.x, self.view.center.y)
+            self.currentTableView.frame.height
+            UIView.animateWithDuration(animateFullScreenDuration, delay: 0, options: [.CurveEaseOut], animations: {
+                self.navBarView.center = navVarViewCenter
+                self.commentView.center = commentViewCenter
+                self.currentTableView.bounds = tableviewBounds
+                self.currentTableView.center = tableviewCenter
+                }, completion: { (_) in
+            })
+            
+            isFullScreen = true
+        }
+        justEnter = true
+    }
+    
+    func exitFullScreen() {
+        if isFullScreen && !justEnter {
+            let navVarViewCenter = CGPointMake(self.navBarView.center.x, self.navBarView.center.y + self.navBarView.frame.height)
+            let commentViewCenter = CGPointMake(self.commentView.center.x, self.commentView.center.y - self.commentView.frame.height)
+            let tableviewBounds = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height - self.navBarView.frame.height - self.commentView.frame.height)
+            let tableviewCenter = CGPointMake(self.view.center.x, self.navBarView.center.y + self.navBarView.frame.height/2 + (self.view.frame.height - self.navBarView.frame.height - self.commentView.frame.height)/2)
+            UIView.animateWithDuration(animateFullScreenDuration, delay: 0, options: [.CurveEaseOut], animations: {
+                self.navBarView.center = navVarViewCenter
+                self.commentView.center = commentViewCenter
+                self.currentTableView.bounds = tableviewBounds
+                self.currentTableView.center = tableviewCenter
+                }, completion: { (_) in
+            })
+            
+            isFullScreen = false
+        }
+        
+        justEnter = false
+    }
+    
+}
+
+extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let msgCount = (self.currentData!["messages"] as! [Dictionary<String, AnyObject>]).count
-        let cmtCount = (self.currentData!["comments"] as! [Dictionary<String, AnyObject>]).count
-        return 4+msgCount+cmtCount
+        if self.hasNew && tableView.tag == 2 {
+            let cellData = self.isUp ? self.timelineList[currentIndex-1] : self.timelineList[currentIndex+1]
+            let msgCount = cellData.messageList.count
+            let cmtCount = cellData.commentList.count
+            return 2+msgCount+(cmtCount == 0 ? 0 : cmtCount + 2)
+        }
+        
+        if self.timelineList.count > 0 {
+            let cellData = self.timelineList[currentIndex]
+            let msgCount = cellData.messageList.count
+            let cmtCount = cellData.commentList.count
+            return 2+msgCount+(cmtCount == 0 ? 0 : cmtCount + 2)
+        } else {
+            return 0
+        }
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let cellData = self.dataForCell
-        let msgs = self.currentData!["messages"] as! [Dictionary<String, AnyObject>]
+        var cellData: Timeline!
+        if self.hasNew && tableView.tag == 2 {
+            cellData = self.isUp ? self.timelineList[currentIndex-1] : self.timelineList[currentIndex+1]
+        } else {
+            cellData = self.timelineList[currentIndex]
+        }
+        let msgs = cellData.messageList
         let msgCount = msgs.count
-        let cmts = self.currentData!["comments"] as! [Dictionary<String, AnyObject>]
+        let cmts = cellData.commentList
         let cmtCount = cmts.count
         if row == 0 {
             let cell = tableview.dequeueReusableCellWithIdentifier("TopCell") as! TopCell
-            cell.dateLbl.text = cellData["date"] as! String
-            cell.timeLbl.text = cellData["time"] as! String
-            cell.nameLbl.text = cellData["username"] as! String
-            cell.iconBgView.backgroundColor = cellData["backgroundColor"] as! UIColor
-            cell.iconImg.image = cellData["icon"] as! UIImage
+            cell.dateLbl.text = cellData.date!
+            cell.timeLbl.text = cellData.time!
+            cell.nameLbl.text = cellData.userid
+            cell.iconBgView.backgroundColor = GREEN_THEME_COLOR
+            cell.iconImg.image = UIImage(named: "Two Hearts White")
             
             return cell
         } else if row == 1{
             let cell = tableview.dequeueReusableCellWithIdentifier("ContentCell") as! ContentCell
             
-            cell.coverImg.image = cellData["cover"] as! UIImage
-            cell.contentContainnerView.backgroundColor = cellData["backgroundColor"] as! UIColor
-            cell.contentTextView.text = cellData["content"] as! String
-            cell.locationBtn.setTitle(cellData["location"] as! String, forState: .Normal)
+            getImageById((cellData.imageIdList?.first)!, complete: { (image) in
+                cell.coverImg.image = image
+            })
+            cell.contentContainnerView.backgroundColor = GREEN_THEME_COLOR
+            cell.contentTextView.text = cellData.content
+            cell.locationBtn.setTitle(cellData.location, forState: .Normal)
             
-            cell.initCell(cellData["backgroundColor"] as! UIColor, imgs: cellData["images"] as! [UIImage])
+            cell.initCell(GREEN_THEME_COLOR,
+                          imgs: [],
+                          content: cellData.content!
+            )
+            
+            self.contentCellDif = cell.contentViewHeightDif
             
             return cell
             
         } else if row <= (1 + msgCount) {
             let msgData = msgs[row-2]
-            if (cellData["username"] as! String) == (msgData["username"] as! String) {
+            if (cellData.userid) == (msgData.userId) {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MeCell") as! MeCell
-                cell.avatarImg.image = msgData["avatar"] as! UIImage
-                cell.msgTextView.text = msgData["content"] as! String
+                cell.avatarImg.image = UIImage(named: "avatar2")
+                cell.msgTextView.text = msgData.content
                 
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("LoverCell") as! LoverCell
-                cell.avatarImg.image = msgData["avatar"] as! UIImage
-                cell.msgTextView.text = msgData["content"] as! String
+                cell.avatarImg.image = UIImage(named: "avatar1")
+                cell.msgTextView.text = msgData.content
                 
                 return cell
             }
@@ -300,8 +649,8 @@ class TimelineDetailViewController: UIViewController, UITableViewDelegate, UITab
         } else if row <= (2 + msgCount + cmtCount) {
             let cmtData = cmts[row-3-msgCount]
             let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell") as! CommentCell
-            cell.commentMetaInfoLbl.text = "\(cmtData["username"] as! String)    \(cmtData["time"] as! String) \(cmtData["date"] as! String)"
-            cell.commentContentLbl.text = cmtData["content"] as! String
+            cell.commentMetaInfoLbl.text = "\(cmtData.userId)    \(cmtData.time) \(cmtData.date)"
+            cell.commentContentLbl.text = cmtData.content
             
             return cell
         } else {
@@ -317,15 +666,22 @@ class TimelineDetailViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let row = indexPath.row
-        let msgs = self.currentData!["messages"] as! [Dictionary<String, AnyObject>]
-        let msgCount = msgs.count
-        let cmts = self.currentData!["comments"] as! [Dictionary<String, AnyObject>]
-        let cmtCount = cmts.count
+        var cellData: Timeline
+        if self.hasNew && tableView.tag == 2 {
+            cellData = self.isUp ? self.timelineList[currentIndex-1] : self.timelineList[currentIndex+1]
+        } else {
+            cellData = self.timelineList[currentIndex]
+        }
+        let msgCount = (cellData.messageList).count
+        let cmtCount = (cellData.commentList).count
         
         if row == 0 {
             return 80
         } else if row == 1 {
-            return 274
+            if self.contentCellDif != 0 {
+                return 468 + self.contentCellDif
+            }
+            return 468
         } else if row <= (1 + msgCount) {
             return 75
         } else if row == (2 + msgCount) {
@@ -338,22 +694,98 @@ class TimelineDetailViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.alpha = 0
-        UIView.animateWithDuration(0.8, delay: 0, options: [.CurveEaseOut], animations: {
-            cell.alpha = 1
-            }) { (complete) in
+        //        cell.alpha = 0
+        //        UIView.animateWithDuration(0.8, delay: 0, options: [.CurveEaseOut], animations: {
+        //            cell.alpha = 1
+        //            }) { (complete) in
+        //        }
+    }
+}
+
+extension TimelineDetailViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if let this = (scrollView as? UITableView) {
+            if this == self.currentTableView {
+                //                print(this.contentOffset.y)
+                //                print(this.contentSize.height-70)
+                //                if this.contentOffset.y >= 80 && this.contentOffset.y <= (this.contentSize.height-70-this.frame.height) && this.contentOffset.y > lastScrollViewOffsetY+3 {
+                //                    enterFullScreen()
+                //                } else {
+                //                    exitFullScreen()
+                //                }
+                //                if this.contentOffset.y - lastScrollViewOffsetY > 3 {
+                //                    self.lastScrollViewOffsetY = this.contentOffset.y
+                //                }
+                if currentIndex > 0 {
+                    if scrollView.contentOffset.y < -pullToLoadViewHeight*(11/16) {
+                        if self.upView.isRotated == false {
+                            self.upView.isRotated = true
+                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+                                self.upView.iconView.transform = CGAffineTransformMakeRotation((180 * CGFloat(M_PI)) / 180)
+                                }, completion: { (complete) in
+                            })
+                        }
+                        
+                        if scrollView.contentOffset.y < -pullToLoadViewHeight {
+                            scrollView.contentOffset.y = -pullToLoadViewHeight
+                        }
+                    } else {
+                        if self.upView.isRotated == true {
+                            self.upView.isRotated = false
+                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+                                self.upView.iconView.transform = CGAffineTransformIdentity
+                                }, completion: { (complete) in
+                            })
+                        }
+                    }
+                    print(this.contentOffset.y)
+                    print(this.contentSize.height - pullToLoadViewHeight + pullToLoadViewHeight*(11/16))
+                }
+                
+                if currentIndex < timelineList.count - 1 {
+                    if this.contentOffset.y + this.frame.height > (this.contentSize.height + pullToLoadViewHeight*(11/16)) {
+                        if self.downView.isRotated == false {
+                            self.downView.isRotated = true
+                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+                                self.downView.iconView.transform = CGAffineTransformMakeRotation((180 * CGFloat(M_PI)) / 180)
+                                }, completion: { (complete) in
+                            })
+                        }
+                        
+                        if this.contentOffset.y + this.frame.height > (this.contentSize.height + pullToLoadViewHeight) {
+                            this.contentOffset.y = (this.contentSize.height + pullToLoadViewHeight) - this.frame.height
+                        }
+                    } else {
+                        if self.downView.isRotated == true {
+                            self.downView.isRotated = false
+                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+                                self.downView.iconView.transform = CGAffineTransformIdentity
+                                }, completion: { (complete) in
+                            })
+                        }
+                    }
+                }
+            }
         }
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if let this = (scrollView as? UITableView) {
+            if this == self.currentTableView {
+                if self.upView.isRotated == true && !self.refreshControl.refreshing {
+                    print(this.contentOffset)
+                    self.refreshControl.beginRefreshing()
+                    self.didPull(true)
+                }
+                if self.downView.isRotated == true && !self.refreshControl.refreshing {
+                    print(this.contentOffset)
+                    self.refreshControl.beginRefreshing()
+                    self.didPull(false)
+                }
+            }
+        }
     }
-    */
-
+    
 }

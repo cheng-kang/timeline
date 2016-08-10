@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="FZYanSJW.TTF">
+            <string>FZYANS_JW--GB1-0</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MeCell" rowHeight="101" id="eiR-et-Eyt" customClass="MeCell" customModule="CA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eiR-et-Eyt" id="vkR-Eo-JSe">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="100.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vlT-nE-7V4">
+                        <rect key="frame" x="159" y="-13" width="1" height="128"/>
+                        <color key="backgroundColor" red="0.91372549020000005" green="0.91764705879999997" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="dfW-n2-k8c"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar1" translatesAutoresizingMaskIntoConstraints="NO" id="DXV-r4-ZgS" customClass="RoundedCornerImage" customModule="CA" customModuleProvider="target">
+                        <rect key="frame" x="267" y="8" width="45" height="45.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="To4-ll-uCq"/>
+                            <constraint firstAttribute="height" constant="45" id="esW-TJ-WHp"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Forward" translatesAutoresizingMaskIntoConstraints="NO" id="H7R-DX-FTH">
+                        <rect key="frame" x="251" y="25" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="CeX-i9-CLW"/>
+                            <constraint firstAttribute="height" constant="12" id="dn6-Ho-4P5"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fff-bL-E8p">
+                        <rect key="frame" x="23" y="9" width="226" height="45.5"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="I love you!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TjR-hQ-W5m">
+                                <rect key="frame" x="4" y="8" width="214" height="31.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45.5" id="Ame-C4-NGk"/>
+                            <constraint firstItem="TjR-hQ-W5m" firstAttribute="top" secondItem="Fff-bL-E8p" secondAttribute="top" constant="4" id="YFh-Mc-Tgg"/>
+                            <constraint firstItem="TjR-hQ-W5m" firstAttribute="leading" secondItem="Fff-bL-E8p" secondAttribute="leading" constant="4" id="Zld-n6-XWK"/>
+                            <constraint firstAttribute="bottom" secondItem="TjR-hQ-W5m" secondAttribute="bottom" constant="4" id="da8-rn-RCp"/>
+                            <constraint firstAttribute="trailing" secondItem="TjR-hQ-W5m" secondAttribute="trailing" constant="4" id="o8Q-NJ-ZZg"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Fff-bL-E8p" firstAttribute="leading" secondItem="vkR-Eo-JSe" secondAttribute="leading" constant="8" id="0ch-fR-lj1"/>
+                    <constraint firstItem="H7R-DX-FTH" firstAttribute="leading" secondItem="Fff-bL-E8p" secondAttribute="trailing" id="B5Y-6M-VG5"/>
+                    <constraint firstItem="DXV-r4-ZgS" firstAttribute="centerY" secondItem="H7R-DX-FTH" secondAttribute="centerY" id="ECy-cx-Zb1"/>
+                    <constraint firstItem="vlT-nE-7V4" firstAttribute="top" secondItem="vkR-Eo-JSe" secondAttribute="top" id="FgX-pe-lIv"/>
+                    <constraint firstItem="DXV-r4-ZgS" firstAttribute="top" secondItem="vkR-Eo-JSe" secondAttribute="top" constant="8" id="MCy-0h-f4Z"/>
+                    <constraint firstItem="DXV-r4-ZgS" firstAttribute="leading" secondItem="H7R-DX-FTH" secondAttribute="trailing" constant="4" id="cwN-k7-cSC"/>
+                    <constraint firstItem="vlT-nE-7V4" firstAttribute="centerX" secondItem="vkR-Eo-JSe" secondAttribute="centerX" id="iCr-Et-gh6"/>
+                    <constraint firstItem="Fff-bL-E8p" firstAttribute="top" secondItem="vkR-Eo-JSe" secondAttribute="top" constant="8" id="mxl-jT-sFJ"/>
+                    <constraint firstAttribute="bottom" secondItem="vlT-nE-7V4" secondAttribute="bottom" id="oWF-NX-dED"/>
+                    <constraint firstAttribute="trailing" secondItem="DXV-r4-ZgS" secondAttribute="trailing" constant="8" id="sUy-8U-5lI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImg" destination="DXV-r4-ZgS" id="6Ff-YK-Mh9"/>
+                <outlet property="bubbleView" destination="Fff-bL-E8p" id="xW5-Ev-A1S"/>
+                <outlet property="msgTextView" destination="TjR-hQ-W5m" id="SeS-Gw-7mq"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Forward" width="50" height="50"/>
+        <image name="avatar1" width="719" height="719"/>
+    </resources>
+</document>

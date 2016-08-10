@@ -37,7 +37,7 @@ class TimelineCell: UITableViewCell {
     
     var isFolded = false
     
-    func initCell(username: String, avatarImage: UIImage, title: String, content:String, time: String, location: String, coverImage: UIImage?, type: String, subtype: String, commentCount: Int, backgroundColor: UIColor, icon: UIImage) {
+    func initCell(username: String, avatarImage: UIImage, title: String, content:String, time: String, location: String, coverImage: String, type: String, subtype: String, commentCount: Int, backgroundColor: UIColor, icon: UIImage) {
         
         self.avatarImg.image = avatarImage
         
@@ -50,35 +50,43 @@ class TimelineCell: UITableViewCell {
             desc = "\(username) added a wish \"\(title)\".    \(time)"
             break
         case "Life":
-            desc = "\(username) posted a \(subtype) \"\(title)\".    \(time)"
+            desc = "\(username) posted a \(subtype)\(subtype == "Moment" ? "" : " \""+title+"\"").    \(time)"
             break
         default:
             desc = "Opps!"
         }
         self.descLbl.text = desc
         
-        if coverImage == nil {
-            self.coverView.hidden = false
-            
-            self.coverLbl.textColor = backgroundColor
-            switch type {
-            case "Life":
-                if subtype == "Moment" {
-                    self.coverLbl.text = "M\nO\nM\nE\nN\nT"
-                } else if subtype == "Post" {
-                    self.coverLbl.text = "P\nS\nO\nT"
-                }
-            case "Event":
-                self.coverLbl.text = "E\nV\nE\nN\nT"
-            case "Wish":
-                self.coverLbl.text = "W\nI\nS\nH"
-            default:
-                break
+        
+        // cover image
+        self.coverView.hidden = false
+        
+        self.coverLbl.textColor = backgroundColor
+        switch type {
+        case "Life":
+            if subtype == "Moment" {
+                self.coverLbl.text = "M\nO\nM\nE\nN\nT"
+            } else if subtype == "Post" {
+                self.coverLbl.text = "P\nS\nO\nT"
             }
-        } else {
-            self.coverView.hidden = true
-            self.snippetLeftImg.image = coverImage
+        case "Event":
+            self.coverLbl.text = "E\nV\nE\nN\nT"
+        case "Wish":
+            self.coverLbl.text = "W\nI\nS\nH"
+        default:
+            break
         }
+        
+        if coverImage != "" {
+            
+            getImageById(coverImage, complete: { (image) in
+                if image != nil {
+                    self.coverView.hidden = true
+                    self.snippetLeftImg.image = image
+                }
+            })
+        }
+        
         self.snippetRightLocationBtn.setTitle(location, forState: .Normal)
         self.snippetRightContentLbl.text = content
         self.snippetRightCommentCountLbl.text = "\(commentCount)"

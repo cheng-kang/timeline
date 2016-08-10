@@ -18,9 +18,9 @@ class LoverCell: UITableViewCell {
         // Initialization code
         
         self.bubbleView.clipsToBounds = true
-        self.bubbleView.layer.cornerRadius = 6
+        self.bubbleView.layer.cornerRadius = 4
         self.bubbleView.layer.borderWidth = 1
-        self.bubbleView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.bubbleView.layer.borderColor = THEME().TextSubColor.CGColor
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

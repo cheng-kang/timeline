@@ -1,0 +1,47 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - Alamofire (3.4.1)
+  - CryptoSwift (0.5.1)
+  - HappyDNS (0.3.9)
+  - IDZSwiftCommonCrypto (0.7.3)
+  - Qiniu (7.1.0.1):
+    - AFNetworking (~> 3)
+    - HappyDNS (~> 0.3)
+  - Transform.swift (0.1.2)
+  - Wilddog (1.0.8)
+
+DEPENDENCIES:
+  - Alamofire
+  - CryptoSwift
+  - IDZSwiftCommonCrypto
+  - Qiniu
+  - Transform.swift
+  - Wilddog
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  CryptoSwift: df42dda18baf6c76347a94e227dbcc0a341304bd
+  HappyDNS: 17be04178df2dd09f0ee6ac33628589b7f9910e8
+  IDZSwiftCommonCrypto: f4271e731bdeefa85832d425629134fc01efd659
+  Qiniu: 0e92ff0d1b9afbc55275306671284e4ebeb08d03
+  Transform.swift: 6c9e06696c7a92a470c93d9ca9cbb3060fcdc022
+  Wilddog: f3c17be9c3f23a862fd494cd7d6a4669431af7af
+
+PODFILE CHECKSUM: beeb971a6a569b598e33aa29c86f7f58e3493d24
+
+COCOAPODS: 1.0.0

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentBottomCell" rowHeight="75" id="JqU-o3-TbS" customClass="CommentBottomCell" customModule="CA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JqU-o3-TbS" id="BhQ-Z0-Wru">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jJv-79-n9e">
+                        <rect key="frame" x="159" y="-26" width="1" height="128"/>
+                        <color key="backgroundColor" red="0.91372549020000005" green="0.91764705879999997" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1" id="S3B-ty-hMT"/>
+                            <constraint firstAttribute="width" constant="1" id="u7D-MS-4AD"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OLa-hl-vNo">
+                        <rect key="frame" x="8" y="-30" width="304" height="60"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="1yw-gi-bS3"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jJv-79-n9e" firstAttribute="centerY" secondItem="BhQ-Z0-Wru" secondAttribute="centerY" id="Tve-CZ-kai"/>
+                    <constraint firstAttribute="bottom" secondItem="OLa-hl-vNo" secondAttribute="bottom" constant="50" id="c9R-Of-y8Y"/>
+                    <constraint firstItem="OLa-hl-vNo" firstAttribute="leading" secondItem="BhQ-Z0-Wru" secondAttribute="leading" constant="8" id="dnL-yg-jKD"/>
+                    <constraint firstItem="jJv-79-n9e" firstAttribute="top" secondItem="BhQ-Z0-Wru" secondAttribute="top" id="dyN-rk-Dqm"/>
+                    <constraint firstAttribute="trailing" secondItem="OLa-hl-vNo" secondAttribute="trailing" constant="8" id="nbe-Zh-Me4"/>
+                    <constraint firstAttribute="bottom" secondItem="jJv-79-n9e" secondAttribute="bottom" constant="-30" id="tZw-I6-b6A"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cardBottomView" destination="OLa-hl-vNo" id="D2K-Ok-VRt"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

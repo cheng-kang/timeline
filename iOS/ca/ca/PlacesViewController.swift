@@ -31,6 +31,8 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ],
     ]
     
+    var photoCount = 19
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +40,37 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableview.dataSource = self
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let topView = UIView()
+        topView.frame = CGRectMake(0, -60, self.view.frame.width, 60)
+        
+        let topViewLbl = UILabel()
+        topViewLbl.numberOfLines = 2
+        topViewLbl.textColor = THEME().textMainColor(0.8)
+        topViewLbl.text = "我们一起去过 \(places.count) 个地方\n拍了 \(photoCount) 张照片"
+        topViewLbl.font = UIFont(name: "FZYANS_JW--GB1-0", size: 18)
+        topViewLbl.frame = CGRectMake(8, 0, topView.frame.width, topView.frame.height)
+        
+        topView.addSubview(topViewLbl)
+        self.tableview.addSubview(topView)
+        
+        
+        let bottomView = UIView()
+        let bottomViewY = self.tableview.contentSize.height > self.tableview.frame.height ? self.tableview.contentSize.height : self.tableview.frame.height
+        bottomView.frame = CGRectMake(0, bottomViewY, self.view.frame.width, 60)
+        
+        self.tableview.addSubview(bottomView)
+        
+        let bottomViewLbl = UILabel()
+        bottomViewLbl.numberOfLines = 2
+        bottomViewLbl.textColor = THEME().textMainColor(0.8)
+        bottomViewLbl.text = "I ❤️ U~"
+        bottomViewLbl.font = UIFont(name: "FZYANS_JW--GB1-0", size: 18)
+        bottomViewLbl.frame = CGRectMake(8, 0, topView.frame.width, topView.frame.height)
+        
+        bottomView.addSubview(bottomViewLbl)
     }
 
     override func didReceiveMemoryWarning() {

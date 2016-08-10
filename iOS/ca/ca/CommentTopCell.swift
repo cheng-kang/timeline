@@ -16,9 +16,9 @@ class CommentTopCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.cardTopView.layer.cornerRadius = 10
+        self.cardTopView.layer.cornerRadius = 6
         self.cardTopView.clipsToBounds = true
-        self.cardTopView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.cardTopView.layer.borderColor = THEME().TextSubColor.CGColor
         self.cardTopView.layer.borderWidth = 1
     }
 

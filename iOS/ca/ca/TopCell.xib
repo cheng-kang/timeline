@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopCell" rowHeight="120" id="u5A-yC-m5C" customClass="TopCell" customModule="CA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u5A-yC-m5C" id="bpj-uH-Qoc">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YEm-Qi-dVT">
+                        <rect key="frame" x="160" y="0.0" width="1" height="128"/>
+                        <color key="backgroundColor" red="0.91372549020000005" green="0.91764705879999997" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="HgD-3O-NRA"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gkh-ha-E5U" customClass="CircularView" customModule="CA" customModuleProvider="target">
+                        <rect key="frame" x="145" y="48" width="30" height="30"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Ferris Wheel White" translatesAutoresizingMaskIntoConstraints="NO" id="9nD-J8-UkK">
+                                <rect key="frame" x="5.5" y="5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="5hz-0m-l9p"/>
+                                    <constraint firstAttribute="width" constant="25" id="G81-3N-5Wj"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.36470588240000001" green="0.61960784310000006" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="9nD-J8-UkK" firstAttribute="centerY" secondItem="Gkh-ha-E5U" secondAttribute="centerY" id="Qek-Nu-5Vo"/>
+                            <constraint firstAttribute="height" constant="30" id="Va1-FM-JQs"/>
+                            <constraint firstAttribute="width" constant="30" id="f0r-fI-y49"/>
+                            <constraint firstItem="9nD-J8-UkK" firstAttribute="centerX" secondItem="Gkh-ha-E5U" secondAttribute="centerX" id="f6d-ei-PDf"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="0Dv-iG-CF7">
+                        <rect key="frame" x="162" y="86" width="149" height="28"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NF7-Nm-l4J">
+                                <rect key="frame" x="0.0" y="0.0" width="149" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="FfI-z4-RMn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/May/2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyt-kI-bmp">
+                                <rect key="frame" x="0.0" y="16" width="149" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="cSA-Ys-zjL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="KANG CHENG" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssu-R8-fVh">
+                        <rect key="frame" x="7" y="94" width="147" height="14"/>
+                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="YEm-Qi-dVT" secondAttribute="bottom" id="9nU-sB-pe5"/>
+                    <constraint firstItem="0Dv-iG-CF7" firstAttribute="centerY" secondItem="Ssu-R8-fVh" secondAttribute="centerY" id="Fyg-RV-o8m"/>
+                    <constraint firstItem="YEm-Qi-dVT" firstAttribute="centerX" secondItem="bpj-uH-Qoc" secondAttribute="centerX" id="NHA-HA-jsZ"/>
+                    <constraint firstAttribute="trailing" secondItem="0Dv-iG-CF7" secondAttribute="trailing" constant="8" id="RUS-rx-SRK"/>
+                    <constraint firstItem="0Dv-iG-CF7" firstAttribute="top" secondItem="Gkh-ha-E5U" secondAttribute="bottom" constant="8" id="VUP-vK-iXT"/>
+                    <constraint firstItem="Gkh-ha-E5U" firstAttribute="centerX" secondItem="bpj-uH-Qoc" secondAttribute="centerX" id="X3z-7x-Pcw"/>
+                    <constraint firstItem="0Dv-iG-CF7" firstAttribute="leading" secondItem="YEm-Qi-dVT" secondAttribute="trailing" constant="2" id="ZTw-DD-sEC"/>
+                    <constraint firstItem="YEm-Qi-dVT" firstAttribute="top" secondItem="bpj-uH-Qoc" secondAttribute="top" constant="-30" id="dkX-Ln-cbS"/>
+                    <constraint firstItem="Ssu-R8-fVh" firstAttribute="leading" secondItem="bpj-uH-Qoc" secondAttribute="leading" constant="8" id="gaG-HF-bRu"/>
+                    <constraint firstItem="YEm-Qi-dVT" firstAttribute="leading" secondItem="Ssu-R8-fVh" secondAttribute="trailing" constant="4" id="mIN-SJ-yFU"/>
+                    <constraint firstItem="Gkh-ha-E5U" firstAttribute="centerY" secondItem="bpj-uH-Qoc" secondAttribute="centerY" constant="-20" id="xN1-zM-9jV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLbl" destination="Fyt-kI-bmp" id="Mm0-2P-9WC"/>
+                <outlet property="iconBgView" destination="Gkh-ha-E5U" id="Im3-bf-K5Z"/>
+                <outlet property="iconImg" destination="9nD-J8-UkK" id="Y0z-tP-VmT"/>
+                <outlet property="nameLbl" destination="Ssu-R8-fVh" id="4FM-wS-4AI"/>
+                <outlet property="timeLbl" destination="NF7-Nm-l4J" id="nFt-R8-8Q4"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Ferris Wheel White" width="50" height="50"/>
+    </resources>
+</document>

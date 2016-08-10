@@ -30,6 +30,7 @@ class SideMenuView: UIView {
     var lifeBtnClickClosure: (()->())?
     var visitedBtnClickClosure: (()->())?
     var momentBtnClickClosure: (()->())?
+    var eventsBtnClickClosure: (()->())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -123,6 +124,8 @@ class SideMenuView: UIView {
         hide()
     }
     @IBAction func eventsBtnClick(sender: UIButton) {
+        eventsBtnClickClosure!()
+        hide()
     }
     @IBAction func dismissBtnClick(sender: UIButton) {
         hide()

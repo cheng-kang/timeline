@@ -1,0 +1,6 @@
+framework module Transform_swift {
+  umbrella header "Transform.swift-umbrella.h"
+
+  export *
+  module * { export * }
+}
