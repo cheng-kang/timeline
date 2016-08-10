@@ -66,11 +66,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ca/ContentCell.swift"
-            timestampString = "491405265.822811"
+            timestampString = "492518719.842152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "forwardBtnClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -82,11 +82,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ca/TimelineDetailViewController.swift"
-            timestampString = "492503671.687856"
+            timestampString = "492537369.702935"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "488"
-            endingLineNumber = "488"
+            startingLineNumber = "464"
+            endingLineNumber = "464"
             landmarkName = "handleSwipeGesture(_:)"
             landmarkType = "5">
          </BreakpointContent>

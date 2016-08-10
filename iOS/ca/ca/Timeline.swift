@@ -28,8 +28,18 @@ class Timeline: NSObject {
         }
     }
     var imageIdList: [String]?
-    var icon: String?
-    var bgColor: String?
+    var iconIndex: Int = 0 {
+        didSet {
+            icon = UIImage(named: ICON_NAMES[iconIndex])
+        }
+    }
+    var icon: UIImage?
+    var bgColorIndex: Int = 0 {
+        didSet {
+            bgColor = BG_COLORS[bgColorIndex]
+        }
+    }
+    var bgColor: UIColor?
     var createAt: String? {
         didSet {
             

@@ -12,6 +12,7 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
 
     @IBOutlet weak var containnerView: UIView!
     @IBOutlet weak var coverImg: UIImageView!
+    @IBOutlet weak var typeLbl: UILabel!
     @IBOutlet weak var contentContainnerView: UIView!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var locationBtn: UIButton!
@@ -44,22 +45,33 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
         self.backBtn.enabled = false
     }
     
-    func initCell(borderColor: UIColor, imgs: [UIImage], content: String) {
+    func initCell(borderColor: UIColor, imgs: [String], content: String) {
         self.containnerView.layer.borderColor = borderColor.CGColor
         self.sliderView.layer.borderColor = borderColor.CGColor
         if imgs.count > 0 {
+            if imgs.count == 1 {
+                self.forwardBtn.enabled = false
+            }
+            for i in 0..<imgs.count {
+                let imgView = UIImageView()
+                imgView.contentMode = .ScaleAspectFit
+                getImageById(imgs[i], complete: { (image) in
+                    imgView.image = image
+                })
+                // 此处使用 self.scrollView.frame.height 有问题
+                imgView.frame = CGRectMake(self.scrollView.frame.width * CGFloat(i), 0, self.scrollView.frame.width, self.scrollView.frame.width)
+                self.scrollView.addSubview(imgView)
+            }
+            
+            self.sliderView.hidden = false
+            self.typeLbl.hidden = true
+            
             let pinchGesture1 = UIPinchGestureRecognizer(target: self, action: #selector(ContentCell.pinchOnContainerView(_:)))
             self.coverImg.addGestureRecognizer(pinchGesture1)
             let pinchGesture2 = UIPinchGestureRecognizer(target: self, action: #selector(ContentCell.pinchOnSliderView(_:)))
             self.sliderView.addGestureRecognizer(pinchGesture2)
-        }
-        for i in 0..<imgs.count {
-            let imgView = UIImageView()
-            imgView.contentMode = .ScaleAspectFit
-            imgView.image = imgs[i]
-            // 此处使用 self.scrollView.frame.height 有问题
-            imgView.frame = CGRectMake(self.scrollView.frame.width * CGFloat(i), 0, self.scrollView.frame.width, self.scrollView.frame.width)
-            self.scrollView.addSubview(imgView)
+        } else {
+            self.containnerView.layer.borderWidth = 2
         }
         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * CGFloat(imgs.count), self.scrollView.frame.height)
         

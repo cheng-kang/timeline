@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import Wilddog
 
-class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePickerDelegate {
+class NewTimelineViewController: UIViewController {
 
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var postBtn: UIButton!
@@ -23,6 +23,23 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
     var btnBarY: CGFloat = 0
     @IBOutlet weak var emojiBtn: UIButton!
     @IBOutlet weak var hideKeyboardBtn: UIButton!
+    @IBOutlet weak var bgColorBtn: UIButton!
+    @IBOutlet weak var iconBtn: UIButton!
+    @IBOutlet weak var modalBtn: UIButton!
+    @IBOutlet weak var selectPanel: UICollectionView!
+    
+    // false: is selecting bgcolor
+    var isSelectingIcon = false
+    var selectedBgColorIndex = 0 {
+        didSet {
+            self.bgColorBtn.setTitleColor(BG_COLORS[selectedBgColorIndex], forState: .Normal)
+        }
+    }
+    var selectedIconIndex = 0 {
+        didSet {
+            self.iconBtn.setImage(UIImage(named: ICON_NAMES[selectedIconIndex]), forState: .Normal)
+        }
+    }
     
     
     let ipc = ImagePickerController()
@@ -45,6 +62,12 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
         textview.layer.borderWidth = 1
         textview.layer.borderColor = GREY_THEME_COLOR.CGColor
         textview.delegate = self
+        
+        selectPanel.delegate = self
+        selectPanel.dataSource = self
+        
+        selectedBgColorIndex = 0
+        selectedIconIndex = 0
         // Do any additional setup after loading the view.
         
         // get location
@@ -69,23 +92,12 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
         
         postImageGrid.gridItems[0].frame = CGRectMake(0,0,106,106)
         for item in postImageGrid.gridItems {
-//            item.plusBtnClickClosure = {
-//                let vc = UIImagePickerController()
-//                self.presentViewController(vc, animated: true, completion: { 
-//                })
-//            }
             item.deleteBtnClickClosure = { index in
                 self.ipc.stack.dropAsset(self.ipc.stack.assets[index])
                 self.postImageGrid.imgs.removeAtIndex(index)
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     class func newTimelineViewController() -> NewTimelineViewController {
         
         let sb = UIStoryboard(name: "Timeline", bundle: nil)
@@ -95,67 +107,20 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
     }
     
     func setUpUI() {
-//        self.textview.sizeToFit()
     }
     
+    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    func keyboardWillShow(notification: NSNotification) {
-        let userInfo:NSDictionary = notification.userInfo!
-        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
-        let keyboardRectangle = keyboardFrame.CGRectValue()
-        let keyboardHeight = keyboardRectangle.height
-        
-        print(keyboardHeight)
-        
-        self.hideKeyboardBtn.selected = true
-        self.btnBar.frame = CGRectMake(0, self.btnBarY - keyboardHeight, self.btnBar.frame.width, self.btnBar.frame.height)
-    }
-    
-    func keyboardDidShow(notification: NSNotification) {
-        let userInfo:NSDictionary = notification.userInfo!
-        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
-        let keyboardRectangle = keyboardFrame.CGRectValue()
-        let keyboardHeight = keyboardRectangle.height
-        
-        print(keyboardHeight)
-        
-        UIView.animateWithDuration(0.1, delay: 0, options: [.CurveEaseOut], animations: {
-            self.btnBar.frame = CGRectMake(0, self.btnBarY - keyboardHeight, self.btnBar.frame.width, self.btnBar.frame.height)
-        }) { (complete) in
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        let userInfo:NSDictionary = notification.userInfo!
-        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
-        let keyboardRectangle = keyboardFrame.CGRectValue()
-        let keyboardHeight = keyboardRectangle.height
-        
-        print(keyboardHeight)
-        
-        UIView.animateWithDuration(0.3, delay: 0, options: [.CurveEaseOut], animations: {
-            self.btnBar.frame = CGRectMake(0, self.btnBarY, self.btnBar.frame.width, self.btnBar.frame.height)
-        }) { (complete) in
-            self.hideKeyboardBtn.selected = false
-        }
-    }
+// Btn Click
+extension NewTimelineViewController {
     
     @IBAction func postBtnClick() {
         let timelineRef = Wilddog(url: "https://catherinewei.wilddogio.com/Timeline")
-        var photosRef = Wilddog(url: "https://catherinewei.wilddogio.com/Photos")
+        let photosRef = Wilddog(url: "https://catherinewei.wilddogio.com/Photos")
         
-//        timelineRef.removeValue()
-//        photosRef.removeValue()
+//                timelineRef.removeValue()
+//                photosRef.removeValue()
         
         let images = self.postImageGrid.imgs
         
@@ -173,13 +138,13 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
             "content": self.textview.text,
             "images": timelineDataImages,
             "location": self.location,
-            "icon": "",
-            "bgColor": "",
+            "icon": self.selectedIconIndex,
+            "bgColor": self.selectedBgColorIndex,
             "createAt": "\(NSDate().timeIntervalSince1970)",
             "updateAt": "\(NSDate().timeIntervalSince1970)",
             "messages": "",
             "comments": "",
-        ]
+            ]
         
         let newTimelineRef = timelineRef.childByAutoId()
         newTimelineRef.setValue(timelineData) { (error, ntlRef) in
@@ -256,6 +221,10 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
             }
         }
         
+        self.dismissViewControllerAnimated(true) { 
+            
+        }
+        
     }
     
     @IBAction func cancelBtnClick() {
@@ -263,9 +232,9 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
     }
     
     @IBAction func plusBtnClick() {
-//        let vc = UIImagePickerController()
-//        self.presentViewController(vc, animated: true, completion: {
-//        })
+        //        let vc = UIImagePickerController()
+        //        self.presentViewController(vc, animated: true, completion: {
+        //        })
         ipc.delegate = self
         ipc.imageLimit = 9
         ipc.delegate?.wrapperDidPress(ipc, images: AssetManager.resolveAssets(ipc.stack.assets))
@@ -284,9 +253,79 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
         } else {
             self.textview.becomeFirstResponder()
         }
-//        hideKeyboardBtn.selected = !hideKeyboardBtn.selected
+        //        hideKeyboardBtn.selected = !hideKeyboardBtn.selected
     }
     
+    @IBAction func bgColorBtnClick(sender: UIButton) {
+        self.view.endEditing(true)
+        self.modalBtn.hidden = false
+        self.isSelectingIcon = false
+        self.selectPanel.reloadData()
+        self.selectPanel.hidden = false
+    }
+    
+    @IBAction func iconBtnClcik(sender: UIButton) {
+        self.view.endEditing(true)
+        self.modalBtn.hidden = false
+        self.isSelectingIcon = true
+        self.selectPanel.reloadData()
+        self.selectPanel.hidden = false
+    }
+    @IBAction func modalBtnClick(sender: UIButton) {
+        self.modalBtn.hidden = true
+        
+        self.selectPanel.hidden = true
+        
+    }
+}
+
+// keyboard events
+extension NewTimelineViewController {
+    
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        
+        print(keyboardHeight)
+        
+        self.hideKeyboardBtn.selected = true
+        self.btnBar.frame = CGRectMake(0, self.btnBarY - keyboardHeight, self.btnBar.frame.width, self.btnBar.frame.height)
+    }
+    
+    func keyboardDidShow(notification: NSNotification) {
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        
+        print(keyboardHeight)
+        
+        UIView.animateWithDuration(0.1, delay: 0, options: [.CurveEaseOut], animations: {
+            self.btnBar.frame = CGRectMake(0, self.btnBarY - keyboardHeight, self.btnBar.frame.width, self.btnBar.frame.height)
+        }) { (complete) in
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        
+        print(keyboardHeight)
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: [.CurveEaseOut], animations: {
+            self.btnBar.frame = CGRectMake(0, self.btnBarY, self.btnBar.frame.width, self.btnBar.frame.height)
+        }) { (complete) in
+            self.hideKeyboardBtn.selected = false
+        }
+    }
+}
+
+extension NewTimelineViewController: UITextViewDelegate {
     func textViewDidChange(textView: UITextView) {
         if textView.hasText() {
             self.textviewPlaveholderLbel.hidden = true
@@ -294,6 +333,9 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
             self.textviewPlaveholderLbel.hidden = false
         }
     }
+}
+
+extension NewTimelineViewController: ImagePickerDelegate {
     
     func wrapperDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
     }
@@ -312,10 +354,6 @@ class NewTimelineViewController: UIViewController, UITextViewDelegate, ImagePick
     func cancelButtonDidPress(imagePicker: ImagePickerController) {
         
     }
-
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-//        pickedImages.append(image)
-//    }
 }
 
 extension NewTimelineViewController: CLLocationManagerDelegate {
@@ -334,5 +372,46 @@ extension NewTimelineViewController: CLLocationManagerDelegate {
             
             self.location = (address["State"] as! String) + ", " + (address["Country"] as! String)
         }
+    }
+}
+
+extension NewTimelineViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isSelectingIcon {
+            return ICON_NAMES.count
+        } else {
+            return BG_COLORS.count
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        if isSelectingIcon {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("IconPanelCell", forIndexPath: indexPath) as! IconPanelCell
+            cell.iconImg.image = UIImage(named: ICON_NAMES[indexPath.row])
+            
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BgColorPanelCell", forIndexPath: indexPath) as! BgColorPanelCell
+            cell.bgColorView.backgroundColor = BG_COLORS[indexPath.row]
+            
+            return cell
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        
+        if isSelectingIcon {
+            self.selectedIconIndex = indexPath.row
+        } else {
+            self.selectedBgColorIndex = indexPath.row
+        }
+        
+        self.modalBtn.hidden = true
+        self.selectPanel.hidden = true
     }
 }

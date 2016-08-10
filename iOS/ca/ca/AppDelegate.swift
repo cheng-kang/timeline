@@ -17,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //设置应用程序提醒个数
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [UIUserNotificationType.Sound,UIUserNotificationType.Alert,UIUserNotificationType.Badge], categories: nil))
+        let l = UILocalNotification()
+        l.applicationIconBadgeNumber = getDaysSinceBeginningOfRelationShip()
+        UIApplication.sharedApplication().scheduleLocalNotification(l)
+        
+        
         return true
     }
 

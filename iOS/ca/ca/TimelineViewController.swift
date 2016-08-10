@@ -276,8 +276,8 @@ class TimelineViewController: UIViewController{
                     temp.content = data["content"] as! String
                     temp.location = data["location"] as! String
                     temp.images = data["images"] as! [String:AnyObject]
-                    temp.icon = data["icon"] as! String
-                    temp.bgColor = data["bgColor"] as! String
+                    temp.iconIndex = data["icon"] as! Int
+                    temp.bgColorIndex = data["bgColor"] as! Int
                     temp.createAt = data["createAt"] as! String
                     temp.updateAt = data["updateAt"] as! String
                     temp.messages = data["messages"] as? [String:AnyObject]
@@ -413,8 +413,8 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
                       type: cellData.type!,
                       subtype: cellData.subtype!,
                       commentCount: cellData.messageList.count,
-                      backgroundColor: GREEN_THEME_COLOR,
-                      icon: UIImage(named: "Ferris Wheel White")!
+                      backgroundColor: cellData.bgColor!,
+                      icon: cellData.icon!
         )
         
         return cell

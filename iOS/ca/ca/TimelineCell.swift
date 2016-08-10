@@ -62,20 +62,8 @@ class TimelineCell: UITableViewCell {
         self.coverView.hidden = false
         
         self.coverLbl.textColor = backgroundColor
-        switch type {
-        case "Life":
-            if subtype == "Moment" {
-                self.coverLbl.text = "M\nO\nM\nE\nN\nT"
-            } else if subtype == "Post" {
-                self.coverLbl.text = "P\nS\nO\nT"
-            }
-        case "Event":
-            self.coverLbl.text = "E\nV\nE\nN\nT"
-        case "Wish":
-            self.coverLbl.text = "W\nI\nS\nH"
-        default:
-            break
-        }
+        
+        self.coverLbl.text = getTypeLblText(type, subtype: subtype)
         
         if coverImage != "" {
             
@@ -95,7 +83,8 @@ class TimelineCell: UITableViewCell {
         self.leftIconView.backgroundColor = backgroundColor
         self.snippetBgView.backgroundColor = backgroundColor
         
-        self.leftIconImg.image = icon
+        self.leftIconImg.image = icon.imageWithRenderingMode(.AlwaysTemplate)
+        self.leftIconImg.tintColor = UIColor.whiteColor()
     }
     
     func foldSnippet() {

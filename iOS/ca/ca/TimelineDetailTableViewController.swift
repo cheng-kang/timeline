@@ -53,22 +53,24 @@ class TimelineDetailTableViewController: UITableViewController {
             cell.dateLbl.text = cellData.date
             cell.timeLbl.text = cellData.time
             cell.nameLbl.text = cellData.userid
-            cell.iconBgView.backgroundColor = GREEN_THEME_COLOR
+            cell.iconBgView.backgroundColor = cellData.bgColor!
             cell.iconImg.image = UIImage(named: "Two Hearts White")
             
             return cell
         } else if row == 1{
             let cell = tableView.dequeueReusableCellWithIdentifier("ContentCell") as! ContentCell
             
-            getImageById((cellData.imageIdList?.first)!, complete: { (image) in
-                cell.coverImg.image = image
-            })
-            cell.contentContainnerView.backgroundColor = GREEN_THEME_COLOR
+            if cellData.imageIdList?.count > 0 {
+                getImageById((cellData.imageIdList?.first)!, complete: { (image) in
+                    cell.coverImg.image = image
+                })
+            }
+            cell.contentContainnerView.backgroundColor = cellData.bgColor
             cell.contentTextView.text = cellData.content
             cell.locationBtn.setTitle(cellData.location, forState: .Normal)
             
-            cell.initCell(GREEN_THEME_COLOR,
-                          imgs: [],
+            cell.initCell(cellData.bgColor!,
+                          imgs: cellData.imageIdList!,
                           content: cellData.content!
             )
             

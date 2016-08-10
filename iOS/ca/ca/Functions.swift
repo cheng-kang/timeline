@@ -30,7 +30,7 @@ func getDaysSinceBeginningOfRelationShip() -> Int {
     
     let df = NSDateFormatter()
     df.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    let startDate = df.dateFromString("2016-05-23 00:00:00")
+    let startDate = df.dateFromString("2016-05-31 00:00:00")
     let diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second], fromDate: startDate!, toDate: NSDate(), options: NSCalendarOptions.init(rawValue: 0))
     
     return diffDateComponents.day
@@ -57,6 +57,26 @@ func getImageById(id: String, complete: ((image: UIImage?)->())) {
         
         complete(image: nil)
     }
+}
+
+func getTypeLblText(type: String, subtype: String) -> String {
+    
+    switch type {
+    case "Life":
+        if subtype == "Moment" {
+            return "M\nO\nM\nE\nN\nT"
+        } else if subtype == "Post" {
+            return "P\nS\nO\nT"
+        }
+    case "Event":
+        return "E\nV\nE\nN\nT"
+    case "Wish":
+        return "W\nI\nS\nH"
+    default:
+        break
+    }
+    
+    return ""
 }
 
 func uploadImageAndGetImageId(data: NSData) -> String {

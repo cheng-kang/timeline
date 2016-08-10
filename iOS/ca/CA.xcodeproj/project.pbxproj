@@ -13,6 +13,8 @@
 		ED18B0151D57308C00892359 /* TimelineRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0141D57308C00892359 /* TimelineRequest.swift */; };
 		ED18B0171D589E0300892359 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0161D589E0300892359 /* Timeline.swift */; };
 		ED18B01B1D59FBA900892359 /* TimelineComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B01A1D59FBA900892359 /* TimelineComment.swift */; };
+		ED18B01E1D5B751100892359 /* IconPanelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B01D1D5B751100892359 /* IconPanelCell.swift */; };
+		ED18B0201D5B752200892359 /* BgColorPanelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B01F1D5B752200892359 /* BgColorPanelCell.swift */; };
 		ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED705FAC1D49E720003128F6 /* Extensions.swift */; };
 		ED705FB81D49F9EF003128F6 /* odstemplikBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB61D49F9BB003128F6 /* odstemplikBold.otf */; };
 		ED705FB91D49F9EF003128F6 /* odstemplik.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB41D49F96D003128F6 /* odstemplik.otf */; };
@@ -147,6 +149,8 @@
 		ED18B0141D57308C00892359 /* TimelineRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineRequest.swift; sourceTree = "<group>"; };
 		ED18B0161D589E0300892359 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		ED18B01A1D59FBA900892359 /* TimelineComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineComment.swift; sourceTree = "<group>"; };
+		ED18B01D1D5B751100892359 /* IconPanelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconPanelCell.swift; sourceTree = "<group>"; };
+		ED18B01F1D5B752200892359 /* BgColorPanelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BgColorPanelCell.swift; sourceTree = "<group>"; };
 		ED705FAC1D49E720003128F6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ED705FAE1D49F463003128F6 /* FZQKBYSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZQKBYSJW.TTF; sourceTree = "<group>"; };
 		ED705FAF1D49F58B003128F6 /* HomeRem.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeRem.ttf; sourceTree = "<group>"; };
@@ -311,6 +315,15 @@
 				B3D02BD12BB0CA781CD68D1A /* Pods_caUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED18B01C1D5B74A800892359 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				ED18B01D1D5B751100892359 /* IconPanelCell.swift */,
+				ED18B01F1D5B752200892359 /* BgColorPanelCell.swift */,
+			);
+			name = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		ED705FB71D49F9CC003128F6 /* fonts */ = {
@@ -719,6 +732,7 @@
 		EDD08A831D353002001E1459 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ED18B01C1D5B74A800892359 /* CollectionViewCells */,
 				EDD08A8D1D354C0F001E1459 /* Timeline.storyboard */,
 				EDD08A9F1D37CF0A001E1459 /* TimelineCell.swift */,
 				ED8CD3801D49FE980070CAF8 /* TimelineDetailTableViewController.swift */,
@@ -1213,6 +1227,7 @@
 				ED89EB8A1D54A983000019BB /* ImageGalleryViewDataSource.swift in Sources */,
 				EDCFCE531D39D3B500E2B030 /* PlacesViewController.swift in Sources */,
 				EDCFCE871D45FA9A00E2B030 /* CommentTopCell.swift in Sources */,
+				ED18B0201D5B752200892359 /* BgColorPanelCell.swift in Sources */,
 				EDCFCE751D435CBC00E2B030 /* PlaceViewController.swift in Sources */,
 				ED89EB811D54A983000019BB /* StackView.swift in Sources */,
 				ED8CD39F1D4E1AB90070CAF8 /* BucketListViewController.swift in Sources */,
@@ -1241,6 +1256,7 @@
 				EDD08AA31D37D058001E1459 /* CircularView.swift in Sources */,
 				ED8CD38F1D4A5E5C0070CAF8 /* EventCell.swift in Sources */,
 				ED89EB861D54A983000019BB /* Helper.swift in Sources */,
+				ED18B01E1D5B751100892359 /* IconPanelCell.swift in Sources */,
 				ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */,
 				EDCFCE8B1D45FAB600E2B030 /* CommentBottomCell.swift in Sources */,
 				EDD08A9E1D36A65E001E1459 /* ElasticView.swift in Sources */,

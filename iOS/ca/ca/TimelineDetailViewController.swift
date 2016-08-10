@@ -32,30 +32,6 @@ class TimelineDetailViewController: UIViewController {
     let pullToLoadViewHeight: CGFloat = 60
     let pullToLoadViewIconHeight: CGFloat = 18
     
-    var id: String? {
-        didSet {
-            let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Timeline/\(id)")
-            ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
-                if snapshot.value != nil {
-                    let data = snapshot.value as! [String:AnyObject]
-                    let temp = Timeline()
-                    
-                    temp.id = snapshot.key
-                    temp.type = data["type"] as! String
-                    temp.subtype = data["subtype"] as! String
-                    temp.title = data["title"] as! String
-                    temp.content = data["content"] as! String
-                    temp.location = data["location"] as! String
-                    temp.images = data["images"] as! [String:AnyObject]
-                    temp.icon = data["icon"] as! String
-                    temp.bgColor = data["bgColor"] as! String
-                    temp.createAt = data["createAt"] as! String
-                    temp.updateAt = data["updateAt"] as! String
-                }
-            }
-        }
-    }
-    
     var currentIndex = 0
     var timelineList = [Timeline]()
     
@@ -274,7 +250,7 @@ class TimelineDetailViewController: UIViewController {
     
     func initTableView() {
         
-        self.navBarView.backgroundColor = GREEN_THEME_COLOR
+        self.navBarView.backgroundColor = timelineList[currentIndex].bgColor
         
         let newTableView = UITableView()
         newTableView.tag = 1
@@ -305,7 +281,7 @@ class TimelineDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.sendBtn.setTitleColor(GREEN_THEME_COLOR, forState: .Normal)
+        self.sendBtn.setTitleColor(self.timelineList[currentIndex].bgColor, forState: .Normal)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -347,14 +323,14 @@ class TimelineDetailViewController: UIViewController {
                              superViewWidth: self.view.frame.width,
                              superViewHeight: self.view.frame.height,
                              iconHeight: pullToLoadViewIconHeight,
-                             iconTintColor: (GREEN_THEME_COLOR)
+                             iconTintColor: (self.timelineList[currentIndex].bgColor)!
         )
         self.downView.initView(false,
                              viewHeight: pullToLoadViewHeight,
                              superViewWidth: self.view.frame.width,
                              superViewHeight: self.currentTableView.contentSize.height,
                              iconHeight: pullToLoadViewIconHeight,
-                             iconTintColor: (GREEN_THEME_COLOR)
+                             iconTintColor: (self.timelineList[currentIndex].bgColor)!
         )
         self.currentTableView.addSubview(upView)
         self.currentTableView.addSubview(downView)
@@ -413,7 +389,7 @@ class TimelineDetailViewController: UIViewController {
             
             let duration = 0.7
             UIView.animateWithDuration(duration, delay: 0, options: [.CurveEaseOut], animations: {
-                let bgColor = GREEN_THEME_COLOR
+                let bgColor = newTableViewController.dataForCell.bgColor
                 self.navBarView.backgroundColor = bgColor
                 
                 newTableView.center = targetNewTableViewCenter
@@ -604,22 +580,25 @@ extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSour
             cell.dateLbl.text = cellData.date!
             cell.timeLbl.text = cellData.time!
             cell.nameLbl.text = cellData.userid
-            cell.iconBgView.backgroundColor = GREEN_THEME_COLOR
+            cell.iconBgView.backgroundColor = cellData.bgColor
             cell.iconImg.image = UIImage(named: "Two Hearts White")
             
             return cell
         } else if row == 1{
             let cell = tableview.dequeueReusableCellWithIdentifier("ContentCell") as! ContentCell
-            
-            getImageById((cellData.imageIdList?.first)!, complete: { (image) in
-                cell.coverImg.image = image
-            })
-            cell.contentContainnerView.backgroundColor = GREEN_THEME_COLOR
+            if cellData.imageIdList?.count > 0 {
+                getImageById((cellData.imageIdList?.first)!, complete: { (image) in
+                    cell.coverImg.image = image
+                })
+            }
+            cell.contentContainnerView.backgroundColor = cellData.bgColor
             cell.contentTextView.text = cellData.content
             cell.locationBtn.setTitle(cellData.location, forState: .Normal)
+            cell.typeLbl.textColor = cellData.bgColor!
+            cell.typeLbl.text = getTypeLblText(cellData.type!, subtype: cellData.subtype!)
             
-            cell.initCell(GREEN_THEME_COLOR,
-                          imgs: [],
+            cell.initCell(cellData.bgColor!,
+                          imgs: cellData.imageIdList!,
                           content: cellData.content!
             )
             
