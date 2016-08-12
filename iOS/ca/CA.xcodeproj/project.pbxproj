@@ -15,6 +15,11 @@
 		ED18B01B1D59FBA900892359 /* TimelineComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B01A1D59FBA900892359 /* TimelineComment.swift */; };
 		ED18B01E1D5B751100892359 /* IconPanelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B01D1D5B751100892359 /* IconPanelCell.swift */; };
 		ED18B0201D5B752200892359 /* BgColorPanelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B01F1D5B752200892359 /* BgColorPanelCell.swift */; };
+		ED18B0221D5DD5C800892359 /* NewBucketListItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B0211D5DD5C800892359 /* NewBucketListItem.xib */; };
+		ED18B0241D5DD7F800892359 /* NewBucketListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0231D5DD7F800892359 /* NewBucketListItem.swift */; };
+		ED18B0261D5DE60900892359 /* BucketListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0251D5DE60900892359 /* BucketListItem.swift */; };
+		ED18B0281D5DFABC00892359 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0271D5DFABC00892359 /* Place.swift */; };
+		ED18B02A1D5DFB9D00892359 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0291D5DFB9D00892359 /* Photo.swift */; };
 		ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED705FAC1D49E720003128F6 /* Extensions.swift */; };
 		ED705FB81D49F9EF003128F6 /* odstemplikBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB61D49F9BB003128F6 /* odstemplikBold.otf */; };
 		ED705FB91D49F9EF003128F6 /* odstemplik.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB41D49F96D003128F6 /* odstemplik.otf */; };
@@ -151,6 +156,11 @@
 		ED18B01A1D59FBA900892359 /* TimelineComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineComment.swift; sourceTree = "<group>"; };
 		ED18B01D1D5B751100892359 /* IconPanelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconPanelCell.swift; sourceTree = "<group>"; };
 		ED18B01F1D5B752200892359 /* BgColorPanelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BgColorPanelCell.swift; sourceTree = "<group>"; };
+		ED18B0211D5DD5C800892359 /* NewBucketListItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewBucketListItem.xib; sourceTree = "<group>"; };
+		ED18B0231D5DD7F800892359 /* NewBucketListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBucketListItem.swift; sourceTree = "<group>"; };
+		ED18B0251D5DE60900892359 /* BucketListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketListItem.swift; sourceTree = "<group>"; };
+		ED18B0271D5DFABC00892359 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		ED18B0291D5DFB9D00892359 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		ED705FAC1D49E720003128F6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ED705FAE1D49F463003128F6 /* FZQKBYSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZQKBYSJW.TTF; sourceTree = "<group>"; };
 		ED705FAF1D49F58B003128F6 /* HomeRem.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeRem.ttf; sourceTree = "<group>"; };
@@ -767,6 +777,8 @@
 		EDD08A861D35303D001E1459 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ED18B0271D5DFABC00892359 /* Place.swift */,
+				ED18B0291D5DFB9D00892359 /* Photo.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -796,6 +808,8 @@
 			children = (
 				ED8CD39C1D4E1A970070CAF8 /* BucketList.storyboard */,
 				ED8CD3A01D4E22200070CAF8 /* BucketListCell.swift */,
+				ED18B0211D5DD5C800892359 /* NewBucketListItem.xib */,
+				ED18B0231D5DD7F800892359 /* NewBucketListItem.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -803,6 +817,7 @@
 		EDD08A8A1D35315A001E1459 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ED18B0251D5DE60900892359 /* BucketListItem.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1032,6 +1047,7 @@
 				ED8CD3831D4A3F600070CAF8 /* FZYanSJW.TTF in Resources */,
 				ED89EB761D54A983000019BB /* cameraIcon@3x.png in Resources */,
 				ED705FBF1D49FAB5003128F6 /* GeosansLight-Oblique.ttf in Resources */,
+				ED18B0221D5DD5C800892359 /* NewBucketListItem.xib in Resources */,
 				ED705FC01D49FAB8003128F6 /* GeosansLight.ttf in Resources */,
 				ED705FB81D49F9EF003128F6 /* odstemplikBold.otf in Resources */,
 				ED705FB91D49F9EF003128F6 /* odstemplik.otf in Resources */,
@@ -1244,6 +1260,7 @@
 				EDD08AA91D385EB4001E1459 /* Constants.swift in Sources */,
 				ED89EB831D54A983000019BB /* CameraView.swift in Sources */,
 				EDCFCE731D435BF200E2B030 /* PhotoCell.swift in Sources */,
+				ED18B0261D5DE60900892359 /* BucketListItem.swift in Sources */,
 				ED8CD38B1D4A53250070CAF8 /* EventsViewController.swift in Sources */,
 				ED89EB851D54A983000019BB /* ConstraintsSetup.swift in Sources */,
 				ED89EB8B1D54A983000019BB /* ImagePickerController.swift in Sources */,
@@ -1254,9 +1271,12 @@
 				ED18B01B1D59FBA900892359 /* TimelineComment.swift in Sources */,
 				ED18B0171D589E0300892359 /* Timeline.swift in Sources */,
 				EDD08AA31D37D058001E1459 /* CircularView.swift in Sources */,
+				ED18B02A1D5DFB9D00892359 /* Photo.swift in Sources */,
 				ED8CD38F1D4A5E5C0070CAF8 /* EventCell.swift in Sources */,
 				ED89EB861D54A983000019BB /* Helper.swift in Sources */,
 				ED18B01E1D5B751100892359 /* IconPanelCell.swift in Sources */,
+				ED18B0241D5DD7F800892359 /* NewBucketListItem.swift in Sources */,
+				ED18B0281D5DFABC00892359 /* Place.swift in Sources */,
 				ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */,
 				EDCFCE8B1D45FAB600E2B030 /* CommentBottomCell.swift in Sources */,
 				EDD08A9E1D36A65E001E1459 /* ElasticView.swift in Sources */,

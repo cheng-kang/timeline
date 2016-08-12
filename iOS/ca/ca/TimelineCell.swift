@@ -67,7 +67,7 @@ class TimelineCell: UITableViewCell {
         
         if coverImage != "" {
             
-            getImageById(coverImage, complete: { (image) in
+            getImageByIdAndLocation(coverImage, location:location, complete: { (image) in
                 if image != nil {
                     self.coverView.hidden = true
                     self.snippetLeftImg.image = image

@@ -7,29 +7,14 @@
 //
 
 import UIKit
+import Wilddog
 
 class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var contentView: UIView!
     
-    var places: [Dictionary<String, AnyObject>] = [
-        [
-            "backgroundImage": UIImage(named: "infrontofstone")!,
-            "location": "Beijing, China",
-            "photosCount": 5
-        ],
-        [
-            "backgroundImage": UIImage(named: "disney")!,
-            "location": "Los Angeles, USA",
-            "photosCount": 1
-        ],
-        [
-            "backgroundImage": UIImage(named: "kiss")!,
-            "location": "Beijing, China",
-            "photosCount": 13
-        ],
-    ]
+    var places = [Place]()
     
     var photoCount = 19
     
@@ -38,8 +23,42 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.tableview.delegate = self
         self.tableview.dataSource = self
+        
+        loadData()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func loadData() {
+        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Photos")
+        ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
+            if snapshot.value != nil {
+                var tempPlaceList = [Place]()
+                for (key,value) in (snapshot.value as! [String:AnyObject]) {
+                    let placeData = value as! [String:AnyObject]
+                    
+                    let tempPlace = Place()
+                    tempPlace.id = key
+                    
+                    var tempPhotoList = [Photo]()
+                    for (key,value) in placeData {
+                        let photoData = value as! [String: AnyObject]
+                        
+                        let tempPhoto = Photo()
+                        tempPhoto.id = key
+                        tempPhoto.createAt = String(photoData["createAt"] as! Double)
+                        tempPhotoList.append(tempPhoto)
+                    }
+                    
+                    tempPlace.photoList = tempPhotoList
+                    tempPlaceList.append(tempPlace)
+                }
+                
+                self.places.removeAll()
+                self.places = tempPlaceList
+                self.tableview.reloadData()
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -153,33 +172,17 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let cellData = self.places[indexPath.row]
         
-        cell.initCell(cellData["backgroundImage"] as! UIImage, location: cellData["location"] as! String, photoCount: cellData["photosCount"] as! Int)
+        cell.initCell((cellData.photoList.count > 0 ? (cellData.photoList.first?.id)! : ""), location: cellData.id, photoCount: cellData.photoList.count)
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        let vc = PlaceViewController.placeViewController(1)
-//        self.presentViewController(vc, animated: true) {
-//            
-//        }
-        
-        self.performSegueWithIdentifier("PlacesToPlace", sender: [
-            "id": 1
-            ])
-        
-//        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let data = sender as! Dictionary<String, AnyObject>
-        
-        if segue.identifier == "PlacesToPlace"{
-            let vc = segue.destinationViewController as! PlaceViewController
-            vc.locationId = (data["id"] as! Int)
+        let vc = PlaceViewController.placeViewController(self.places[indexPath.row])
+        self.presentViewController(vc, animated: true) {
+            
         }
-        
     }
     
 

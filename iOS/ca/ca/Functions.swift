@@ -36,8 +36,8 @@ func getDaysSinceBeginningOfRelationShip() -> Int {
     return diffDateComponents.day
 }
 
-func getImageById(id: String, complete: ((image: UIImage?)->())) {
-    let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Photos/\(id)")
+func getImageByIdAndLocation(id: String, location: String, complete: ((image: UIImage?)->())) {
+    let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Photos/\(location)/\(id)")
     ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
         if snapshot.value != nil {
             let data = snapshot.value as! [String:AnyObject]

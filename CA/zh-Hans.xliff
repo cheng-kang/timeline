@@ -84,15 +84,72 @@ from Ant</target>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
     </header>
     <body>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>Bucket List</note>
+      </trans-unit>
+      <trans-unit id="Confirm">
+        <source>Confirm</source>
+        <target>确认</target>
+        <note>Bucket List</note>
+      </trans-unit>
+      <trans-unit id="DO THIS WITH MY DARLING!~">
+        <source>DO THIS WITH MY DARLING!~</source>
+        <target>和亲爱的一起做这个！~</target>
+        <note>Bucket List</note>
+      </trans-unit>
+      <trans-unit id="DONE">
+        <source>DONE</source>
+        <target>已</target>
+        <note>BucketList</note>
+      </trans-unit>
       <trans-unit id="MUST">
         <source>MUST</source>
         <target>要</target>
-        <note>BucketList</note>
+        <note>Bucket List
+   BucketList</note>
       </trans-unit>
       <trans-unit id="Today is ">
         <source>Today is </source>
         <target>今天是 </target>
         <note>DatetimeString</note>
+      </trans-unit>
+      <trans-unit id="Unknown">
+        <source>Unknown</source>
+        <note>Location</note>
+      </trans-unit>
+      <trans-unit id="day">
+        <source>day</source>
+        <note>Time Label</note>
+      </trans-unit>
+      <trans-unit id="days">
+        <source>days</source>
+        <note>Time Label</note>
+      </trans-unit>
+      <trans-unit id="hr">
+        <source>hr</source>
+        <note>Time Label</note>
+      </trans-unit>
+      <trans-unit id="hrs">
+        <source>hrs</source>
+        <note>Time Label</note>
+      </trans-unit>
+      <trans-unit id="just now">
+        <source>just now</source>
+        <note>Time Label</note>
+      </trans-unit>
+      <trans-unit id="min">
+        <source>min</source>
+        <note>Time Label</note>
+      </trans-unit>
+      <trans-unit id="mins">
+        <source>mins</source>
+        <note>Time Label</note>
+      </trans-unit>
+      <trans-unit id="s">
+        <source>s</source>
+        <note>Time Label</note>
       </trans-unit>
     </body>
   </file>

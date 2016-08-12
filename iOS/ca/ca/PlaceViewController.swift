@@ -19,98 +19,7 @@ class PlaceViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     let transition = PopAnimation()
     
-    var photoData: [Dictionary<String, AnyObject>] = [
-        [
-            "image": UIImage(named: "1")!,
-            "datetime": "17:00 24/May/2016"
-        ],
-        [
-            "image": UIImage(named: "2")!,
-            "datetime": "21:00 29/May/2016"
-        ],
-        [
-            "image": UIImage(named: "3")!,
-            "datetime": "07:00 04/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "4")!,
-            "datetime": "13:20 14/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "5")!,
-            "datetime": "14:02 17/Jul/2016"
-        ],
-        [
-            "image": UIImage(named: "2")!,
-            "datetime": "21:00 29/May/2016"
-        ],
-        [
-            "image": UIImage(named: "3")!,
-            "datetime": "07:00 04/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "4")!,
-            "datetime": "13:20 14/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "5")!,
-            "datetime": "14:02 17/Jul/2016"
-        ],
-        [
-            "image": UIImage(named: "2")!,
-            "datetime": "21:00 29/May/2016"
-        ],
-        [
-            "image": UIImage(named: "3")!,
-            "datetime": "07:00 04/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "4")!,
-            "datetime": "13:20 14/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "5")!,
-            "datetime": "14:02 17/Jul/2016"
-        ],
-        [
-            "image": UIImage(named: "2")!,
-            "datetime": "21:00 29/May/2016"
-        ],
-        [
-            "image": UIImage(named: "3")!,
-            "datetime": "07:00 04/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "4")!,
-            "datetime": "13:20 14/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "5")!,
-            "datetime": "14:02 17/Jul/2016"
-        ],
-        [
-            "image": UIImage(named: "2")!,
-            "datetime": "21:00 29/May/2016"
-        ],
-        [
-            "image": UIImage(named: "3")!,
-            "datetime": "07:00 04/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "4")!,
-            "datetime": "13:20 14/Jun/2016"
-        ],
-        [
-            "image": UIImage(named: "5")!,
-            "datetime": "14:02 17/Jul/2016"
-        ],
-    ]
-    
-    var locationId: Int? {
-        didSet {
-            
-        }
-    }
+    var place: Place!
     
     var popUpImageInitBounds: CGRect?
     var popUpImageInitCenter: CGPoint?
@@ -130,6 +39,30 @@ class PlaceViewController: UIViewController, UICollectionViewDelegate, UICollect
     func setupUI() {
         self.backgroundImage.clipsToBounds = true
         
+        locationLbl.text = self.place.id
+        
+        if self.place.photoList.count > 1 {
+            photoCountLbl.text = "\(self.place.photoList.count) " + NSLocalizedString("Photos", comment: "Places")
+        } else {
+            photoCountLbl.text = "\(self.place.photoList.count) " + NSLocalizedString("Photo", comment: "Places")
+        }
+        
+        
+        if self.place.photoList.count > 0 {
+            self.fromLbl.text = NSLocalizedString("From", comment: "Place") + (self.place.photoList.first?.date)!
+            self.latestLbl.text = NSLocalizedString("Lastest", comment: "Place") + (self.place.photoList.last?.date)!
+            getImageByIdAndLocation((self.place.photoList.first?.id)!, location: self.place.id, complete: { (image) in
+                self.place.photoList.first?.image = image
+                self.backgroundImage.image = image
+            })
+        } else {
+            self.backgroundImage.image = nil
+            self.fromLbl.text = ""
+            self.latestLbl.text = ""
+        }
+        
+        
+        
         popUpImage.clipsToBounds = true
         popUpBackgroundView.backgroundColor = UIColor.blackColor()
         popUpBackgroundView.alpha = 0
@@ -141,12 +74,12 @@ class PlaceViewController: UIViewController, UICollectionViewDelegate, UICollect
         // Dispose of any resources that can be recreated.
     }
     
-    class func placeViewController(locationId: Int) -> PlaceViewController {
+    class func placeViewController(place: Place) -> PlaceViewController {
         
         let sb = UIStoryboard(name: "Places", bundle: nil)
         let vc = sb.instantiateViewControllerWithIdentifier("PlaceViewController") as! PlaceViewController
         
-        vc.locationId = locationId
+        vc.place = place
         
         return vc
     }
@@ -162,14 +95,14 @@ class PlaceViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoData.count
+        return self.place.photoList.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
         
-        let cellData = self.photoData[indexPath.row]
-        cell.initCell(cellData["image"] as! UIImage, datetime: cellData["datetime"] as! String)
+        let cellData = self.place.photoList[indexPath.row]
+        cell.initCell(cellData.id, location: place.id, datetime: cellData.time+cellData.date)
         
         return cell
     }
@@ -184,19 +117,21 @@ class PlaceViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         let cell = (collectionView.cellForItemAtIndexPath(indexPath) as! PhotoCell)
         
-        let cellData = self.photoData[indexPath.row]
-//        let vc = PopUpImageViewController.popUpImageViewController(cellData["image"] as! UIImage, initFrame: cell.frame, initBounds: cell.bounds, initCenter: cell.center)
-//        
-//        self.presentViewController(vc, animated: false) {
-//            
-//        }
+        let cellData = self.place.photoList[indexPath.row]
         
         let distanceToTopElement: CGFloat = 182
         
         self.view.addSubview(popUpBackgroundView)
         
         popUpImage.contentMode = .ScaleAspectFit
-        popUpImage.image = cellData["image"] as! UIImage
+        if cellData.image != nil {
+            popUpImage.image = cellData.image
+        } else {
+            getImageByIdAndLocation(cellData.id, location: place.id, complete: { (image) in
+                cellData.image = image
+                self.popUpImage.image = image
+            })
+        }
         popUpImage.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y + distanceToTopElement, cell.frame.width, cell.frame.height)
         popUpImage.alpha = 0
         self.view.addSubview(popUpImage)

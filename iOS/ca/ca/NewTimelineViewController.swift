@@ -117,7 +117,7 @@ extension NewTimelineViewController {
     
     @IBAction func postBtnClick() {
         let timelineRef = Wilddog(url: "https://catherinewei.wilddogio.com/Timeline")
-        let photosRef = Wilddog(url: "https://catherinewei.wilddogio.com/Photos")
+        let photosRef = Wilddog(url: "https://catherinewei.wilddogio.com/Photos/\(self.location)")
         
 //                timelineRef.removeValue()
 //                photosRef.removeValue()

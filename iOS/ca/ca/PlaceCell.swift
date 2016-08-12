@@ -30,8 +30,11 @@ class PlaceCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func initCell(image: UIImage, location: String, photoCount: Int) {
-        self.img.image = image
+    func initCell(imageId: String, location: String, photoCount: Int) {
+        
+        getImageByIdAndLocation(imageId, location: location, complete: { (image) in
+            self.img.image = image
+        })
         self.locationLbl.text = location
         self.descTagLbl.text = "\(photoCount) photos"
     }

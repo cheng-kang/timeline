@@ -17,8 +17,11 @@ class PhotoCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func initCell(image: UIImage, datetime: String) {
-        self.photoImg.image = image
+    func initCell(imageId: String, location: String, datetime: String) {
+        getImageByIdAndLocation(imageId, location: location) { (image) in
+            self.photoImg.image = image
+        }
+        
         self.datetimeLbl.text = datetime
     }
 }

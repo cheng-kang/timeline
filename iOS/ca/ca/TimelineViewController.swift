@@ -409,7 +409,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
                       content: cellData.content!,
                       time: cellData.timeToNow,
                       location: cellData.location!,
-                      coverImage: (cellData.images!["count"] as! String)=="0" ? "" : cellData.images!["0"] as! String,
+                      coverImage: (cellData.imageIdList?.count)! == 0 ? "" : (cellData.imageIdList?.first)!,
                       type: cellData.type!,
                       subtype: cellData.subtype!,
                       commentCount: cellData.messageList.count,

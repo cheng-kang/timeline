@@ -45,7 +45,7 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
         self.backBtn.enabled = false
     }
     
-    func initCell(borderColor: UIColor, imgs: [String], content: String) {
+    func initCell(borderColor: UIColor, imgs: [String], location: String, content: String) {
         self.containnerView.layer.borderColor = borderColor.CGColor
         self.sliderView.layer.borderColor = borderColor.CGColor
         if imgs.count > 0 {
@@ -55,7 +55,7 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
             for i in 0..<imgs.count {
                 let imgView = UIImageView()
                 imgView.contentMode = .ScaleAspectFit
-                getImageById(imgs[i], complete: { (image) in
+                getImageByIdAndLocation(imgs[i], location: location, complete: { (image) in
                     imgView.image = image
                 })
                 // 此处使用 self.scrollView.frame.height 有问题

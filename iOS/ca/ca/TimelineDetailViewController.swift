@@ -488,7 +488,50 @@ class TimelineDetailViewController: UIViewController {
     }
     
     @IBAction func sendBtnClick() {
-        
+        let content = self.textField.text!
+        self.textField.text = ""
+        self.view.endEditing(true)
+        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Timeline/\(timelineList[currentIndex].id ?? "")/messages")
+        if timelineList[currentIndex].messageList.count == 0 {
+            ref.setValue([], withCompletionBlock: { (error, completeRef) in
+                
+                let newMsgRef = completeRef.childByAutoId()
+                let newMsg: [String:AnyObject] = [
+                    "userId": "husband",
+                    "content": content,
+                    "createAt": "\(NSDate().timeIntervalSince1970)"
+                ]
+                
+                newMsgRef.setValue(newMsg)
+                
+                let temp = TimelineComment()
+                temp.id = "\(newMsgRef.key)"
+                temp.userId = "husband"
+                temp.content = content
+                temp.createAt = "\(NSDate().timeIntervalSince1970)"
+                self.timelineList[self.currentIndex].messageList.append(temp)
+                self.currentTableView.reloadData()
+                
+            })
+        } else {
+            
+            let newMsgRef = ref.childByAutoId()
+            let newMsg: [String:AnyObject] = [
+                "userId": "husband",
+                "content": content,
+                "createAt": "\(NSDate().timeIntervalSince1970)"
+            ]
+            
+            newMsgRef.setValue(newMsg)
+            
+            let temp = TimelineComment()
+            temp.id = "\(newMsgRef.key)"
+            temp.userId = "husband"
+            temp.content = content
+            temp.createAt = "\(NSDate().timeIntervalSince1970)"
+            self.timelineList[self.currentIndex].messageList.append(temp)
+            self.currentTableView.reloadData()
+        }
     }
 
     
@@ -587,7 +630,7 @@ extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSour
         } else if row == 1{
             let cell = tableview.dequeueReusableCellWithIdentifier("ContentCell") as! ContentCell
             if cellData.imageIdList?.count > 0 {
-                getImageById((cellData.imageIdList?.first)!, complete: { (image) in
+                getImageByIdAndLocation((cellData.imageIdList?.first)!, location: cellData.location!, complete: { (image) in
                     cell.coverImg.image = image
                 })
             }
@@ -599,6 +642,7 @@ extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSour
             
             cell.initCell(cellData.bgColor!,
                           imgs: cellData.imageIdList!,
+                          location: cellData.location!,
                           content: cellData.content!
             )
             

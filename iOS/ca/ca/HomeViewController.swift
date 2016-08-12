@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreLocation
+import Wilddog
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
@@ -36,9 +38,23 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
+    let ipc = ImagePickerController()
+    let cl = CLLocationManager()
+    let gc = CLGeocoder()
+    var location = NSLocalizedString("Unknown", comment: "Location")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // get location
+        cl.delegate = self
+        cl.requestWhenInUseAuthorization()
+        cl.desiredAccuracy = kCLLocationAccuracyBest
+        cl.distanceFilter = 10
+        cl.requestLocation()
+        
+        ipc.delegate = self
         
         setUpUI()
     }
@@ -107,6 +123,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         topBar2.addSubview(topBarBtn2)
         
+        topBarBtn2.addTarget(self, action: #selector(HomeViewController.topBarBtn2Click(_:)), forControlEvents: .TouchUpInside)
+        
         let mainContent2 = BucketListViewController.bucketListViewController()
         mainContent2.view.frame = CGRectMake(screenWidth, 50, screenWidth, screenHeight - 100)
         
@@ -137,6 +155,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         topBar3.addSubview(topBarBtn3)
         
+        topBarBtn3.addTarget(self, action: #selector(HomeViewController.topBarBtn3Click(_:)), forControlEvents: .TouchUpInside)
+        
         let mainContent3 = PlacesViewController.placesViewController()
         mainContent3.view.frame = CGRectMake(screenWidth*2, 50, screenWidth, screenHeight - 100)
         
@@ -166,6 +186,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         topBarBtn4.frame = CGRectMake(self.view.frame.width - 50, 0, 50, 50)
         
         topBar4.addSubview(topBarBtn4)
+        topBarBtn4.addTarget(self, action: #selector(HomeViewController.topBarBtn4Click(_:)), forControlEvents: .TouchUpInside)
         
         let mainContent4 = EventsViewController.eventsViewController()
         mainContent4.view.frame = CGRectMake(screenWidth*3, 50, screenWidth, screenHeight - 100)
@@ -190,6 +211,22 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func topBarBtn1Click(sender: UIButton) {
+        let vc = NewTimelineViewController.newTimelineViewController()
+        self.presentViewController(vc, animated: true) {
+        }
+    }
+    
+    func topBarBtn2Click(sender: UIButton) {
+        let view = NewBucketListItem.newBucketListItem()
+        view.show()
+    }
+    
+    func topBarBtn3Click(sender: UIButton) {
+        self.presentViewController(ipc, animated: true) {
+        }
+    }
+    
+    func topBarBtn4Click(sender: UIButton) {
         let vc = NewTimelineViewController.newTimelineViewController()
         self.presentViewController(vc, animated: true) {
         }
@@ -225,3 +262,99 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
+extension HomeViewController: ImagePickerDelegate {
+    
+    func wrapperDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
+    }
+    
+    func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
+        let photosRef = Wilddog(url: "https://catherinewei.wilddogio.com/Photos/\(self.location)")
+        
+        print("Start uploading images...")
+        
+        if images.count == 0 {
+            print("No image.")
+            return
+        }
+        
+        for i in 0..<images.count {
+            
+            print("Uploading image-\(i+1)...")
+            
+            let imageData = images[i].mediumQualityJPEGNSData
+            
+            let newPhotoRef = photosRef.childByAutoId()
+            let newPhotoData = [
+                "createAt": NSDate().timeIntervalSince1970
+            ]
+            newPhotoRef.setValue(newPhotoData, withCompletionBlock: { (error, npRef) in
+                
+                print("Image-\(i+1)(id: \(npRef.key)) Created.")
+                
+                let length = imageData.length
+                let chunkSize = 600000      // 1mb chunk sizes 1048576
+                print("Image chunk size is \(chunkSize) bytes.")
+                var offset = 0
+                var count = 0
+                
+                repeat {
+                    
+                    print("Uploading image-\(i+1)-chunk-\(count+1)...")
+                    
+                    // get the length of the chunk
+                    let thisChunkSize = ((length - offset) > chunkSize) ? chunkSize : (length - offset)
+                    
+                    // get the chunk
+                    let chunk = imageData.subdataWithRange(NSMakeRange(offset, thisChunkSize))
+                    
+                    // -----------------------------------------------
+                    // do something with that chunk of data...
+                    // -----------------------------------------------
+                    npRef.updateChildValues(["\(count)": chunk.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)], withCompletionBlock: { (error, countRef) in
+                        if error != nil {
+                            print(error)
+                            return
+                        }
+                        print("Finished uploading image-\(i+1)-chunk-\(count+1).")
+                    })
+                    
+                    // update the offset
+                    offset += thisChunkSize
+                    count += 1
+                } while (offset < length);
+                
+                print("Finished uploading image-\(i+1)(\(count) chunk(s)).")
+                
+                npRef.updateChildValues(["count": count])
+            })
+            
+            
+        }
+        imagePicker.dismissViewControllerAnimated(true) {
+        }
+    }
+    
+    func cancelButtonDidPress(imagePicker: ImagePickerController) {
+        imagePicker.dismissViewControllerAnimated(true) {
+        }
+    }
+}
+
+extension HomeViewController: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        gc.reverseGeocodeLocation(locations.first!) { (placemark, error) in
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            let address = (placemark?.first?.addressDictionary)!
+            
+            self.location = (address["State"] as! String) + ", " + (address["Country"] as! String)
+        }
+    }
+}

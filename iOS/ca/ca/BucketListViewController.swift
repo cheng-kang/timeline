@@ -7,30 +7,68 @@
 //
 
 import UIKit
+import Wilddog
 
-class BucketListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BucketListViewController: UIViewController{
 
     @IBOutlet weak var tableview: UITableView!
     
-    var dataForToDo = [
-        "一起去看日出",
-        "一起开你的车",
-        "一起去日本旅行",
-        "一起和你的朋友吃饭",
-        "一起去迪士尼乐园",
-        "go to Universal Theater together"
-    ]
-    
-    var dataForDone = [
-        "一起住 Airbnb"
-    ]
+    var dataForToDo = [BucketListItem]()
+//        [
+//        "一起去看日出",
+//        "一起开你的车",
+//        "一起去日本旅行",
+//        "一起和你的朋友吃饭",
+//        "一起去迪士尼乐园",
+//        "go to Universal Theater together"
+//    ]
+//    
+    var dataForDone = [BucketListItem]()
+//        [
+//        "一起住 Airbnb"
+//    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableview.dataSource = self
         self.tableview.delegate = self
+        
+        loadData()
         // Do any additional setup after loading the view.
+    }
+    
+    func loadData() {
+        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/BucketList")
+        ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
+            if snapshot.value != nil {
+                var tempListForToDo = [BucketListItem]()
+                var tempListForDone = [BucketListItem]()
+                for (key,value) in (snapshot.value as! [String:AnyObject]) {
+                    let data = value as! [String:String]
+                    
+                    let temp = BucketListItem()
+                    temp.id = key
+                    temp.userId = data["userId"]
+                    temp.content = data["content"]
+                    temp.createAt = data["createAt"]
+                    temp.done = data["done"]
+                    temp.doneAt = data["doneAt"]
+                    
+                    if temp.isDone! {
+                        tempListForDone.append(temp)
+                    } else {
+                        tempListForToDo.append(temp)
+                    }
+                }
+                
+                self.dataForToDo.removeAll()
+                self.dataForToDo = tempListForToDo
+                self.dataForDone.removeAll()
+                self.dataForDone = tempListForDone
+                self.tableview.reloadData()
+            }
+        }
     }
     
     class func bucketListViewController() -> BucketListViewController {
@@ -40,6 +78,9 @@ class BucketListViewController: UIViewController, UITableViewDataSource, UITable
         
         return vc
     }
+}
+
+extension BucketListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -86,15 +127,54 @@ class BucketListViewController: UIViewController, UITableViewDataSource, UITable
         return 28
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let doneAction = UITableViewRowAction(style: .Default, title: "Done") { (action, indexPath) in
+            let temp:BucketListItem!
+            if indexPath.section == 0 {
+                temp = self.dataForToDo[indexPath.row]
+            } else {
+                temp = self.dataForDone[indexPath.row]
+            }
+            let ref = Wilddog(url: "https://catherinewei.wilddogio.com/BucketList/\(temp.id)")
+            ref.updateChildValues([
+                "done": "YES",
+                "doneAt": "\(Int(NSDate().timeIntervalSince1970))"
+                ]
+            )
+        }
+        
+        doneAction.backgroundColor = GREEN_THEME_COLOR
+        
+        let removeAction = UITableViewRowAction(style: .Default, title: "Remove") { (action, indexPath) in
+            let temp:BucketListItem!
+            if indexPath.section == 0 {
+                temp = self.dataForToDo[indexPath.row]
+            } else {
+                temp = self.dataForDone[indexPath.row]
+            }
+            let ref = Wilddog(url: "https://catherinewei.wilddogio.com/BucketList/\(temp.id)")
+            ref.setValue(nil)
+        }
+        
+        removeAction.backgroundColor = BLUE_THEME_COLOR
+        
+        return [doneAction, removeAction]
     }
-    */
-
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableview.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let temp:BucketListItem!
+        if indexPath.section == 0 {
+            temp = self.dataForToDo[indexPath.row]
+        } else {
+            temp = self.dataForDone[indexPath.row]
+        }
+        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/BucketList/\(temp.id)")
+        ref.updateChildValues([
+            "done": "YES",
+            "doneAt": "\(Int(NSDate().timeIntervalSince1970))"
+            ]
+        )
+    }
 }
