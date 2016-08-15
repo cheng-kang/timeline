@@ -17,14 +17,14 @@ class EventDetailView: UIView {
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var alarmBtn: UIButton!
     
-    var datetime: String = ""
+    var event: Event!
     var isCountDown = false {
         didSet {
             if isCountDown {
-                self.timeLbl.text = datetime.countDownSinceNowString()
+                self.timeLbl.text = event.alarmCountDown
                 self.timeTipLbl.text = "TIME LEFT"
             } else {
-                self.timeLbl.text = datetime.timeString()
+                self.timeLbl.text = event.alarmTime
                 self.timeTipLbl.text = "ALARM AT"
             }
         }
@@ -44,27 +44,27 @@ class EventDetailView: UIView {
         shadowBtn.backgroundColor = UIColor.blackColor()
     }
     
-    func initView(datetime: String, content: String) {
-        self.datetime = datetime
-        self.dateLbl.text = datetime.dateString()
+    func initView(event: Event) {
+        self.event = event
+        self.dateLbl.text = event.alarmDate
         
         isCountDown = false
         
-        self.contentTextView.text = content
+        self.contentTextView.text = event.content
         
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(EventDetailView.updateCountDownText), userInfo: nil, repeats: true)
     }
     
     func updateCountDownText() {
         if isCountDown {
-            self.timeLbl.text = datetime.countDownSinceNowString()
+            self.timeLbl.text = event.alarmCountDown
         }
     }
     
-    class func eventDetailView(datetime: String, content: String) -> EventDetailView {
+    class func eventDetailView(event: Event) -> EventDetailView {
         let view = NSBundle.mainBundle().loadNibNamed("EventDetailView", owner: nil, options: nil).first as! EventDetailView
         
-        view.initView(datetime, content: content)
+        view.initView(event)
         
         return view
     }

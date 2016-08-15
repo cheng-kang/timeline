@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Wilddog
 
 class EventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -21,71 +22,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var addBtn: UIButton!
     
     
-    var dataForCell: [Dictionary<String, AnyObject>] = [
-        [
-            "datetime": "2029-09-28 13:00:00",
-            "weekday": "THU",
-            "day": "28",
-            "time": "13:30",
-            "content": "吃胃药！！记得吃啊！！！我爱你~"
-        ],
-        [
-            "datetime": "2016-07-29 18:30:00",
-            "weekday": "FRI",
-            "day": "29",
-            "time": "18:30",
-            "content": "周五啦！！"
-        ],
-        [
-            "datetime": "2016-07-29 18:30:00",
-            "weekday": "SAT",
-            "day": "30",
-            "time": "08:30",
-            "content": "远程教学"
-        ],
-        [
-            "datetime": "2016-07-29 18:30:00",
-            "weekday": "THU",
-            "day": "28",
-            "time": "13:30",
-            "content": "吃胃药！！记得吃啊！！！我爱你~"
-        ],
-        [
-            "datetime": "2016-07-29 18:30:00",
-            "weekday": "FRI",
-            "day": "29",
-            "time": "18:30",
-            "content": "周五啦！！"
-        ],
-        [
-            "datetime": "2016-07-29 18:30:00",
-            "weekday": "SAT",
-            "day": "30",
-            "time": "08:30",
-            "content": "远程教学"
-        ],
-        [
-            "datetime": "2016-07-29 18:30:00",
-            "weekday": "THU",
-            "day": "28",
-            "time": "13:30",
-            "content": "吃胃药！！记得吃啊！！！我爱你~吃胃药！！记得吃啊！！！我爱你~吃胃药！！记得吃啊！！！我爱你~吃胃药！！记得吃啊！！！我爱你~吃胃药！！记得吃啊！！！我爱你~吃胃药！！记得吃啊！！！我爱你~吃胃药！！记得吃啊！！！我爱你~吃胃药！！记得吃啊！！！我爱你~"
-        ],
-        [
-            "datetime": "2016-07-29 18:30:00",
-            "weekday": "FRI",
-            "day": "29",
-            "time": "18:30",
-            "content": "周五啦！！"
-        ],
-        [
-            "datetime": "2016-07-29 18:30:00",
-            "weekday": "SAT",
-            "day": "30",
-            "time": "08:30",
-            "content": "远程教学"
-        ],
-    ]
+    var dataForCell = [Event]()
     
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     var years = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", ]
@@ -102,6 +39,8 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         self.collectionview.delegate = self
 
         // Do any additional setup after loading the view.
+        
+        loadData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -151,6 +90,33 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         return vc
     }
     
+    
+    
+    func loadData() {
+        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Events")
+        ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
+            if snapshot.value != nil {
+                var tempList = [Event]()
+                for (key,value) in (snapshot.value as! [String:AnyObject]) {
+                    let data = value as! [String:String]
+                    
+                    let temp = Event()
+                    temp.id = key
+                    temp.userId = data["userId"]
+                    temp.content = data["content"]
+                    temp.createAt = data["createAt"]
+                    temp.alarmAt = data["alarmAt"]
+                    
+                    tempList.append(temp)
+                }
+                
+                self.dataForCell.removeAll()
+                self.dataForCell = tempList
+                self.tableview.reloadData()
+            }
+        }
+    }
+    
     func updateDatetimeLbl(sender: UILabel) {
         topViewLbl.text = getCustomizedCurrentDatetimeString()
     }
@@ -181,7 +147,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("EventCell") as! EventCell
         let cellData = dataForCell[indexPath.row]
-        cell.initCell(cellData["weekday"] as! String, day: cellData["day"] as! String, time: cellData["time"] as! String, content: cellData["content"] as! String)
+        cell.initCell(cellData)
         
         return cell
     }
@@ -191,7 +157,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let cellData = self.dataForCell[indexPath.row]
-        let vc = EventDetailView.eventDetailView(cellData["datetime"] as! String, content: cellData["content"] as! String)
+        let vc = EventDetailView.eventDetailView(cellData)
         vc.show()
     }
     

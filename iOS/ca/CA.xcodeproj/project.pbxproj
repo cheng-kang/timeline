@@ -20,6 +20,8 @@
 		ED18B0261D5DE60900892359 /* BucketListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0251D5DE60900892359 /* BucketListItem.swift */; };
 		ED18B0281D5DFABC00892359 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0271D5DFABC00892359 /* Place.swift */; };
 		ED18B02A1D5DFB9D00892359 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0291D5DFB9D00892359 /* Photo.swift */; };
+		ED18B02C1D5F783800892359 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B02B1D5F783800892359 /* NewEventViewController.swift */; };
+		ED18B02E1D617C8500892359 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B02D1D617C8500892359 /* Event.swift */; };
 		ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED705FAC1D49E720003128F6 /* Extensions.swift */; };
 		ED705FB81D49F9EF003128F6 /* odstemplikBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB61D49F9BB003128F6 /* odstemplikBold.otf */; };
 		ED705FB91D49F9EF003128F6 /* odstemplik.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB41D49F96D003128F6 /* odstemplik.otf */; };
@@ -161,6 +163,8 @@
 		ED18B0251D5DE60900892359 /* BucketListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketListItem.swift; sourceTree = "<group>"; };
 		ED18B0271D5DFABC00892359 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		ED18B0291D5DFB9D00892359 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		ED18B02B1D5F783800892359 /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
+		ED18B02D1D617C8500892359 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		ED705FAC1D49E720003128F6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ED705FAE1D49F463003128F6 /* FZQKBYSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZQKBYSJW.TTF; sourceTree = "<group>"; };
 		ED705FAF1D49F58B003128F6 /* HomeRem.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeRem.ttf; sourceTree = "<group>"; };
@@ -461,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				ED8CD38A1D4A53250070CAF8 /* EventsViewController.swift */,
+				ED18B02B1D5F783800892359 /* NewEventViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 		ED8CD3861D4A52EE0070CAF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ED18B02D1D617C8500892359 /* Event.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1247,6 +1253,7 @@
 				EDCFCE751D435CBC00E2B030 /* PlaceViewController.swift in Sources */,
 				ED89EB811D54A983000019BB /* StackView.swift in Sources */,
 				ED8CD39F1D4E1AB90070CAF8 /* BucketListViewController.swift in Sources */,
+				ED18B02E1D617C8500892359 /* Event.swift in Sources */,
 				EDCFCE7C1D442FF100E2B030 /* Global.swift in Sources */,
 				EDD08A491D352887001E1459 /* AppDelegate.swift in Sources */,
 				ED89EB881D54A983000019BB /* ImageGalleryView.swift in Sources */,
@@ -1264,6 +1271,7 @@
 				ED8CD38B1D4A53250070CAF8 /* EventsViewController.swift in Sources */,
 				ED89EB851D54A983000019BB /* ConstraintsSetup.swift in Sources */,
 				ED89EB8B1D54A983000019BB /* ImagePickerController.swift in Sources */,
+				ED18B02C1D5F783800892359 /* NewEventViewController.swift in Sources */,
 				EDCFCE8D1D46031F00E2B030 /* TimelineDetailViewController.swift in Sources */,
 				ED89EB841D54A983000019BB /* Configuration.swift in Sources */,
 				EDCFCECD1D48836F00E2B030 /* PullUpToLoadView.swift in Sources */,

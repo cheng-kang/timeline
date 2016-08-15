@@ -227,7 +227,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func topBarBtn4Click(sender: UIButton) {
-        let vc = NewTimelineViewController.newTimelineViewController()
+        let vc = NewEventViewController.newEventViewController()
         self.presentViewController(vc, animated: true) {
         }
     }

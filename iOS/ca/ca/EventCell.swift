@@ -32,10 +32,10 @@ class EventCell: UITableViewCell {
         self.dayLbl.layer.borderWidth = 1
     }
     
-    func initCell(weekday: String, day: String, time: String, content: String) {
-        self.weekdayLbl.text = weekday
-        self.dayLbl.text = day
-        self.contentLbl.text = "\(time) \(content)"
+    func initCell(event: Event) {
+        self.weekdayLbl.text = event.alarmWeekday
+        self.dayLbl.text = event.alarmDay
+        self.contentLbl.text = "\(event.alarmTime) \(event.content)"
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
