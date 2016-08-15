@@ -54,29 +54,51 @@ class FLAT_UI_COLOR: NSObject {
     var ASBESTOS = UIColor(red: 127/255, green: 140/255, blue: 141/255, alpha: 1)
 }
 
+class J_GREEN: NSObject {
+    var SEIHEKI = UIColor(red: 38/255, green: 135/255, blue: 133/255, alpha: 1)
+    var ASAGI = UIColor(red: 51/255, green: 166/255, blue: 184/255, alpha: 1)
+    var TSUYUKUSA = UIColor(red: 46/255, green: 169/255, blue: 223/255, alpha: 1)
+    var SORA = UIColor(red: 88/255, green: 178/255, blue: 220/255, alpha: 1)
+    var SEIJI = UIColor(red: 105/255, green: 176/255, blue: 172/255, alpha: 1)
+    var MIZUASAGI = UIColor(red: 102/255, green: 186/255, blue: 183/255, alpha: 1)
+    var BAYAKUGUN = UIColor(red: 120/255, green: 194/255, blue: 196/255, alpha: 1)
+    var MIZU = UIColor(red: 129/255, green: 199/255, blue: 212/255, alpha: 1)
+    var KAMENOZOKI = UIColor(red: 165/255, green: 222/255, blue: 228/255, alpha: 1)
+}
 
 
-let BG_COLORS: [UIColor] = [FLAT_UI_COLOR().TURQUOISE,
-                           FLAT_UI_COLOR().GREEN_SEA,
-                           FLAT_UI_COLOR().EMERALD,
-                           FLAT_UI_COLOR().NEPHRITIS,
-                           FLAT_UI_COLOR().PETER_RIVER,
-                           FLAT_UI_COLOR().BELIZE_HOLE,
-                           FLAT_UI_COLOR().AMETHYST,
-                           FLAT_UI_COLOR().WISTERIA,
-                           FLAT_UI_COLOR().WET_ASPHALT,
-                           FLAT_UI_COLOR().MIDNIGHT_BULE,
-                           FLAT_UI_COLOR().SUN_FLOWER,
-                           FLAT_UI_COLOR().ORANGE,
-                           FLAT_UI_COLOR().CARROT,
-                           FLAT_UI_COLOR().PUMPKIN,
-                           FLAT_UI_COLOR().ALIZARIN,
-                           FLAT_UI_COLOR().POMEGRANATE,
-                           FLAT_UI_COLOR().CLOUDS,
-                           FLAT_UI_COLOR().SILVER,
-                           FLAT_UI_COLOR().CONCRETE,
-                           FLAT_UI_COLOR().ASBESTOS,
+
+let BG_COLORS: [UIColor] = [J_GREEN().SEIHEKI,
+                            J_GREEN().ASAGI,
+                            J_GREEN().TSUYUKUSA,
+                            J_GREEN().SORA,
+                            J_GREEN().SEIJI,
+                            J_GREEN().MIZUASAGI,
+                            J_GREEN().BAYAKUGUN,
+                            J_GREEN().MIZU,
+                            J_GREEN().KAMENOZOKI
 ]
+//let BG_COLORS: [UIColor] = [FLAT_UI_COLOR().TURQUOISE,
+//                           FLAT_UI_COLOR().GREEN_SEA,
+//                           FLAT_UI_COLOR().EMERALD,
+//                           FLAT_UI_COLOR().NEPHRITIS,
+//                           FLAT_UI_COLOR().PETER_RIVER,
+//                           FLAT_UI_COLOR().BELIZE_HOLE,
+//                           FLAT_UI_COLOR().AMETHYST,
+//                           FLAT_UI_COLOR().WISTERIA,
+//                           FLAT_UI_COLOR().WET_ASPHALT,
+//                           FLAT_UI_COLOR().MIDNIGHT_BULE,
+//                           FLAT_UI_COLOR().SUN_FLOWER,
+//                           FLAT_UI_COLOR().ORANGE,
+//                           FLAT_UI_COLOR().CARROT,
+//                           FLAT_UI_COLOR().PUMPKIN,
+//                           FLAT_UI_COLOR().ALIZARIN,
+//                           FLAT_UI_COLOR().POMEGRANATE,
+//                           FLAT_UI_COLOR().CLOUDS,
+//                           FLAT_UI_COLOR().SILVER,
+//                           FLAT_UI_COLOR().CONCRETE,
+//                           FLAT_UI_COLOR().ASBESTOS,
+//]
 
 let ICON_NAMES: [String] = ["Bicycle Green", "Birthday Green", "Bridal Bouquet Green", "Bride Filled Green", "Butterfly Green", "Camera Green", "Cards Green", "Champagne Green", "Christmas Gift Green", "Christmas Star Green", "Christmas Tree Green", "Cool Green", "Date Man Woman Green", "Double Bed Green", "Groom Green", "Heart Balloon Green", "Heart With Arrow Green", "In Love Green", "Kiss Green", "Sad Green", "Stack of Photos Green", "Tie Green", "Two Hearts Green", "Wedding Cake Green", "Wedding Day Green", "Wedding Gift Green", "Women`s Shoe Green"]
 

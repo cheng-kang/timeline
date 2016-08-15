@@ -23,7 +23,7 @@
                     <subviews>
                         <view alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whS-SD-DdN">
                             <rect key="frame" x="46" y="55" width="211" height="1"/>
-                            <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.27450980390000002" green="0.49803921569999998" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="OFM-Ui-neP"/>
                             </constraints>
@@ -35,7 +35,7 @@
                                 <constraint firstAttribute="height" constant="25" id="reX-U9-1X8"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="19"/>
-                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.27450980390000002" green="0.49803921569999998" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
                                 <mask key="constraints">
@@ -49,7 +49,7 @@
                                 <constraint firstAttribute="height" constant="21" id="wfu-eh-n7x"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="14"/>
-                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.27450980390000002" green="0.49803921569999998" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cV-Yp-axu">
@@ -58,6 +58,7 @@
                                 <constraint firstAttribute="width" constant="30" id="AJU-yD-ZEt"/>
                                 <constraint firstAttribute="height" constant="30" id="rnf-dC-9a7"/>
                             </constraints>
+                            <color key="tintColor" red="0.36470588240000001" green="0.61960784310000006" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="Alarm Clock"/>
                             <connections>
                                 <action selector="alarmBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="MIz-E2-33s"/>
@@ -70,7 +71,7 @@
                                 <constraint firstAttribute="height" constant="60" id="Xin-sf-RAg"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="40"/>
-                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.27450980390000002" green="0.49803921569999998" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="BKa-4X-2c6" appends="YES" id="QBu-np-3eb"/>
@@ -78,12 +79,12 @@
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="oew-Wf-zFP">
                             <rect key="frame" x="16" y="157" width="271" height="181"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <string key="text">记得吃饭！！记得吃药！！！
 记得吃药！！！记得吃药！！！记得吃药！！！记得吃饭！！记得吃药！！！
 记得吃药！！！记得吃药！！！记得吃药！！！记得吃饭！！记得吃药！！！
 记得吃药！！！记得吃药！！！记得吃药！！！</string>
-                            <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.27450980390000002" green="0.49803921569999998" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="19"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>

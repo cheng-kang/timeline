@@ -59,7 +59,7 @@
                                                                 <constraint firstAttribute="width" constant="1" id="Q8d-C8-mGi"/>
                                                             </constraints>
                                                         </view>
-                                                        <view alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kVZ-3G-0f0" customClass="CircularView" customModule="CA" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kVZ-3G-0f0" customClass="CircularView" customModule="CA" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="10" width="30" height="30"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Two Hearts White" translatesAutoresizingMaskIntoConstraints="NO" id="x2l-Si-LXp">
@@ -104,7 +104,7 @@ ember to take the pills!".    2hrs</string>
                                                                 </mask>
                                                             </variation>
                                                         </label>
-                                                        <view alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NxW-zh-2MM">
+                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NxW-zh-2MM">
                                                             <rect key="frame" x="53" y="55" width="259" height="154.5"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzf-uS-2gm">

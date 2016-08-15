@@ -33,8 +33,13 @@ class EventDetailView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.cardView.layer.borderColor = THEME().textMainColor(0.8).CGColor
-        self.cardView.layer.borderWidth = 3
+        //        self.cardView.layer.borderColor = THEME().textMainColor(0.8).CGColor
+//        self.cardView.layer.borderWidth = 3
+        self.cardView.layer.borderColor = UIColor.whiteColor().CGColor
+        self.cardView.layer.borderWidth = 1
+        
+        let alarmBtnImage = UIImage(named: "Alarm Clock")?.imageWithRenderingMode(.AlwaysTemplate)
+        self.alarmBtn.setImage(alarmBtnImage, forState: .Normal)
         
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(EventDetailView.switchTimeTipLbl(_:)))
 //        self.timeLbl.addGestureRecognizer(tapGesture)
