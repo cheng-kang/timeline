@@ -13,20 +13,26 @@ class BucketListViewController: UIViewController{
 
     @IBOutlet weak var tableview: UITableView!
     
-    var dataForToDo = [BucketListItem]()
-//        [
-//        "一起去看日出",
-//        "一起开你的车",
-//        "一起去日本旅行",
-//        "一起和你的朋友吃饭",
-//        "一起去迪士尼乐园",
-//        "go to Universal Theater together"
-//    ]
-//    
-    var dataForDone = [BucketListItem]()
-//        [
-//        "一起住 Airbnb"
-//    ]
+    var dataForToDo = [BucketListItem]() {
+        didSet {
+            self.selectedCellIndex = nil
+        }
+    }
+    
+    var dataForDone = [BucketListItem]() {
+        didSet {
+            self.selectedCellIndex = nil
+        }
+    }
+    
+    var selectedCellIndex: NSIndexPath?
+    
+    
+    let topView = UIView()
+    let topViewLbl = UILabel()
+    let bottomView = UIView()
+    let bottomViewLbl = UILabel()
+    var currentBottomViewY: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +44,41 @@ class BucketListViewController: UIViewController{
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidLayoutSubviews() {
+        topView.frame = CGRectMake(0, -60, self.view.frame.width, 60)
+        
+        topViewLbl.numberOfLines = 2
+        topViewLbl.textColor = THEME().textMainColor(0.8)
+        topViewLbl.text = "所有梦想\n都变成了我们的未来"
+        topViewLbl.font = UIFont(name: "FZYANS_JW--GB1-0", size: 18)
+        topViewLbl.frame = CGRectMake(8, 0, topView.frame.width, topView.frame.height)
+        
+        topView.addSubview(topViewLbl)
+        self.tableview.addSubview(topView)
+        
+        
+        let bottomViewY = self.tableview.contentSize.height > self.tableview.frame.height ? self.tableview.contentSize.height : self.tableview.frame.height
+        bottomView.frame = CGRectMake(0, bottomViewY, self.view.frame.width, 60)
+        
+        self.tableview.addSubview(bottomView)
+        
+        bottomViewLbl.numberOfLines = 1
+        bottomViewLbl.textColor = THEME().textMainColor(0.8)
+        bottomViewLbl.text = "I ❤️ U~"
+        bottomViewLbl.font = UIFont(name: "FZYANS_JW--GB1-0", size: 18)
+        bottomViewLbl.textAlignment = .Center
+        bottomViewLbl.frame = CGRectMake(8, 0, bottomView.frame.width, bottomView.frame.height)
+        
+        bottomView.addSubview(bottomViewLbl)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let sb = UIScreen.mainScreen().bounds
+        self.view.frame = CGRectMake(sb.width * 1, 50, sb.width, sb.height - 100)
+    }
+    
     func loadData() {
-        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/BucketList")
+        let ref = Wilddog(url: SERVER+"/BucketList")
         ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
             if snapshot.value != nil {
                 var tempListForToDo = [BucketListItem]()
@@ -71,6 +110,15 @@ class BucketListViewController: UIViewController{
         }
     }
     
+    
+    func updateTextDisplayViews() {
+        let bottomViewY = self.tableview.contentSize.height > self.tableview.frame.height ? self.tableview.contentSize.height : self.tableview.frame.height
+        if bottomViewY != currentBottomViewY {
+            bottomView.frame.origin.y = bottomViewY
+            currentBottomViewY = bottomViewY
+        }
+    }
+    
     class func bucketListViewController() -> BucketListViewController {
         
         let sb = UIStoryboard(name: "BucketList", bundle: nil)
@@ -98,12 +146,25 @@ extension BucketListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            if selectedCellIndex == indexPath {
+                let cell = tableview.dequeueReusableCellWithIdentifier("BucketListCellWithButton") as! BucketListCellWithButton
+                cell.initCell(dataForToDo[indexPath.row])
+                
+                return cell
+                
+            }
             let cell = tableview.dequeueReusableCellWithIdentifier("BucketListCell") as! BucketListCell
             cell.initCell(dataForToDo[indexPath.row])
             
             return cell
-            
         } else if indexPath.section == 1 {
+            if selectedCellIndex == indexPath {
+                let cell = tableview.dequeueReusableCellWithIdentifier("BucketListCellWithButton") as! BucketListCellWithButton
+                cell.initCell(dataForDone[indexPath.row])
+                
+                return cell
+                
+            }
             let cell = tableview.dequeueReusableCellWithIdentifier("BucketListCell") as! BucketListCell
             cell.initCell(dataForDone[indexPath.row])
             
@@ -111,6 +172,14 @@ extension BucketListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if selectedCellIndex == indexPath {
+            return 74
+        }
+        
+        return 44
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -135,7 +204,7 @@ extension BucketListViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 temp = self.dataForDone[indexPath.row]
             }
-            let ref = Wilddog(url: "https://catherinewei.wilddogio.com/BucketList/\(temp.id)")
+            let ref = Wilddog(url: SERVER+"/BucketList/\(temp.id)")
             ref.updateChildValues([
                 "done": "YES",
                 "doneAt": "\(Int(NSDate().timeIntervalSince1970))"
@@ -152,7 +221,7 @@ extension BucketListViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 temp = self.dataForDone[indexPath.row]
             }
-            let ref = Wilddog(url: "https://catherinewei.wilddogio.com/BucketList/\(temp.id)")
+            let ref = Wilddog(url: SERVER+"/BucketList/\(temp.id)")
             ref.setValue(nil)
         }
         
@@ -164,17 +233,20 @@ extension BucketListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableview.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let temp:BucketListItem!
-        if indexPath.section == 0 {
-            temp = self.dataForToDo[indexPath.row]
-        } else {
-            temp = self.dataForDone[indexPath.row]
+        var indexPaths = [NSIndexPath]()
+        if selectedCellIndex != nil {
+            indexPaths.append(NSIndexPath(forRow: selectedCellIndex!.row, inSection: (selectedCellIndex?.section)!))
         }
-        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/BucketList/\(temp.id)")
-        ref.updateChildValues([
-            "done": "YES",
-            "doneAt": "\(Int(NSDate().timeIntervalSince1970))"
-            ]
-        )
+        selectedCellIndex = selectedCellIndex == indexPath ? nil : indexPath
+        if selectedCellIndex != nil {
+            indexPaths.append(NSIndexPath(forRow: selectedCellIndex!.row, inSection: (selectedCellIndex?.section)!))
+        }
+        tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row >= tableView.visibleCells.count {
+            updateTextDisplayViews()
+        }
     }
 }

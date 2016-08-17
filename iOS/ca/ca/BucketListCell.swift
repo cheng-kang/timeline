@@ -30,6 +30,7 @@ class BucketListCell: UITableViewCell {
                 mustLbl.font = UIFont(name: "FZQKBYSJW--GB1-0", size: 15)
             }
         } else {
+            mustLbl.text = NSLocalizedString("MUST", comment: "BucketList")
             if NSLocalizedString("MUST", comment: "BucketList") == "MUST" {
                 mustLbl.text = "MUST"
                 mustLbl.font = UIFont(name: "FZQKBYSJW--GB1-0", size: 15)

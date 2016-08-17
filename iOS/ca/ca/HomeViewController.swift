@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import Wilddog
 
-class HomeViewController: UIViewController, UIScrollViewDelegate {
+class HomeViewController: UIViewController {
 
     @IBOutlet weak var containnerView: UIScrollView!
     @IBOutlet var tabLbls: [UILabel]!
@@ -59,6 +59,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         setUpUI()
     }
     
+    
+    let mainContent1 = TimelineViewController.timelineViewController()
+    let mainContent2 = BucketListViewController.bucketListViewController()
+    let mainContent3 = PlacesViewController.placesViewController()
+    let mainContent4 = EventsViewController.eventsViewController()
+    
     func setUpUI() {
         self.selectedTab = "L"
         
@@ -75,7 +81,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         topBar1.frame = CGRectMake(0, 0, screenWidth, 50)
         
         let topBarTitle1 = UILabel()
-        topBarTitle1.text = "Life - timeline"
+        topBarTitle1.text = NSLocalizedString("Life - timeline", comment: "Nav Title")
         topBarTitle1.textColor = UIColor.whiteColor()
         topBarTitle1.font = topBarTitleFont
         topBarTitle1.sizeToFit()
@@ -93,12 +99,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         topBarBtn1.addTarget(self, action: #selector(HomeViewController.topBarBtn1Click(_:)), forControlEvents: .TouchUpInside)
         
-        let mainContent1 = TimelineViewController.timelineViewController()
         mainContent1.view.frame = CGRectMake(0, 50, screenWidth, screenHeight - 100)
         
         self.addChildViewController(mainContent1)
         self.containnerView.addSubview(topBar1)
         self.containnerView.addSubview(mainContent1.view)
+        mainContent1.didMoveToParentViewController(self)
         
         // BucketListViewController
         let topBar2 = UIView()
@@ -107,7 +113,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         topBar2.frame = CGRectMake(screenWidth, 0, screenWidth, 50)
         
         let topBarTitle2 = UILabel()
-        topBarTitle2.text = "Oh!!! - bucket list"
+        topBarTitle2.text = NSLocalizedString("Oh!!! - bucket list", comment: "Nav Title")
         topBarTitle2.textColor = UIColor.whiteColor()
         topBarTitle2.font = topBarTitleFont
         topBarTitle2.sizeToFit()
@@ -125,12 +131,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         topBarBtn2.addTarget(self, action: #selector(HomeViewController.topBarBtn2Click(_:)), forControlEvents: .TouchUpInside)
         
-        let mainContent2 = BucketListViewController.bucketListViewController()
         mainContent2.view.frame = CGRectMake(screenWidth, 50, screenWidth, screenHeight - 100)
         
         self.addChildViewController(mainContent2)
         self.containnerView.addSubview(topBar2)
         self.containnerView.addSubview(mainContent2.view)
+        mainContent2.didMoveToParentViewController(self)
         
         // PlacesViewController
         let topBar3 = UIView()
@@ -139,7 +145,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         topBar3.frame = CGRectMake(screenWidth*2, 0, screenWidth, 50)
         
         let topBarTitle3 = UILabel()
-        topBarTitle3.text = "Visited - photos"
+        topBarTitle3.text = NSLocalizedString("Visited - photos", comment: "Nav Title")
         topBarTitle3.textColor = UIColor.whiteColor()
         topBarTitle3.font = topBarTitleFont
         topBarTitle3.sizeToFit()
@@ -157,12 +163,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         topBarBtn3.addTarget(self, action: #selector(HomeViewController.topBarBtn3Click(_:)), forControlEvents: .TouchUpInside)
         
-        let mainContent3 = PlacesViewController.placesViewController()
         mainContent3.view.frame = CGRectMake(screenWidth*2, 50, screenWidth, screenHeight - 100)
         
         self.addChildViewController(mainContent3)
         self.containnerView.addSubview(topBar3)
         self.containnerView.addSubview(mainContent3.view)
+        mainContent3.didMoveToParentViewController(self)
         
         // EventsViewController
         let topBar4 = UIView()
@@ -171,7 +177,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         topBar4.frame = CGRectMake(screenWidth*3, 0, screenWidth, 50)
         
         let topBarTitle4 = UILabel()
-        topBarTitle4.text = "Events - alerts"
+        topBarTitle4.text = NSLocalizedString("Events - alerts", comment: "Nav Title")
         topBarTitle4.textColor = UIColor.whiteColor()
         topBarTitle4.font = topBarTitleFont
         topBarTitle4.sizeToFit()
@@ -188,12 +194,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         topBar4.addSubview(topBarBtn4)
         topBarBtn4.addTarget(self, action: #selector(HomeViewController.topBarBtn4Click(_:)), forControlEvents: .TouchUpInside)
         
-        let mainContent4 = EventsViewController.eventsViewController()
         mainContent4.view.frame = CGRectMake(screenWidth*3, 50, screenWidth, screenHeight - 100)
         
         self.addChildViewController(mainContent4)
         self.containnerView.addSubview(topBar4)
         self.containnerView.addSubview(mainContent4.view)
+        mainContent4.didMoveToParentViewController(self)
         
         self.containnerView.delegate = self
         self.containnerView.contentSize = CGSize(width: screenWidth*4, height: screenHeight-50)
@@ -203,12 +209,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         return true
     }
 
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView == self.containnerView {
-            let index = Int(round(scrollView.contentOffset.x / self.view.frame.width))
-            self.selectedTab = self.tabLbls[index].text!
-        }
-    }
     
     func topBarBtn1Click(sender: UIButton) {
         let vc = NewTimelineViewController.newTimelineViewController()
@@ -268,7 +268,7 @@ extension HomeViewController: ImagePickerDelegate {
     }
     
     func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
-        let photosRef = Wilddog(url: "https://catherinewei.wilddogio.com/Photos/\(self.location)")
+        let photosRef = Wilddog(url: SERVER+"/Photos/\(self.location)")
         
         print("Start uploading images...")
         
@@ -357,4 +357,17 @@ extension HomeViewController: CLLocationManagerDelegate {
             self.location = (address["State"] as! String) + ", " + (address["Country"] as! String)
         }
     }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView == self.containnerView {
+            let index = Int(round(scrollView.contentOffset.x / self.view.frame.width))
+            self.selectedTab = self.tabLbls[index].text!
+        }
+    }
+}
+
+extension HomeViewController: UIGestureRecognizerDelegate {
 }

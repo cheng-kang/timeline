@@ -20,9 +20,12 @@ class Photo: NSObject {
             self.time = df.stringFromDate(date)
             df.dateFormat = "dd-MM-yyyy"
             self.date = df.stringFromDate(date)
+            df.dateFormat = "yyyy.MM.dd"
+            self.formattedDatetime = df.stringFromDate(date)
         }
     }
     
     var time: String!
     var date: String!
+    var formattedDatetime: String!
 }

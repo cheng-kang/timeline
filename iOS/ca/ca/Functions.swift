@@ -37,7 +37,7 @@ func getDaysSinceBeginningOfRelationShip() -> Int {
 }
 
 func getImageByIdAndLocation(id: String, location: String, complete: ((image: UIImage?)->())) {
-    let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Photos/\(location)/\(id)")
+    let ref = Wilddog(url: SERVER+"/Photos/\(location)/\(id)")
     ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
         if snapshot.value != nil {
             let data = snapshot.value as! [String:AnyObject]
@@ -80,7 +80,7 @@ func getTypeLblText(type: String, subtype: String) -> String {
 }
 
 func uploadImageAndGetImageId(data: NSData) -> String {
-    var ref = Wilddog(url: "https://catherinewei.wilddogio.com/Photos")
+    var ref = Wilddog(url: SERVER+"/Photos")
     var newChildRef = ref.childByAutoId()
     
     var newPhoto = [
@@ -119,6 +119,56 @@ func uploadImageAndGetImageId(data: NSData) -> String {
     newChildRef.updateChildValues(["count": count])
     
     return newChildRef.key
+}
+
+func scheduleLocal(alertBody: String, alertAction: String, fireDate: NSDate) {
+    let settings = UIApplication.sharedApplication().currentUserNotificationSettings()!
+    
+    if settings.types == .None {
+        let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(ac, animated: true, completion: nil)
+        return
+    }
+    
+    let notification = UILocalNotification()
+    notification.fireDate = fireDate
+    notification.alertBody = alertBody
+//    notification.alertAction = alertAction
+    notification.soundName = UILocalNotificationDefaultSoundName
+    notification.userInfo = ["CustomField1": "w00t"]
+    UIApplication.sharedApplication().scheduleLocalNotification(notification)
+}
+
+func toast(content: String) {
+    let rootView = (UIApplication.sharedApplication().keyWindow?.rootViewController!.view)!
+    
+    let toastLabel = UILabel()
+    toastLabel.clipsToBounds = true
+    toastLabel.layer.cornerRadius = 10
+    toastLabel.textColor = UIColor.whiteColor()
+    toastLabel.backgroundColor = GREEN_THEME_COLOR_SEVENTY
+    toastLabel.textAlignment = .Center
+    toastLabel.text = content
+    toastLabel.font = UIFont(name: "Didot", size: 12)
+    toastLabel.sizeToFit()
+    toastLabel.frame.size = CGSizeMake(toastLabel.frame.size.width + 16, toastLabel.frame.size.height + 6)
+    toastLabel.center = CGPointMake(rootView.frame.width / 2, rootView.frame.height - 60)
+    toastLabel.alpha = 0
+    
+    rootView.addSubview(toastLabel)
+    
+    
+    
+    UIView.animateWithDuration(0.3, delay: 0, options: [.CurveEaseOut], animations: {
+        toastLabel.alpha = 1
+    }) { (_) in
+    }
+    UIView.animateWithDuration(0.3, delay: 1, options: [.CurveEaseIn], animations: {
+        toastLabel.alpha = 0
+    }) { (_) in
+        toastLabel.removeFromSuperview()
+    }
 }
 
 func generateQiniuToken(fileNameWithFormat: String) -> String {

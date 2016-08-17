@@ -15,8 +15,16 @@ class NewBucketListItem: UIView {
     @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var confirmBtn: UIButton!
+    @IBOutlet weak var editingLbl: UILabel!
     
-    
+    var data: BucketListItem? {
+        didSet {
+            self.textfield.text = self.data?.content
+            
+            self.editingLbl.text = NSLocalizedString("editing", comment: "Bucket List")
+            self.editingLbl.hidden = false
+        }
+    }
     var selfY: CGFloat = 0
     
     
@@ -31,9 +39,6 @@ class NewBucketListItem: UIView {
         self.textfield.delegate = self
         
         self.confirmBtn.enabled = false
-        
-        self.layer.borderColor = GREEN_THEME_COLOR.CGColor
-        self.layer.borderWidth = 2
         
         shadowBtn = UIButton(type: .Custom)
         shadowBtn.addTarget(self, action: #selector(NewBucketListItem.shadowBtnClick), forControlEvents: .TouchUpInside)
@@ -58,16 +63,24 @@ class NewBucketListItem: UIView {
         shadowBtnClick()
     }
     @IBAction func confirmBtnClick() {
-        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/BucketList")
-        let newRef = ref.childByAutoId()
-        let newData: [String:AnyObject] = [
-            "userId": "husband",
-            "content": self.textfield.text!,
-            "createAt": "\(NSDate().timeIntervalSince1970)",
-            "done": "NO",
-            "doneAt": ""
-        ]
-        newRef.setValue(newData)
+        let ref = Wilddog(url: SERVER+"/BucketList")
+        if data == nil {
+            let newRef = ref.childByAutoId()
+            let newData: [String:AnyObject] = [
+                "userId": "husband",
+                "content": self.textfield.text!,
+                "createAt": "\(NSDate().timeIntervalSince1970)",
+                "done": "NO",
+                "doneAt": ""
+            ]
+            newRef.setValue(newData)
+        } else {
+            let updateRef = ref.childByAppendingPath(data!.id)
+            let updateData: [String:AnyObject] = [
+                "content": self.textfield.text!
+            ]
+            updateRef.updateChildValues(updateData)
+        }
         shadowBtnClick()
     }
     
@@ -79,18 +92,17 @@ class NewBucketListItem: UIView {
     }
     
     private var shadowBtn: UIButton!
-    
     func show() {
         
         let size = UIScreen.mainScreen().bounds.size
         self.shadowBtn.center = CGPoint(x: size.width/2, y: size.height/2)
-        self.center = self.shadowBtn.center
         self.shadowBtn.frame = self.showView.bounds
         self.shadowBtn.alpha = 0
         self.alpha = 0
         
-        self.frame.origin.x += 20
-        self.frame.size.width -= 40
+        let width = size.width - 40
+        self.frame.size = CGSizeMake(width, width/1.8)
+        self.center = self.shadowBtn.center
         
         self.selfY = self.frame.origin.y
         

@@ -15,7 +15,7 @@ class BucketListItem: NSObject {
     var createAt: String!
     var done: String! {
         didSet {
-            isDone = done == "YES"
+            isDone = (done == "YES")
         }
     }
     var doneAt: String!

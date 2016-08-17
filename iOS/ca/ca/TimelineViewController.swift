@@ -9,7 +9,6 @@
 import UIKit
 import CoreLocation
 import Wilddog
-import Qiniu
 
 class TimelineViewController: UIViewController{
     
@@ -26,120 +25,6 @@ class TimelineViewController: UIViewController{
     var textDisplayViewsSet = false
     
     var dataForCells = [Timeline]()
-//    [
-//        [
-//            "backgroundColor": PINK_THEME_COLOR,
-//            "icon": UIImage(named: "Two Hearts White")!,
-//            "cover": UIImage(named: "infrontofstone")!,
-//            "username": "Kang Cheng1",
-//            "avatar": UIImage(named: "avatar2")!,
-//            "type": "Event",
-//            "time": "3hrs",
-//            "location": "University of Science & Technology",
-//            "title": "Remember to take the pills!",
-//            "content": "Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~",
-//            "comment": ["I love you!", "Miss you~"],
-//            "subtype": "Moment"
-//        ],
-//        [
-//            "backgroundColor": BLUE_THEME_COLOR,
-//            "icon": UIImage(named: "Ferris Wheel White")!,
-//            "cover": nil,
-//            "username": "Catherine2",
-//            "avatar": UIImage(named: "avatar1")!,
-//            "type": "Life",
-//            "time": "3days",
-//            "location": "Los Angeles",
-//            "title": "Disneyland!!!",
-//            "content": "I wanna go to disneyland with you!!!",
-//            "comment": ["I love you!", "Miss you~"],
-//            "subtype": "Moment"
-//        ],
-//        [
-//            "backgroundColor": PINK_THEME_COLOR,
-//            "icon": UIImage(named: "Two Hearts White")!,
-//            "cover": UIImage(named: "infrontofstone")!,
-//            "username": "Kang Cheng3",
-//            "avatar": UIImage(named: "avatar2")!,
-//            "type": "Event",
-//            "time": "3hrs",
-//            "location": "University of Science & Technology",
-//            "title": "Remember to take the pills!",
-//            "content": "Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~",
-//            "comment": ["I love you!", "Miss you~"],
-//            "subtype": "Moment"
-//        ],
-//        [
-//            "backgroundColor": BLUE_THEME_COLOR,
-//            "icon": UIImage(named: "Ferris Wheel White")!,
-//            "cover": UIImage(named: "disney")!,
-//            "username": "Catherine4",
-//            "avatar": UIImage(named: "avatar1")!,
-//            "type": "Wish",
-//            "time": "3days",
-//            "location": "Los Angeles",
-//            "title": "Disneyland!!!",
-//            "content": "I wanna go to disneyland with you!!!",
-//            "comment": ["I love you!", "Miss you~"],
-//            "subtype": "Moment"
-//        ],
-//        [
-//            "backgroundColor": PINK_THEME_COLOR,
-//            "icon": UIImage(named: "Two Hearts White")!,
-//            "cover": UIImage(named: "infrontofstone")!,
-//            "username": "Kang Cheng5",
-//            "avatar": UIImage(named: "avatar2")!,
-//            "type": "Event",
-//            "time": "3hrs",
-//            "location": "University of Science & Technology",
-//            "title": "Remember to take the pills!",
-//            "content": "Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~",
-//            "comment": ["I love you!", "Miss you~"],
-//            "subtype": "Moment"
-//        ],
-//        [
-//            "backgroundColor": BLUE_THEME_COLOR,
-//            "icon": UIImage(named: "Ferris Wheel White")!,
-//            "cover": UIImage(named: "disney")!,
-//            "username": "Catherine6",
-//            "avatar": UIImage(named: "avatar1")!,
-//            "type": "Wish",
-//            "time": "3days",
-//            "location": "Los Angeles",
-//            "title": "Disneyland!!!",
-//            "content": "I wanna go to disneyland with you!!!",
-//            "comment": ["I love you!", "Miss you~"],
-//            "subtype": "Moment"
-//        ],
-//        [
-//            "backgroundColor": PINK_THEME_COLOR,
-//            "icon": UIImage(named: "Two Hearts White")!,
-//            "cover": UIImage(named: "infrontofstone")!,
-//            "username": "Kang Cheng5",
-//            "avatar": UIImage(named: "avatar2")!,
-//            "type": "Event",
-//            "time": "3hrs",
-//            "location": "University of Science & Technology",
-//            "title": "Remember to take the pills!",
-//            "content": "Had a great morning at USTB!!! 😘😘😘I love you sooooooo much!!! Hope to see you again soon~",
-//            "comment": ["I love you!", "Miss you~"],
-//            "subtype": "Moment"
-//        ],
-//        [
-//            "backgroundColor": BLUE_THEME_COLOR,
-//            "icon": UIImage(named: "Ferris Wheel White")!,
-//            "cover": UIImage(named: "disney")!,
-//            "username": "Catherine6",
-//            "avatar": UIImage(named: "avatar1")!,
-//            "type": "Wish",
-//            "time": "3days",
-//            "location": "Los Angeles",
-//            "title": "Disneyland!!!",
-//            "content": "I wanna go to disneyland with you!!!",
-//            "comment": ["I love you!", "Miss you~"],
-//            "subtype": "Moment"
-//        ],
-//    ]
     
     var timelineCount = 7
     
@@ -229,25 +114,25 @@ class TimelineViewController: UIViewController{
         
         //        test()
         
-        let image = UIImage(named: "avatar2")
-        let imageData = UIImagePNGRepresentation(image!)
-        let filename = "avatar2.png"
-        let token = generateQiniuToken(filename)
-        
-        let upManager = QNUploadManager()
-        upManager.putData(imageData,
-                          key: filename,
-                          token: token,
-                          complete: { (info, key, resp) in
-                            print("---------------")
-                            print(info)
-                            print("---------------")
-                            print(key)
-                            print("---------------")
-                            print(resp)
-                            print("---------------")
-            },
-                          option: nil)
+//        let image = UIImage(named: "avatar2")
+//        let imageData = UIImagePNGRepresentation(image!)
+//        let filename = "avatar2.png"
+//        let token = generateQiniuToken(filename)
+//        
+//        let upManager = QNUploadManager()
+//        upManager.putData(imageData,
+//                          key: filename,
+//                          token: token,
+//                          complete: { (info, key, resp) in
+//                            print("---------------")
+//                            print(info)
+//                            print("---------------")
+//                            print(key)
+//                            print("---------------")
+//                            print(resp)
+//                            print("---------------")
+//            },
+//                          option: nil)
     }
     
     override func viewDidLoad() {
@@ -256,9 +141,10 @@ class TimelineViewController: UIViewController{
         self.tableview.dataSource = self
         self.tableview.delegate = self
         self.tableview.tableFooterView = UIView()
+        self.tableview.cellLayoutMarginsFollowReadableWidth = false
         
         // Do any additional setup after loading the view.
-        let timelineRef = Wilddog(url: "https://catherinewei.wilddogio.com/Timeline")
+        let timelineRef = Wilddog(url: SERVER+"/Timeline")
         timelineRef.queryOrderedByChild("createAt").observeEventType(.Value, withBlock: { snapshot in
             if snapshot.value != nil {
                 var tempList = [Timeline]()
@@ -295,6 +181,8 @@ class TimelineViewController: UIViewController{
     }
     
     override func viewDidAppear(animated: Bool) {
+        let sb = UIScreen.mainScreen().bounds
+        self.view.frame = CGRectMake(0, 50, sb.width, sb.height - 100)
         if !textDisplayViewsSet {
             
             topView.frame = CGRectMake(0, -60, self.view.frame.width, 60)
@@ -372,16 +260,6 @@ class TimelineViewController: UIViewController{
             self.contentView.layer.transform = transform
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }
 
@@ -396,9 +274,6 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == dataForCells.count - 1 {
-            updateTextDisplayViews(dataForCells.count)
-        }
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineCell") as! TimelineCell
         
         let cellData = dataForCells[indexPath.row]
@@ -422,6 +297,21 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 //        (cell as! TimelineCell).checkShouldFold()
+        if indexPath.row > tableView.visibleCells.count - 1 {
+            updateTextDisplayViews(dataForCells.count)
+        }
+        
+        let c = cell as! TimelineCell
+        
+        print("snippet frame")
+        print(c.snippetBgView.frame)
+        print(c.snippetLeftImg.frame)
+        print(c.snippetRightView.frame)
+        
+        c.snippetLeftImg.frame.size.width = (self.view.frame.width - 68) / 2
+        
+        print(cell.frame.size)
+        print(self.view.frame.size)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -11,6 +11,7 @@
             <string>FZYANS_JW--GB1-0</string>
             <string>FZYANS_JW--GB1-0</string>
             <string>FZYANS_JW--GB1-0</string>
+            <string>FZYANS_JW--GB1-0</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -65,16 +66,31 @@
                         <action selector="confirmBtnClick" destination="iN0-l3-epB" eventType="touchUpInside" id="CNN-WT-ECy"/>
                     </connections>
                 </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="editing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P56-EM-JOQ">
+                    <rect key="frame" x="130" y="40" width="60" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="4b5-7w-RRu"/>
+                        <constraint firstAttribute="width" constant="60" id="sdk-pb-IoY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="13"/>
+                    <color key="textColor" red="0.36470588240000001" green="0.61960784310000006" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="omC-mb-Gd4" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6HY-sW-dj6"/>
+                <constraint firstItem="P56-EM-JOQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="DQW-gN-TnK"/>
                 <constraint firstItem="JRg-cE-o0i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JXP-nn-tUv"/>
                 <constraint firstItem="omC-mb-Gd4" firstAttribute="top" secondItem="JRg-cE-o0i" secondAttribute="bottom" constant="8" id="KUU-Vw-48j"/>
+                <constraint firstItem="P56-EM-JOQ" firstAttribute="centerY" secondItem="JRg-cE-o0i" secondAttribute="centerY" id="O8e-OW-m3Q"/>
                 <constraint firstAttribute="bottom" secondItem="l6r-ck-7AC" secondAttribute="bottom" id="OcT-Q1-gSZ"/>
+                <constraint firstItem="P56-EM-JOQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PMh-08-9up"/>
                 <constraint firstItem="omC-mb-Gd4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Uhx-qT-5ND"/>
                 <constraint firstAttribute="trailing" secondItem="omC-mb-Gd4" secondAttribute="trailing" constant="16" id="VX5-eE-77I"/>
                 <constraint firstAttribute="trailing" secondItem="JRg-cE-o0i" secondAttribute="trailing" id="Yfa-AY-IEf"/>
                 <constraint firstItem="Ivv-wD-f09" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="arZ-rk-Q5G"/>
+                <constraint firstItem="P56-EM-JOQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ejh-VJ-J0R"/>
                 <constraint firstItem="JRg-cE-o0i" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fQQ-x4-dqR"/>
                 <constraint firstAttribute="trailing" secondItem="l6r-ck-7AC" secondAttribute="trailing" id="p3s-wM-yPC"/>
                 <constraint firstAttribute="bottom" secondItem="Ivv-wD-f09" secondAttribute="bottom" id="qFe-l7-29G"/>
@@ -83,9 +99,17 @@
                 <constraint firstItem="l6r-ck-7AC" firstAttribute="width" secondItem="Ivv-wD-f09" secondAttribute="width" id="vBU-ct-pOM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="KUU-Vw-48j"/>
+                    <exclude reference="O8e-OW-m3Q"/>
+                    <exclude reference="ejh-VJ-J0R"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="cancelBtn" destination="Ivv-wD-f09" id="ujG-db-VNm"/>
                 <outlet property="confirmBtn" destination="l6r-ck-7AC" id="v30-jW-uWp"/>
+                <outlet property="editingLbl" destination="P56-EM-JOQ" id="g17-Hj-hV7"/>
                 <outlet property="textfield" destination="omC-mb-Gd4" id="bJF-ff-dSC"/>
                 <outlet property="titleLbl" destination="JRg-cE-o0i" id="u2U-Gm-RI6"/>
             </connections>

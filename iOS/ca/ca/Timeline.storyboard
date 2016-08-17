@@ -21,7 +21,6 @@
             <string>FZYANS_JW--GB1-0</string>
             <string>FZYANS_JW--GB1-0</string>
             <string>FZYANS_JW--GB1-0</string>
-            <string>FZYANS_JW--GB1-0</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -34,22 +33,22 @@
                         <viewControllerLayoutGuide type="bottom" id="haM-cX-Ofl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qe0-HE-gxm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erf-OB-REs">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="216" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kcg-u9-olX">
-                                        <rect key="frame" x="0.0" y="43" width="320" height="525"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="216" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kcg-u9-olX">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="216" id="Dko-dP-fIi" customClass="TimelineCell" customModule="CA" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="320" height="216"/>
+                                                <rect key="frame" x="0.0" y="28" width="375" height="216"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dko-dP-fIi" id="h98-qe-nZy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijH-6J-6HP">
@@ -286,10 +285,10 @@ T</string>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="D6J-kK-j5m">
-                                                <rect key="frame" x="0.0" y="244" width="320" height="216"/>
+                                                <rect key="frame" x="0.0" y="244" width="375" height="216"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D6J-kK-j5m" id="OZv-YV-d0l">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mV9-KT-mp6">
@@ -421,71 +420,17 @@ T</string>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZqR-qw-pbL">
-                                        <rect key="frame" x="0.0" y="-1" width="320" height="60"/>
-                                        <subviews>
-                                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNC-Ni-rZ8">
-                                                <rect key="frame" x="3" y="21" width="30" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="fni-u7-Qme"/>
-                                                    <constraint firstAttribute="width" constant="30" id="vRo-FO-Yrh"/>
-                                                </constraints>
-                                                <state key="normal" image="menu"/>
-                                                <connections>
-                                                    <action selector="menuBtnClick:" destination="zU6-LN-lR5" eventType="touchUpInside" id="eM2-8m-ugN"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Timeline" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJG-O8-esD">
-                                                <rect key="frame" x="109" y="25" width="102" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="F6e-96-lFA"/>
-                                                    <constraint firstAttribute="width" constant="102" id="GjP-KQ-mpi"/>
-                                                    <constraint firstAttribute="height" constant="21" id="a2q-eR-BPo"/>
-                                                    <constraint firstAttribute="height" constant="35.5" id="qRX-4G-OL8"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="rrS-dz-H42"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="18"/>
-                                                <color key="textColor" red="0.17254901959999999" green="0.1764705882" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="F6e-96-lFA"/>
-                                                        <exclude reference="a2q-eR-BPo"/>
-                                                    </mask>
-                                                </variation>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.80392156862745101" green="0.70980392156862748" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="jNC-Ni-rZ8" firstAttribute="leading" secondItem="ZqR-qw-pbL" secondAttribute="leading" constant="8" id="2CW-dZ-Z7Z"/>
-                                            <constraint firstItem="FJG-O8-esD" firstAttribute="centerY" secondItem="jNC-Ni-rZ8" secondAttribute="centerY" id="Cj7-be-utx"/>
-                                            <constraint firstAttribute="bottom" secondItem="jNC-Ni-rZ8" secondAttribute="bottom" constant="8" id="DkM-2g-x4t"/>
-                                            <constraint firstItem="FJG-O8-esD" firstAttribute="centerX" secondItem="ZqR-qw-pbL" secondAttribute="centerX" id="Qay-jg-4Eh"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="q70-8z-WXQ"/>
-                                            <constraint firstAttribute="height" constant="80" id="tw1-w0-sOd"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="q70-8z-WXQ"/>
-                                            </mask>
-                                        </variation>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Kcg-u9-olX" secondAttribute="bottom" id="537-Xn-0J6"/>
-                                    <constraint firstItem="ZqR-qw-pbL" firstAttribute="top" secondItem="erf-OB-REs" secondAttribute="top" id="JrJ-dN-7QJ"/>
                                     <constraint firstAttribute="trailing" secondItem="Kcg-u9-olX" secondAttribute="trailing" id="KFn-Qp-S37"/>
-                                    <constraint firstItem="ZqR-qw-pbL" firstAttribute="leading" secondItem="erf-OB-REs" secondAttribute="leading" id="Kdx-8V-6dm"/>
                                     <constraint firstItem="Kcg-u9-olX" firstAttribute="top" secondItem="erf-OB-REs" secondAttribute="top" id="MYr-gB-z7d"/>
                                     <constraint firstItem="Kcg-u9-olX" firstAttribute="leading" secondItem="erf-OB-REs" secondAttribute="leading" id="NLP-Jt-IZz"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZqR-qw-pbL" secondAttribute="trailing" id="VAj-Zp-vAe"/>
-                                    <constraint firstItem="Kcg-u9-olX" firstAttribute="top" secondItem="ZqR-qw-pbL" secondAttribute="bottom" id="bVV-UN-u9I"/>
                                     <constraint firstAttribute="bottom" secondItem="Kcg-u9-olX" secondAttribute="bottom" id="wmF-bW-fLW"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="bVV-UN-u9I"/>
                                         <exclude reference="wmF-bW-fLW"/>
                                     </mask>
                                 </variation>
@@ -499,7 +444,7 @@ T</string>
                             <constraint firstItem="erf-OB-REs" firstAttribute="leading" secondItem="qe0-HE-gxm" secondAttribute="leading" id="wR8-iI-ihr"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="contentView" destination="erf-OB-REs" id="QJi-Qo-P8d"/>
                         <outlet property="tableview" destination="Kcg-u9-olX" id="6Mo-go-k3o"/>
@@ -621,27 +566,33 @@ T</string>
                                             </mask>
                                         </variation>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="J2C-hm-16o">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="J2C-hm-16o">
                                         <rect key="frame" x="0.0" y="59" width="320" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" secondItem="J2C-hm-16o" secondAttribute="height" multiplier="3" id="YBE-bT-iiw"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="aO0-br-XRI"/>
                                         </constraints>
                                         <inset key="scrollIndicatorInsets" minX="16" minY="8" maxX="16" maxY="8"/>
                                         <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="FZYANS_JW--GB1-0" family="FZYanSongS-R-GB" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="aO0-br-XRI"/>
+                                            </mask>
+                                        </variation>
                                     </textView>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P4C-bQ-w5f" customClass="PostImageGrid" customModule="CA" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P4C-bQ-w5f" customClass="PostImageGrid" customModule="CA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="167" width="320" height="320"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mlu-h5-VmR" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mlu-h5-VmR" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8wb-Oy-KbH">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8wb-Oy-KbH">
                                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7o-rg-pLq">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7o-rg-pLq">
                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -659,7 +610,7 @@ T</string>
                                                             <action selector="deleteBtnClick:" destination="mlu-h5-VmR" eventType="touchUpInside" id="wbQ-Ev-Xgq"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7om-cx-gMX">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7om-cx-gMX">
                                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="66"/>
@@ -704,13 +655,13 @@ T</string>
                                                     <outlet property="plusBtn" destination="7om-cx-gMX" id="WSW-cT-Y1m"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGN-jv-kR3" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGN-jv-kR3" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
                                                 <rect key="frame" x="107" y="0.0" width="106" height="106"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hML-A8-rTh">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hML-A8-rTh">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciQ-RX-O3M">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciQ-RX-O3M">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="66"/>
@@ -724,7 +675,7 @@ T</string>
                                                             <action selector="plusBtnClick" destination="Klb-hL-RPP" eventType="touchUpInside" id="bo1-er-cOf"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ine-Iv-Z4J">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ine-Iv-Z4J">
                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -770,13 +721,13 @@ T</string>
                                                     <outlet property="plusBtn" destination="ciQ-RX-O3M" id="D7G-5r-vOS"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSH-Ag-tcY" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSH-Ag-tcY" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
                                                 <rect key="frame" x="213" y="0.0" width="106.5" height="106.5"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rdg-4b-uq7">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rdg-4b-uq7">
                                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uh-Uf-scR">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uh-Uf-scR">
                                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="66"/>
@@ -790,7 +741,7 @@ T</string>
                                                             <action selector="plusBtnClick" destination="Klb-hL-RPP" eventType="touchUpInside" id="Xk4-Qz-N9U"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-O5-Eej">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-O5-Eej">
                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -834,13 +785,13 @@ T</string>
                                                     <outlet property="plusBtn" destination="2uh-Uf-scR" id="9eC-10-QnG"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdz-tY-5mT" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdz-tY-5mT" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="107" width="106" height="106"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="esm-co-AOk">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="esm-co-AOk">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-nr-SEw">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAn-nr-SEw">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="66"/>
@@ -854,7 +805,7 @@ T</string>
                                                             <action selector="plusBtnClick" destination="Klb-hL-RPP" eventType="touchUpInside" id="HWq-x2-OUy"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORq-gm-vWn">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORq-gm-vWn">
                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -898,13 +849,13 @@ T</string>
                                                     <outlet property="plusBtn" destination="CAn-nr-SEw" id="GE7-UU-cJ4"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFo-ke-3PP" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFo-ke-3PP" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
                                                 <rect key="frame" x="107" y="107" width="106" height="106"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrz-et-Zsw">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrz-et-Zsw">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyD-ct-iw3">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyD-ct-iw3">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="66"/>
@@ -918,7 +869,7 @@ T</string>
                                                             <action selector="plusBtnClick" destination="Klb-hL-RPP" eventType="touchDragInside" id="TYT-tm-wit"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8k-4g-2wd">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8k-4g-2wd">
                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -962,13 +913,13 @@ T</string>
                                                     <outlet property="plusBtn" destination="fyD-ct-iw3" id="fXd-ZA-gsa"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BfH-wZ-4rf" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BfH-wZ-4rf" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
                                                 <rect key="frame" x="214" y="107" width="106" height="106"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpE-la-1tJ">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpE-la-1tJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-Ir-CsA">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-Ir-CsA">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="66"/>
@@ -982,7 +933,7 @@ T</string>
                                                             <action selector="plusBtnClick" destination="Klb-hL-RPP" eventType="touchUpInside" id="uCi-UZ-mH3"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm5-J2-Xqa">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm5-J2-Xqa">
                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -1026,13 +977,13 @@ T</string>
                                                     <outlet property="plusBtn" destination="MfV-Ir-CsA" id="mTQ-ME-IxU"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dSS-Hf-OEy" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dSS-Hf-OEy" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="214" width="106.5" height="106.5"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B5Q-hx-u3k">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B5Q-hx-u3k">
                                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFT-0M-IPu">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFT-0M-IPu">
                                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="66"/>
@@ -1046,7 +997,7 @@ T</string>
                                                             <action selector="plusBtnClick" destination="Klb-hL-RPP" eventType="touchUpInside" id="eNC-zV-7vy"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxA-mh-XEh">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxA-mh-XEh">
                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -1090,13 +1041,13 @@ T</string>
                                                     <outlet property="plusBtn" destination="eFT-0M-IPu" id="IQo-8n-h1w"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zeJ-gP-ZU9" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zeJ-gP-ZU9" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
                                                 <rect key="frame" x="107" y="214" width="106" height="106"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHH-7E-ii3">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHH-7E-ii3">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxF-wM-FlO">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxF-wM-FlO">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="66"/>
@@ -1110,7 +1061,7 @@ T</string>
                                                             <action selector="plusBtnClick" destination="Klb-hL-RPP" eventType="touchUpInside" id="Djq-dH-1zq"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgJ-Ek-bDz">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgJ-Ek-bDz">
                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -1154,13 +1105,13 @@ T</string>
                                                     <outlet property="plusBtn" destination="lxF-wM-FlO" id="o5p-MQ-49o"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pvl-Ml-9Dx" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pvl-Ml-9Dx" customClass="PostImageGridItem" customModule="CA" customModuleProvider="target">
                                                 <rect key="frame" x="213" y="214" width="106.5" height="106.5"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nWo-8V-hxH">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nWo-8V-hxH">
                                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s75-ZD-XfJ">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s75-ZD-XfJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="66"/>
@@ -1174,7 +1125,7 @@ T</string>
                                                             <action selector="plusBtnClick" destination="Klb-hL-RPP" eventType="touchUpInside" id="ke5-aw-z3R"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4m2-8X-cMk">
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4m2-8X-cMk">
                                                         <rect key="frame" x="76" y="0.0" width="30" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -1295,9 +1246,9 @@ T</string>
                                             <outletCollection property="gridItems" destination="Pvl-Ml-9Dx" collectionClass="NSMutableArray" id="cY9-jB-JNb"/>
                                         </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Input your moment." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIA-9u-Iyr">
-                                        <rect key="frame" x="8" y="58" width="118" height="18"/>
-                                        <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enter our moment!~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIA-9u-Iyr">
+                                        <rect key="frame" x="8" y="58" width="180" height="18"/>
+                                        <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="18"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1393,7 +1344,7 @@ T</string>
                                             <constraint firstItem="2rM-bu-HGn" firstAttribute="leading" secondItem="l6d-wF-SaM" secondAttribute="trailing" id="w9F-iy-Vyf"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Kj-kH-vbF">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Kj-kH-vbF">
                                         <rect key="frame" x="0.0" y="-1" width="320" height="525"/>
                                         <connections>
                                             <action selector="modalBtnClick:" destination="Klb-hL-RPP" eventType="touchUpInside" id="AmK-ru-Ow3"/>
@@ -2286,6 +2237,5 @@ T</string>
         <image name="avatar1" width="719" height="719"/>
         <image name="avatar2" width="961" height="961"/>
         <image name="disney" width="640" height="1136"/>
-        <image name="menu" width="200" height="200"/>
     </resources>
 </document>

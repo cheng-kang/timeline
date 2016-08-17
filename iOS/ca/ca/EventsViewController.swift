@@ -15,12 +15,16 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var collectionview: UICollectionView!
     
     
+    let topView = UIView()
     let topViewLbl = UILabel()
+    let bottomView = UIView()
+    let bottomViewLbl = UILabel()
     
     @IBOutlet weak var monthBtn: UIButton!
     @IBOutlet weak var yearBtn: UIButton!
     @IBOutlet weak var addBtn: UIButton!
     
+    var currentBottomViewY: CGFloat = 0
     
     var dataForCell = [Event]()
     
@@ -43,12 +47,13 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         loadData()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
+        let sb = UIScreen.mainScreen().bounds
+        self.view.frame = CGRectMake(sb.width * 3, 50, sb.width, sb.height - 100)
     }
     
     override func viewDidLayoutSubviews() {
         
-        let topView = UIView()
         topView.frame = CGRectMake(0, -60, self.view.frame.width, 60)
         
         self.tableview.addSubview(topView)
@@ -66,18 +71,17 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         
         topView.addSubview(topViewLbl)
         
-        let bottomView = UIView()
         let bottomViewY = self.tableview.contentSize.height > self.tableview.frame.height ? self.tableview.contentSize.height : self.tableview.frame.height
         bottomView.frame = CGRectMake(0, bottomViewY, self.view.frame.width, 60)
-        
+        self.currentBottomViewY = bottomViewY
         self.tableview.addSubview(bottomView)
         
-        let bottomViewLbl = UILabel()
-        bottomViewLbl.numberOfLines = 2
+        bottomViewLbl.numberOfLines = 1
         bottomViewLbl.textColor = THEME().textMainColor(0.8)
         bottomViewLbl.text = "I ❤️ U~"
         bottomViewLbl.font = UIFont(name: "FZYANS_JW--GB1-0", size: 18)
-        bottomViewLbl.frame = CGRectMake(8, 0, topView.frame.width, topView.frame.height)
+        bottomViewLbl.textAlignment = .Center
+        bottomViewLbl.frame = CGRectMake(8, 0, bottomView.frame.width, bottomView.frame.height)
         
         bottomView.addSubview(bottomViewLbl)
     }
@@ -93,7 +97,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     func loadData() {
-        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Events")
+        let ref = Wilddog(url: SERVER+"/Events")
         ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
             if snapshot.value != nil {
                 var tempList = [Event]()
@@ -136,6 +140,15 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func addBtnClick(sender: UIButton) {
     }
     
+    
+    func updateTextDisplayViews() {
+        let bottomViewY = self.tableview.contentSize.height > self.tableview.frame.height ? self.tableview.contentSize.height : self.tableview.frame.height
+        if bottomViewY != currentBottomViewY {
+            bottomView.frame.origin.y = bottomViewY
+            currentBottomViewY = bottomViewY
+        }
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -159,6 +172,12 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         let cellData = self.dataForCell[indexPath.row]
         let vc = EventDetailView.eventDetailView(cellData)
         vc.show()
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row >= tableView.visibleCells.count {
+            updateTextDisplayViews()
+        }
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -186,15 +205,5 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.collectionview.hidden = true
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

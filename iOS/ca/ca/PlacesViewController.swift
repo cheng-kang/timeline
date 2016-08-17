@@ -33,6 +33,7 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let topViewLbl = UILabel()
     let bottomView = UIView()
     let bottomViewLbl = UILabel()
+    var currentBottomViewY: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,7 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func loadData() {
-        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Photos")
+        let ref = Wilddog(url: SERVER+"/Photos")
         ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
             if snapshot.value != nil {
                 var tempPlaceList = [Place]()
@@ -99,9 +100,15 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bottomViewLbl.textColor = THEME().textMainColor(0.8)
         bottomViewLbl.text = "I ❤️ U~"
         bottomViewLbl.font = UIFont(name: "FZYANS_JW--GB1-0", size: 18)
-        bottomViewLbl.frame = CGRectMake(8, 0, topView.frame.width, topView.frame.height)
+        bottomViewLbl.textAlignment = .Center
+        bottomViewLbl.frame = CGRectMake(8, 0, bottomView.frame.width, bottomView.frame.height)
         
         bottomView.addSubview(bottomViewLbl)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let sb = UIScreen.mainScreen().bounds
+        self.view.frame = CGRectMake(sb.width * 2, 50, sb.width, sb.height - 100)
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,6 +125,13 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return vc
     }
     
+    func updateTextDisplayViews() {
+        let bottomViewY = self.tableview.contentSize.height > self.tableview.frame.height ? self.tableview.contentSize.height : self.tableview.frame.height
+        if bottomViewY != currentBottomViewY {
+            bottomView.frame.origin.y = bottomViewY
+            currentBottomViewY = bottomViewY
+        }
+    }
     
     @IBAction func menuBtnClick(sender: UIButton) {
         //        let menu = SideMenuView.sideMenuView(UIImage(named: "avatar1")!)
@@ -197,15 +211,10 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row >= tableView.visibleCells.count {
+            updateTextDisplayViews()
+        }
     }
-    */
 
 }

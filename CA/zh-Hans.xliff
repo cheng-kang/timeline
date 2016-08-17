@@ -104,11 +104,56 @@ from Ant</target>
         <target>已</target>
         <note>BucketList</note>
       </trans-unit>
+      <trans-unit id="Date &amp; Time:">
+        <source>Date &amp; Time:</source>
+        <target>日期和时间：</target>
+        <note>Event</note>
+      </trans-unit>
+      <trans-unit id="Event Info:">
+        <source>Event Info:</source>
+        <target>事件内容：</target>
+        <note>Event</note>
+      </trans-unit>
+      <trans-unit id="Events - alerts">
+        <source>Events - alerts</source>
+        <target>Events - 提醒</target>
+        <note>Nav Title</note>
+      </trans-unit>
+      <trans-unit id="Life - timeline">
+        <source>Life - timeline</source>
+        <target>Life - 时间轴</target>
+        <note>Nav Title</note>
+      </trans-unit>
       <trans-unit id="MUST">
         <source>MUST</source>
         <target>要</target>
         <note>Bucket List
    BucketList</note>
+      </trans-unit>
+      <trans-unit id="New Event">
+        <source>New Event</source>
+        <target>新增事件</target>
+        <note>Event</note>
+      </trans-unit>
+      <trans-unit id="Oh!!! - bucket list">
+        <source>Oh!!! - bucket list</source>
+        <target>Oh!!! - 愿望清单</target>
+        <note>Nav Title</note>
+      </trans-unit>
+      <trans-unit id="Photo">
+        <source>Photo</source>
+        <target>张照片</target>
+        <note>Places</note>
+      </trans-unit>
+      <trans-unit id="Photos">
+        <source>Photos</source>
+        <target>张照片</target>
+        <note>Places</note>
+      </trans-unit>
+      <trans-unit id="Post">
+        <source>Post</source>
+        <target>发布</target>
+        <note>Event</note>
       </trans-unit>
       <trans-unit id="Today is ">
         <source>Today is </source>
@@ -117,38 +162,52 @@ from Ant</target>
       </trans-unit>
       <trans-unit id="Unknown">
         <source>Unknown</source>
+        <target>未知</target>
         <note>Location</note>
+      </trans-unit>
+      <trans-unit id="Visited - photos">
+        <source>Visited - photos</source>
+        <target>Visited - 相册</target>
+        <note>Nav Title</note>
       </trans-unit>
       <trans-unit id="day">
         <source>day</source>
+        <target>天</target>
         <note>Time Label</note>
       </trans-unit>
       <trans-unit id="days">
         <source>days</source>
+        <target>天</target>
         <note>Time Label</note>
       </trans-unit>
       <trans-unit id="hr">
         <source>hr</source>
+        <target>小时</target>
         <note>Time Label</note>
       </trans-unit>
       <trans-unit id="hrs">
         <source>hrs</source>
+        <target>小时</target>
         <note>Time Label</note>
       </trans-unit>
       <trans-unit id="just now">
         <source>just now</source>
+        <target>刚刚</target>
         <note>Time Label</note>
       </trans-unit>
       <trans-unit id="min">
         <source>min</source>
+        <target>分钟</target>
         <note>Time Label</note>
       </trans-unit>
       <trans-unit id="mins">
         <source>mins</source>
+        <target>分钟</target>
         <note>Time Label</note>
       </trans-unit>
       <trans-unit id="s">
         <source>s</source>
+        <target>秒</target>
         <note>Time Label</note>
       </trans-unit>
     </body>

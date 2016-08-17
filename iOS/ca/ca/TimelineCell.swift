@@ -73,6 +73,8 @@ class TimelineCell: UITableViewCell {
                     self.snippetLeftImg.image = image
                 }
             })
+        }  else {
+            self.snippetLeftImg.image = nil
         }
         
         self.snippetRightLocationBtn.setTitle(location, forState: .Normal)
@@ -108,6 +110,7 @@ class TimelineCell: UITableViewCell {
         
         self.snippetLeftImg.clipsToBounds = true
         self.snippetRightContentLbl.sizeToFit()
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

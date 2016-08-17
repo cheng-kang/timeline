@@ -22,6 +22,7 @@
 		ED18B02A1D5DFB9D00892359 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0291D5DFB9D00892359 /* Photo.swift */; };
 		ED18B02C1D5F783800892359 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B02B1D5F783800892359 /* NewEventViewController.swift */; };
 		ED18B02E1D617C8500892359 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B02D1D617C8500892359 /* Event.swift */; };
+		ED18B0301D6422D400892359 /* BucketListCellWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B02F1D6422D400892359 /* BucketListCellWithButton.swift */; };
 		ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED705FAC1D49E720003128F6 /* Extensions.swift */; };
 		ED705FB81D49F9EF003128F6 /* odstemplikBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB61D49F9BB003128F6 /* odstemplikBold.otf */; };
 		ED705FB91D49F9EF003128F6 /* odstemplik.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB41D49F96D003128F6 /* odstemplik.otf */; };
@@ -165,6 +166,7 @@
 		ED18B0291D5DFB9D00892359 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		ED18B02B1D5F783800892359 /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		ED18B02D1D617C8500892359 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		ED18B02F1D6422D400892359 /* BucketListCellWithButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketListCellWithButton.swift; sourceTree = "<group>"; };
 		ED705FAC1D49E720003128F6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ED705FAE1D49F463003128F6 /* FZQKBYSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZQKBYSJW.TTF; sourceTree = "<group>"; };
 		ED705FAF1D49F58B003128F6 /* HomeRem.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeRem.ttf; sourceTree = "<group>"; };
@@ -816,6 +818,7 @@
 				ED8CD3A01D4E22200070CAF8 /* BucketListCell.swift */,
 				ED18B0211D5DD5C800892359 /* NewBucketListItem.xib */,
 				ED18B0231D5DD7F800892359 /* NewBucketListItem.swift */,
+				ED18B02F1D6422D400892359 /* BucketListCellWithButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1297,6 +1300,7 @@
 				ED89EB8D1D54A983000019BB /* TopView.swift in Sources */,
 				EDCFCECB1D485B4800E2B030 /* PullDownToLoadView.swift in Sources */,
 				ED18B0151D57308C00892359 /* TimelineRequest.swift in Sources */,
+				ED18B0301D6422D400892359 /* BucketListCellWithButton.swift in Sources */,
 				ED89EB871D54A983000019BB /* ImageGalleryLayout.swift in Sources */,
 				ED89EB7F1D54A983000019BB /* ButtonPicker.swift in Sources */,
 				ED8CD3811D49FE980070CAF8 /* TimelineDetailTableViewController.swift in Sources */,

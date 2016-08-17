@@ -10,10 +10,67 @@
 /* BucketList */
 "DONE" = "已";
 
+/* Event */
+"Date & Time:" = "日期和时间：";
+
+/* Event */
+"Event Info:" = "事件内容：";
+
+/* Nav Title */
+"Events - alerts" = "Events - 提醒";
+
+/* Nav Title */
+"Life - timeline" = "Life - 时间轴";
+
 /* Bucket List
    BucketList */
 "MUST" = "要";
 
+/* Event */
+"New Event" = "新增事件";
+
+/* Nav Title */
+"Oh!!! - bucket list" = "Oh!!! - 愿望清单";
+
+/* Places */
+"Photo" = "张照片";
+
+/* Places */
+"Photos" = "张照片";
+
+/* Event */
+"Post" = "发布";
+
 /* DatetimeString */
 "Today is " = "今天是 ";
+
+/* Location */
+"Unknown" = "未知";
+
+/* Nav Title */
+"Visited - photos" = "Visited - 相册";
+
+/* Time Label */
+"day" = "天";
+
+/* Time Label */
+"days" = "天";
+
+/* Time Label */
+"hr" = "小时";
+
+/* Time Label */
+"hrs" = "小时";
+
+/* Time Label */
+"just now" = "刚刚";
+
+/* Time Label */
+"min" = "分钟";
+
+/* Time Label */
+"mins" = "分钟";
+
+/* Time Label */
+"s" = "秒";
 

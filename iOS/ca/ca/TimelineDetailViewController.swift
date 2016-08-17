@@ -491,7 +491,7 @@ class TimelineDetailViewController: UIViewController {
         let content = self.textField.text!
         self.textField.text = ""
         self.view.endEditing(true)
-        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Timeline/\(timelineList[currentIndex].id ?? "")/messages")
+        let ref = Wilddog(url: SERVER+"/Timeline/\(timelineList[currentIndex].id ?? "")/messages")
         if timelineList[currentIndex].messageList.count == 0 {
             ref.setValue([], withCompletionBlock: { (error, completeRef) in
                 

@@ -62,7 +62,7 @@ class NewEventViewController: UIViewController {
 extension NewEventViewController {
     
     @IBAction func postBtnClick(sender: UIButton) {
-        let ref = Wilddog(url: "https://catherinewei.wilddogio.com/Events")
+        let ref = Wilddog(url: SERVER+"/Events")
         let newRef = ref.childByAutoId()
         
         

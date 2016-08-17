@@ -19,6 +19,7 @@ class NewTimelineViewController: UIViewController {
     @IBOutlet weak var textviewPlaveholderLbel: UILabel!
     @IBOutlet weak var postImageGrid: PostImageGrid!
     
+    
     @IBOutlet weak var btnBar: UIView!
     var btnBarY: CGFloat = 0
     @IBOutlet weak var emojiBtn: UIButton!
@@ -90,7 +91,7 @@ class NewTimelineViewController: UIViewController {
         
         self.btnBarY = self.btnBar.frame.origin.y
         
-        postImageGrid.gridItems[0].frame = CGRectMake(0,0,106,106)
+//        postImageGrid.gridItems[0].frame = CGRectMake(0,0,106,106)
         for item in postImageGrid.gridItems {
             item.deleteBtnClickClosure = { index in
                 self.ipc.stack.dropAsset(self.ipc.stack.assets[index])
@@ -116,8 +117,8 @@ class NewTimelineViewController: UIViewController {
 extension NewTimelineViewController {
     
     @IBAction func postBtnClick() {
-        let timelineRef = Wilddog(url: "https://catherinewei.wilddogio.com/Timeline")
-        let photosRef = Wilddog(url: "https://catherinewei.wilddogio.com/Photos/\(self.location)")
+        let timelineRef = Wilddog(url: SERVER+"/Timeline")
+        let photosRef = Wilddog(url: SERVER+"/Photos/\(self.location)")
         
 //                timelineRef.removeValue()
 //                photosRef.removeValue()

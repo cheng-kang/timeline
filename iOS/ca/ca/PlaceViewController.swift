@@ -10,21 +10,15 @@ import UIKit
 
 class PlaceViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var locationLbl: UILabel!
-    @IBOutlet weak var photoCountLbl: UILabel!
-    @IBOutlet weak var latestLbl: UILabel!
-    @IBOutlet weak var fromLbl: UILabel!
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var collectionview: UICollectionView!
-    
-    let transition = PopAnimation()
     
     var place: Place!
     
-    var popUpImageInitBounds: CGRect?
-    var popUpImageInitCenter: CGPoint?
-    var popUpImage = UIImageView()
-    var popUpBackgroundView = UIView()
+    var topView = UIView()
+    var topViewLbl = UILabel()
+    
+    var displayView = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,36 +31,51 @@ class PlaceViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func setupUI() {
-        self.backgroundImage.clipsToBounds = true
+        titleLbl.text = self.place.id
+    }
+    
+    override func viewDidLayoutSubviews() {
         
-        locationLbl.text = self.place.id
+        topView.frame = CGRectMake(0, -60, self.view.frame.width, 60)
         
+        topViewLbl.numberOfLines = 2
+        topViewLbl.textColor = THEME().textMainColor(0.8)
+        
+        var photoCountText:String!
         if self.place.photoList.count > 1 {
-            photoCountLbl.text = "\(self.place.photoList.count) " + NSLocalizedString("Photos", comment: "Places")
+            photoCountText = "\(self.place.photoList.count) " + NSLocalizedString("Photos", comment: "Places")
         } else {
-            photoCountLbl.text = "\(self.place.photoList.count) " + NSLocalizedString("Photo", comment: "Places")
+            photoCountText = "\(self.place.photoList.count) " + NSLocalizedString("Photo", comment: "Places")
         }
         
+        topViewLbl.text = "从 \(self.place.photoList.first?.formattedDatetime ?? "第一天") 开始\n在 \(self.place.id) 拍了 \(photoCountText)"
+        topViewLbl.font = UIFont(name: "FZYANS_JW--GB1-0", size: 18)
+        topViewLbl.frame = CGRectMake(8, 0, topView.frame.width, topView.frame.height)
         
-        if self.place.photoList.count > 0 {
-            self.fromLbl.text = NSLocalizedString("From", comment: "Place") + (self.place.photoList.first?.date)!
-            self.latestLbl.text = NSLocalizedString("Lastest", comment: "Place") + (self.place.photoList.last?.date)!
-            getImageByIdAndLocation((self.place.photoList.first?.id)!, location: self.place.id, complete: { (image) in
-                self.place.photoList.first?.image = image
-                self.backgroundImage.image = image
+        topView.addSubview(topViewLbl)
+        self.collectionview.addSubview(topView)
+        
+        for i in 0..<self.place.photoList.count {
+            let temp = UIImageView()
+            getImageByIdAndLocation(self.place.photoList[i].id, location: self.place.id, complete: { (image) in
+                temp.image = image
             })
-        } else {
-            self.backgroundImage.image = nil
-            self.fromLbl.text = ""
-            self.latestLbl.text = ""
+            temp.contentMode = .ScaleAspectFit
+            temp.frame = CGRectMake(self.view.frame.width * CGFloat(i) , 0, self.view.frame.width, self.view.frame.height)
+            temp.backgroundColor = UIColor.blackColor()
+            
+            self.displayView.addSubview(temp)
         }
+        self.displayView.contentSize = CGSizeMake(self.view.frame.width * CGFloat(self.place.photoList.count), self.view.frame.height)
+        self.displayView.pagingEnabled = true
+        self.displayView.bounces = false
+        self.displayView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        self.displayView.alpha = 0
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PlaceViewController.dismissPopUp))
+        self.displayView.addGestureRecognizer(tap)
         
-        
-        popUpImage.clipsToBounds = true
-        popUpBackgroundView.backgroundColor = UIColor.blackColor()
-        popUpBackgroundView.alpha = 0
-        popUpBackgroundView.frame = self.view.frame
+        self.view.addSubview(displayView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,7 +111,7 @@ class PlaceViewController: UIViewController, UICollectionViewDelegate, UICollect
         let cell = collectionview.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
         
         let cellData = self.place.photoList[indexPath.row]
-        cell.initCell(cellData.id, location: place.id, datetime: cellData.time+cellData.date)
+        cell.initCell(cellData.id, location: place.id, datetime: " "+cellData.time+"  "+cellData.date)
         
         return cell
     }
@@ -115,81 +124,22 @@ class PlaceViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         
-        let cell = (collectionView.cellForItemAtIndexPath(indexPath) as! PhotoCell)
-        
-        let cellData = self.place.photoList[indexPath.row]
-        
-        let distanceToTopElement: CGFloat = 182
-        
-        self.view.addSubview(popUpBackgroundView)
-        
-        popUpImage.contentMode = .ScaleAspectFit
-        if cellData.image != nil {
-            popUpImage.image = cellData.image
-        } else {
-            getImageByIdAndLocation(cellData.id, location: place.id, complete: { (image) in
-                cellData.image = image
-                self.popUpImage.image = image
-            })
-        }
-        popUpImage.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y + distanceToTopElement, cell.frame.width, cell.frame.height)
-        popUpImage.alpha = 0
-        self.view.addSubview(popUpImage)
-        
-        self.popUpImageInitBounds = cell.bounds
-        self.popUpImageInitCenter = CGPointMake(cell.center.x, cell.center.y + distanceToTopElement)
-        print(popUpImageInitBounds)
-        
-        UIView.animateWithDuration(0.8, delay:0.0,
-                                   usingSpringWithDamping: 0.4,
-                                   initialSpringVelocity: 0.0,
-                                   options: [],
+        self.displayView.setContentOffset(CGPointMake(self.view.frame.width * CGFloat(indexPath.row), 0), animated: false)
+
+        UIView.animateWithDuration(0.15,
+                                   delay: 0,
+                                   options: [.CurveEaseOut],
                                    animations: {
-                                    self.popUpImage.bounds = self.view.bounds
-                                    self.popUpImage.center = self.view.center
-                                    
-            }, completion:{_ in
-        })
-        UIView.animateWithDuration(0.6) {
-            self.popUpImage.alpha = 1
-            self.popUpBackgroundView.alpha = 0.3
+                                    self.displayView.alpha = 1
+        }) { (complete) in
         }
-        
-        let modalButton = UIButton()
-        modalButton.frame = self.view.frame
-        modalButton.backgroundColor = UIColor.clearColor()
-        modalButton.addTarget(self, action: #selector(PlaceViewController.dismissPopUp), forControlEvents: .TouchUpInside)
-        self.view.addSubview(modalButton)
         
     }
     
-    func dismissPopUp(sender: UIButton) {
-        sender.removeFromSuperview()
-        
-        popUpImage.contentMode = .ScaleAspectFill
-        UIView.animateWithDuration(0.8, delay:0.0,
-                                   usingSpringWithDamping: 0.5,
-                                   initialSpringVelocity: 0.0,
-                                   options: [],
-                                   animations: {
-                                    self.popUpImage.bounds = self.popUpImageInitBounds!
-                                    self.popUpImage.center = self.popUpImageInitCenter!
-            }, completion:{_ in
-        })
-        UIView.animateWithDuration(0.8) {
-            self.popUpImage.alpha = 0
-            self.popUpBackgroundView.alpha = 0
+    func dismissPopUp() {
+        UIView.animateWithDuration(0.15, delay: 0, options: [.CurveEaseIn], animations: {
+            self.displayView.alpha = 0
+            }) { (complete) in
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
