@@ -23,6 +23,19 @@
 		ED18B02C1D5F783800892359 /* NewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B02B1D5F783800892359 /* NewEventViewController.swift */; };
 		ED18B02E1D617C8500892359 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B02D1D617C8500892359 /* Event.swift */; };
 		ED18B0301D6422D400892359 /* BucketListCellWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B02F1D6422D400892359 /* BucketListCellWithButton.swift */; };
+		ED18B0331D659E4100892359 /* TDCell0.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0321D659E4100892359 /* TDCell0.swift */; };
+		ED18B0351D659F8300892359 /* TDCellDesign.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B0341D659F8300892359 /* TDCellDesign.xib */; };
+		ED18B0371D65B42700892359 /* TDCell0.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B0361D65B42700892359 /* TDCell0.xib */; };
+		ED18B0391D65B71000892359 /* TDCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B0381D65B71000892359 /* TDCell1.xib */; };
+		ED18B03B1D65B98100892359 /* TDCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B03A1D65B98100892359 /* TDCell2.xib */; };
+		ED18B03D1D65BAA900892359 /* TDCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B03C1D65BAA900892359 /* TDCell3.xib */; };
+		ED18B03F1D65BD9700892359 /* TDCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B03E1D65BD9700892359 /* TDCell1.swift */; };
+		ED18B0411D65BDA600892359 /* TDCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0401D65BDA600892359 /* TDCell2.swift */; };
+		ED18B0431D65BDB700892359 /* TDCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0421D65BDB700892359 /* TDCell3.swift */; };
+		ED18B0451D65C12000892359 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0441D65C12000892359 /* TempViewController.swift */; };
+		ED18B0471D65C2A500892359 /* TDTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0461D65C2A500892359 /* TDTableViewController.swift */; };
+		ED18B0491D65CAC400892359 /* TDTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B0481D65CAC400892359 /* TDTable.xib */; };
+		ED18B04B1D65CC0600892359 /* TDTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B04A1D65CC0600892359 /* TDTable.swift */; };
 		ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED705FAC1D49E720003128F6 /* Extensions.swift */; };
 		ED705FB81D49F9EF003128F6 /* odstemplikBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB61D49F9BB003128F6 /* odstemplikBold.otf */; };
 		ED705FB91D49F9EF003128F6 /* odstemplik.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB41D49F96D003128F6 /* odstemplik.otf */; };
@@ -167,6 +180,19 @@
 		ED18B02B1D5F783800892359 /* NewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventViewController.swift; sourceTree = "<group>"; };
 		ED18B02D1D617C8500892359 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		ED18B02F1D6422D400892359 /* BucketListCellWithButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketListCellWithButton.swift; sourceTree = "<group>"; };
+		ED18B0321D659E4100892359 /* TDCell0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCell0.swift; sourceTree = "<group>"; };
+		ED18B0341D659F8300892359 /* TDCellDesign.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDCellDesign.xib; sourceTree = "<group>"; };
+		ED18B0361D65B42700892359 /* TDCell0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDCell0.xib; sourceTree = "<group>"; };
+		ED18B0381D65B71000892359 /* TDCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDCell1.xib; sourceTree = "<group>"; };
+		ED18B03A1D65B98100892359 /* TDCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDCell2.xib; sourceTree = "<group>"; };
+		ED18B03C1D65BAA900892359 /* TDCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDCell3.xib; sourceTree = "<group>"; };
+		ED18B03E1D65BD9700892359 /* TDCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCell1.swift; sourceTree = "<group>"; };
+		ED18B0401D65BDA600892359 /* TDCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCell2.swift; sourceTree = "<group>"; };
+		ED18B0421D65BDB700892359 /* TDCell3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDCell3.swift; sourceTree = "<group>"; };
+		ED18B0441D65C12000892359 /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		ED18B0461D65C2A500892359 /* TDTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDTableViewController.swift; sourceTree = "<group>"; };
+		ED18B0481D65CAC400892359 /* TDTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDTable.xib; sourceTree = "<group>"; };
+		ED18B04A1D65CC0600892359 /* TDTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDTable.swift; sourceTree = "<group>"; };
 		ED705FAC1D49E720003128F6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ED705FAE1D49F463003128F6 /* FZQKBYSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZQKBYSJW.TTF; sourceTree = "<group>"; };
 		ED705FAF1D49F58B003128F6 /* HomeRem.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeRem.ttf; sourceTree = "<group>"; };
@@ -340,6 +366,25 @@
 				ED18B01F1D5B752200892359 /* BgColorPanelCell.swift */,
 			);
 			name = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		ED18B0311D659DCF00892359 /* TimelineDetail */ = {
+			isa = PBXGroup;
+			children = (
+				ED18B0321D659E4100892359 /* TDCell0.swift */,
+				ED18B03E1D65BD9700892359 /* TDCell1.swift */,
+				ED18B0401D65BDA600892359 /* TDCell2.swift */,
+				ED18B0421D65BDB700892359 /* TDCell3.swift */,
+				ED18B0341D659F8300892359 /* TDCellDesign.xib */,
+				ED18B0361D65B42700892359 /* TDCell0.xib */,
+				ED18B0381D65B71000892359 /* TDCell1.xib */,
+				ED18B03A1D65B98100892359 /* TDCell2.xib */,
+				ED18B03C1D65BAA900892359 /* TDCell3.xib */,
+				ED18B0461D65C2A500892359 /* TDTableViewController.swift */,
+				ED18B0481D65CAC400892359 /* TDTable.xib */,
+				ED18B04A1D65CC0600892359 /* TDTable.swift */,
+			);
+			name = TimelineDetail;
 			sourceTree = "<group>";
 		};
 		ED705FB71D49F9CC003128F6 /* fonts */ = {
@@ -734,6 +779,7 @@
 				EDD08A8F1D355157001E1459 /* TimelineViewController.swift */,
 				EDCFCE6C1D3C73CA00E2B030 /* NewTimelineViewController.swift */,
 				EDCFCE8C1D46031F00E2B030 /* TimelineDetailViewController.swift */,
+				ED18B0441D65C12000892359 /* TempViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -750,6 +796,7 @@
 		EDD08A831D353002001E1459 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ED18B0311D659DCF00892359 /* TimelineDetail */,
 				ED18B01C1D5B74A800892359 /* CollectionViewCells */,
 				EDD08A8D1D354C0F001E1459 /* Timeline.storyboard */,
 				EDD08A9F1D37CF0A001E1459 /* TimelineCell.swift */,
@@ -1067,6 +1114,8 @@
 				EDCFCEDB1D48A3C800E2B030 /* CommentCell.xib in Resources */,
 				EDD08A561D352887001E1459 /* LaunchScreen.storyboard in Resources */,
 				ED89EB7B1D54A983000019BB /* ImagePickerIcon.png in Resources */,
+				ED18B0371D65B42700892359 /* TDCell0.xib in Resources */,
+				ED18B03D1D65BAA900892359 /* TDCell3.xib in Resources */,
 				EDCFCE6F1D3D232900E2B030 /* PostImageGrid.xib in Resources */,
 				EDD08A8E1D354C0F001E1459 /* Timeline.storyboard in Resources */,
 				EDD08A9B1D369B50001E1459 /* SideMenuView.xib in Resources */,
@@ -1075,17 +1124,21 @@
 				EDCFCED91D48A3BC00E2B030 /* CommentTopCell.xib in Resources */,
 				ED89EB781D54A983000019BB /* OFF@3x.png in Resources */,
 				EDCFCED71D48A3AC00E2B030 /* MeCell.xib in Resources */,
+				ED18B0491D65CAC400892359 /* TDTable.xib in Resources */,
 				ED89EB751D54A983000019BB /* AUTO@3x.png in Resources */,
 				EDCFCE511D39D39400E2B030 /* Places.storyboard in Resources */,
+				ED18B0391D65B71000892359 /* TDCell1.xib in Resources */,
 				EDCFCED31D48A39400E2B030 /* ContentCell.xib in Resources */,
 				ED89EB771D54A983000019BB /* focusIcon@3x.png in Resources */,
 				EDD08A4E1D352887001E1459 /* Home.storyboard in Resources */,
 				EDCFCED11D48A37600E2B030 /* TopCell.xib in Resources */,
+				ED18B0351D659F8300892359 /* TDCellDesign.xib in Resources */,
 				ED89EB791D54A983000019BB /* ON@3x.png in Resources */,
 				EDCFCEDF1D48A48600E2B030 /* TimelineDetailTableView.xib in Resources */,
 				EDCFCE711D3D236B00E2B030 /* PostImageGridItem.xib in Resources */,
 				ED8CD39D1D4E1A970070CAF8 /* BucketList.storyboard in Resources */,
 				EDCFCED51D48A3A100E2B030 /* LoverCell.xib in Resources */,
+				ED18B03B1D65B98100892359 /* TDCell2.xib in Resources */,
 				ED8CD3AB1D4E29470070CAF8 /* Localizable.strings in Resources */,
 				ED89EB7C1D54A983000019BB /* ImagePickerPresentation.png in Resources */,
 				EDCFCEDD1D48A3D300E2B030 /* CommentBottomCell.xib in Resources */,
@@ -1257,16 +1310,20 @@
 				ED89EB811D54A983000019BB /* StackView.swift in Sources */,
 				ED8CD39F1D4E1AB90070CAF8 /* BucketListViewController.swift in Sources */,
 				ED18B02E1D617C8500892359 /* Event.swift in Sources */,
+				ED18B0451D65C12000892359 /* TempViewController.swift in Sources */,
 				EDCFCE7C1D442FF100E2B030 /* Global.swift in Sources */,
 				EDD08A491D352887001E1459 /* AppDelegate.swift in Sources */,
 				ED89EB881D54A983000019BB /* ImageGalleryView.swift in Sources */,
+				ED18B0431D65BDB700892359 /* TDCell3.swift in Sources */,
 				ED89EB821D54A983000019BB /* CameraMan.swift in Sources */,
 				ED8CD3931D4A68DC0070CAF8 /* YearCell.swift in Sources */,
 				EDCFCE6D1D3C73CA00E2B030 /* NewTimelineViewController.swift in Sources */,
 				EDCFCE4F1D38BF5B00E2B030 /* SideMenuView.swift in Sources */,
+				ED18B03F1D65BD9700892359 /* TDCell1.swift in Sources */,
 				EDCFCE601D3A5B8A00E2B030 /* CircularButton.swift in Sources */,
 				EDCFCECF1D48842200E2B030 /* PullToLoadView.swift in Sources */,
 				ED8CD3991D4B255E0070CAF8 /* EventDetailView.swift in Sources */,
+				ED18B0471D65C2A500892359 /* TDTableViewController.swift in Sources */,
 				EDD08AA91D385EB4001E1459 /* Constants.swift in Sources */,
 				ED89EB831D54A983000019BB /* CameraView.swift in Sources */,
 				EDCFCE731D435BF200E2B030 /* PhotoCell.swift in Sources */,
@@ -1286,6 +1343,7 @@
 				ED8CD38F1D4A5E5C0070CAF8 /* EventCell.swift in Sources */,
 				ED89EB861D54A983000019BB /* Helper.swift in Sources */,
 				ED18B01E1D5B751100892359 /* IconPanelCell.swift in Sources */,
+				ED18B0331D659E4100892359 /* TDCell0.swift in Sources */,
 				ED18B0241D5DD7F800892359 /* NewBucketListItem.swift in Sources */,
 				ED18B0281D5DFABC00892359 /* Place.swift in Sources */,
 				ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */,
@@ -1303,9 +1361,11 @@
 				ED18B0301D6422D400892359 /* BucketListCellWithButton.swift in Sources */,
 				ED89EB871D54A983000019BB /* ImageGalleryLayout.swift in Sources */,
 				ED89EB7F1D54A983000019BB /* ButtonPicker.swift in Sources */,
+				ED18B0411D65BDA600892359 /* TDCell2.swift in Sources */,
 				ED8CD3811D49FE980070CAF8 /* TimelineDetailTableViewController.swift in Sources */,
 				ED8CD3A11D4E22200070CAF8 /* BucketListCell.swift in Sources */,
 				ED8CD3911D4A680E0070CAF8 /* MonthCell.swift in Sources */,
+				ED18B04B1D65CC0600892359 /* TDTable.swift in Sources */,
 				EDCFCE7A1D43A99400E2B030 /* PopUpImageViewController.swift in Sources */,
 				ED89EB891D54A983000019BB /* ImageGalleryViewCell.swift in Sources */,
 				ED89EB8C1D54A983000019BB /* LocationManager.swift in Sources */,

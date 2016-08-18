@@ -21,6 +21,8 @@ class TimelineComment: NSObject {
             self.time = df.stringFromDate(date)
             df.dateFormat = "dd-MM-yyyy"
             self.date = df.stringFromDate(date)
+            df.dateFormat = "yyyy-MM-dd HH:mm"
+            self.datetime = df.stringFromDate(date)
         }
     }
     
@@ -28,6 +30,8 @@ class TimelineComment: NSObject {
     var time: String?
     // eg: 23/May/2016
     var date: String?
+    // eg: 2016-08-12 12:33
+    var datetime: String?
     
     
 }

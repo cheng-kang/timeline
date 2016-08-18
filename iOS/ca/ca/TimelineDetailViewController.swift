@@ -622,7 +622,7 @@ extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSour
             let cell = tableview.dequeueReusableCellWithIdentifier("TopCell") as! TopCell
             cell.dateLbl.text = cellData.date!
             cell.timeLbl.text = cellData.time!
-            cell.nameLbl.text = cellData.userid
+            cell.nameLbl.text = cellData.userId
             cell.iconBgView.backgroundColor = cellData.bgColor
             cell.iconImg.image = UIImage(named: "Two Hearts White")
             
@@ -652,7 +652,7 @@ extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSour
             
         } else if row <= (1 + msgCount) {
             let msgData = msgs[row-2]
-            if (cellData.userid) == (msgData.userId) {
+            if (cellData.userId) == (msgData.userId) {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MeCell") as! MeCell
                 cell.avatarImg.image = UIImage(named: "avatar2")
                 cell.msgTextView.text = msgData.content

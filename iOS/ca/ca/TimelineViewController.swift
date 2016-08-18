@@ -156,6 +156,7 @@ class TimelineViewController: UIViewController{
                     
                     let temp = Timeline()
                     temp.id = key
+                    temp.userId = data["userId"] as! String
                     temp.type = data["type"] as! String
                     temp.subtype = data["subtype"] as! String
                     temp.title = data["title"] as! String
@@ -326,7 +327,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableview.deselectRowAtIndexPath(indexPath, animated: false)
         
-        let vc = TimelineDetailViewController.timelineDetailViewController(dataForCells, index: indexPath.row)
+        let vc = TempViewController.tempViewController(dataForCells, index: indexPath.row)
         self.presentViewController(vc, animated: true) { 
             
         }

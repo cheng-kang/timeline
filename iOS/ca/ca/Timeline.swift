@@ -11,7 +11,7 @@ import UIKit
 
 class Timeline: NSObject {
     var id:String?
-    var userid: String?
+    var userId: String?
     var type:String?
     var subtype:String?
     var title: String?
@@ -49,6 +49,10 @@ class Timeline: NSObject {
             self.time = df.stringFromDate(date)
             df.dateFormat = "dd-MM-yyyy"
             self.date = df.stringFromDate(date)
+            df.dateFormat = "yyyy-MM-dd HH:mm"
+            self.datetime = df.stringFromDate(date)
+            df.dateFormat = "EEEE / MMM dd / yyyy"
+            self.dateAndWeekday = df.stringFromDate(date)
         }
     }
     var updateAt: String?
@@ -92,6 +96,10 @@ class Timeline: NSObject {
     var time: String?
     // eg: 23/May/2016
     var date: String?
+    // 2016-12-03 13:33
+    var datetime: String?
+    // eg: Mon / Aug 17 / 2016
+    var dateAndWeekday: String?
     
     var timeToNow: String {
         let date = NSDate(timeIntervalSince1970: Double(createAt!)!)

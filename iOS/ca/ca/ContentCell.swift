@@ -34,13 +34,21 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
         // Initialization code
         
         self.containnerView.clipsToBounds = true
-        self.containnerView.layer.cornerRadius = 10
+//        self.containnerView.layer.cornerRadius = 10
         
         self.sliderView.clipsToBounds = true
-        self.sliderView.layer.cornerRadius = 10
+//        self.sliderView.layer.cornerRadius = 10
 //        self.sliderView.layer.borderWidth = 2
         
         self.locationBtn.titleLabel?.font = UIFont(name: "FZYANS_JW--GB1-0", size: 12)
+        
+        let backImg = UIImage(named: "Back")!.imageWithRenderingMode(.AlwaysTemplate)
+        let forwardImg = UIImage(named: "Forward")!.imageWithRenderingMode(.AlwaysTemplate)
+        
+        self.backBtn.tintColor = UIColor.whiteColor()
+        self.backBtn.setImage(backImg, forState: .Normal)
+        self.forwardBtn.tintColor = UIColor.whiteColor()
+        self.forwardBtn.setImage(forwardImg, forState: .Normal)
         
         self.backBtn.enabled = false
     }
@@ -71,7 +79,7 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
             let pinchGesture2 = UIPinchGestureRecognizer(target: self, action: #selector(ContentCell.pinchOnSliderView(_:)))
             self.sliderView.addGestureRecognizer(pinchGesture2)
         } else {
-            self.containnerView.layer.borderWidth = 2
+            self.containnerView.layer.borderWidth = 1
         }
         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * CGFloat(imgs.count), self.scrollView.frame.height)
         
@@ -131,7 +139,7 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
         
         self.coverImg.alpha = scale
         self.sliderView.alpha = 1 - scale
-        self.containnerView.layer.borderWidth = 2 * (1 - scale)
+        self.containnerView.layer.borderWidth = 1 * (1 - scale)
         
         if sender.state == .Ended {
             if scale < 0.5 {
@@ -139,7 +147,7 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
                     self.coverImg.alpha = 0
                     self.sliderView.alpha = 1
                     
-                    self.containnerView.layer.borderWidth = 2
+                    self.containnerView.layer.borderWidth = 1
                     
                     }, completion: { (complete) in
                 })
@@ -165,7 +173,7 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
         
         self.coverImg.alpha = (scale - 1) > 1 ? 1 : (scale - 1)
         self.sliderView.alpha = 1 - ((scale - 1) > 1 ? 1 : (scale - 1))
-        self.containnerView.layer.borderWidth = 2 * (1 - ((scale - 1) > 1 ? 1 : (scale - 1)))
+        self.containnerView.layer.borderWidth = 1 * (1 - ((scale - 1) > 1 ? 1 : (scale - 1)))
         
         if sender.state == .Ended {
             if scale > 1.5 {
@@ -181,7 +189,7 @@ class ContentCell: UITableViewCell, UIScrollViewDelegate {
                     self.coverImg.alpha = 0
                     self.sliderView.alpha = 1
                     
-                    self.containnerView.layer.borderWidth = 2
+                    self.containnerView.layer.borderWidth = 1
                     }, completion: { (complete) in
                 })
             }
