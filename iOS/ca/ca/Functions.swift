@@ -37,26 +37,46 @@ func getDaysSinceBeginningOfRelationShip() -> Int {
 }
 
 func getImageByIdAndLocation(id: String, location: String, complete: ((image: UIImage?)->())) {
-    let ref = Wilddog(url: SERVER+"/Photos/\(location)/\(id)")
-    ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
-        if snapshot.value != nil {
-            let data = snapshot.value as! [String:AnyObject]
-            if let count = data["count"]{
-                var imageDataString = ""
-                for i in 0..<(count as! Int) {
-                    imageDataString += data["\(i)"] as! String
+    let path = getArchivePathByTypeAndKey("images", key: id)
+    print(path)
+    
+    if let imageData = NSUserDefaults.standardUserDefaults().dataForKey(id) {
+        print("Load From Archived Data.")
+        complete(image: UIImage(data: imageData))
+    } else {
+        let ref = Wilddog(url: SERVER+"/Photos/\(location)/\(id)")
+        ref.observeEventType(.Value) { (snapshot: WDataSnapshot) in
+            if snapshot.value != nil {
+                let data = snapshot.value as! [String:AnyObject]
+                if let count = data["count"]{
+                    var imageDataString = ""
+                    for i in 0..<(count as! Int) {
+                        imageDataString += data["\(i)"] as! String
+                    }
+                    let imageData = NSData(base64EncodedString: imageDataString,
+                                           options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                    if let decodedImage = UIImage(data:imageData!) {
+                        complete(image: decodedImage)
+                        
+//                        imageData!.writeToFile(path, atomically: true)
+                        print("Image: "+id+" data writted to file.")
+                        NSUserDefaults.standardUserDefaults().setObject(imageData!, forKey: id)
+
+                        if NSUserDefaults.standardUserDefaults().synchronize() {
+                            print("Image: "+id+" Archived.")
+                        } else {
+                            print("Fail to Archive Image: "+id)
+                        }
+                        
+                        return
+                    }
                 }
-                let imageData = NSData(base64EncodedString: imageDataString,
-                                       options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                let decodedImage = UIImage(data:imageData!)
-                
-                complete(image: decodedImage)
-                return
             }
+            
+            complete(image: nil)
         }
-        
-        complete(image: nil)
     }
+    
 }
 
 func getTypeLblText(type: String, subtype: String) -> String {
@@ -77,6 +97,13 @@ func getTypeLblText(type: String, subtype: String) -> String {
     }
     
     return ""
+}
+
+func getArchivePathByTypeAndKey(type: String, key: String) -> String {
+    let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent(type)
+    
+    return ArchiveURL.path!.stringByAppendingString("/\(key).data")
 }
 
 func uploadImageAndGetImageId(data: NSData) -> String {
