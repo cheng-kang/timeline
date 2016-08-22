@@ -37,23 +37,29 @@ class TimelineCell: UITableViewCell {
     
     var isFolded = false
     
-    func initCell(username: String, avatarImage: UIImage, title: String, content:String, time: String, location: String, coverImage: String, type: String, subtype: String, commentCount: Int, backgroundColor: UIColor, icon: UIImage) {
+    func initCell(timeline: Timeline) {
         
-        self.avatarImg.image = avatarImage
+        let coverImage = (timeline.imageIdList.count) == 0 ? "" : (timeline.imageIdList.first)!
+        
+        self.avatarImg.image = UIImage(named: "avatar1")!
+        let username = "Kang Cheng"
         
         var desc = ""
-        switch type {
+        switch timeline.type {
         case "Event":
-            desc = "\(username) created an event \"\(title)\".    \(time)"
+            desc = "\(username) \(NSLocalizedString("created an event", comment: "Timeline")).    \(timeline.time)"
+            break
+        case "Visited":
+            desc = "\(username) \(NSLocalizedString("posted", comment: "Timeline")) \(timeline.imageIdList.count > 1 ? "1 "+NSLocalizedString("Photo", comment: "Timeline") : "\(timeline.imageIdList.count) "+NSLocalizedString("Photos", comment: "Timeline")).    \(timeline.time)"
             break
         case "Wish":
-            desc = "\(username) added a wish \"\(title)\".    \(time)"
+            desc = "\(username) \(NSLocalizedString("added a wish", comment: "Timeline")).    \(timeline.time)"
             break
         case "Life":
-            desc = "\(username) posted a \(subtype)\(subtype == "Moment" ? "" : " \""+title+"\"").    \(time)"
+            desc = "\(username) \(NSLocalizedString("posted", comment: "Timeline")) \(timeline.subtype == "Moment" ? NSLocalizedString("a Moment", comment: "Timeline") : NSLocalizedString("a Diary", comment: "Timeline")).    \(timeline.time)"
             break
         default:
-            desc = "Opps!"
+            desc = NSLocalizedString("Opps!", comment: "Timeline")
         }
         self.descLbl.text = desc
         
@@ -61,13 +67,13 @@ class TimelineCell: UITableViewCell {
         // cover image
         self.coverView.hidden = false
         
-        self.coverLbl.textColor = backgroundColor
+        self.coverLbl.textColor = timeline.bgColor
         
-        self.coverLbl.text = getTypeLblText(type, subtype: subtype)
+        self.coverLbl.text = getTypeLblText(timeline.type, subtype: timeline.subtype)
         
         if coverImage != "" {
             
-            getImageByIdAndLocation(coverImage, location:location, complete: { (image) in
+            getImageByIdAndLocation(coverImage, location:timeline.location, complete: { (image) in
                 if image != nil {
                     self.coverView.hidden = true
                     self.snippetLeftImg.image = image
@@ -77,15 +83,15 @@ class TimelineCell: UITableViewCell {
             self.snippetLeftImg.image = nil
         }
         
-        self.snippetRightLocationBtn.setTitle(location, forState: .Normal)
-        self.snippetRightContentLbl.text = content
-        self.snippetRightCommentCountLbl.text = "\(commentCount)"
-        self.snippetRightTypeLbl.text = type == "Life" ? subtype : type
+        self.snippetRightLocationBtn.setTitle(timeline.location, forState: .Normal)
+        self.snippetRightContentLbl.text = timeline.content
+        self.snippetRightCommentCountLbl.text = "\(timeline.messageList.count)"
+        self.snippetRightTypeLbl.text = timeline.type == "Life" ? timeline.subtype : timeline.type
         
-        self.leftIconView.backgroundColor = backgroundColor
-        self.snippetBgView.backgroundColor = backgroundColor
+        self.leftIconView.backgroundColor = timeline.bgColor
+        self.snippetBgView.backgroundColor = timeline.bgColor
         
-        self.leftIconImg.image = icon.imageWithRenderingMode(.AlwaysTemplate)
+        self.leftIconImg.image = timeline.icon.imageWithRenderingMode(.AlwaysTemplate)
         self.leftIconImg.tintColor = UIColor.whiteColor()
     }
     

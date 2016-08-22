@@ -25,6 +25,7 @@ class TimelineViewController: UIViewController{
     var textDisplayViewsSet = false
     
     var dataForCells = [Timeline]()
+    var lifeTimeline = [Timeline]()
     
     var timelineCount = 7
     
@@ -148,6 +149,7 @@ class TimelineViewController: UIViewController{
         timelineRef.queryOrderedByChild("createAt").observeEventType(.Value, withBlock: { snapshot in
             if snapshot.value != nil {
                 var tempList = [Timeline]()
+                var tempLifeList = [Timeline]()
                 for (key, value) in (snapshot.value as! [String:AnyObject]) {
                     print(key)
                     print(value)
@@ -171,8 +173,55 @@ class TimelineViewController: UIViewController{
                     temp.comments = data["comments"] as? [String:AnyObject]
                     
                     tempList.append(temp)
+                    if temp.type == "Life" {
+                        tempLifeList.append(temp)
+                    }
+                    
+                    if temp.title != "" {
+                        if temp.type == "Event" {
+                            let eventRef = Wilddog(url: SERVER+"/Events/\(temp.title)")
+                            eventRef.observeEventType(.Value, withBlock: { (eSnapShot) in
+                                if eSnapShot.value != nil {
+                                    let eData = eSnapShot.value as! [String:String]
+                                    let event = Event()
+                                    event.id = eSnapShot.key
+                                    event.userId = eData["userId"]
+                                    event.content = eData["content"]
+                                    event.createAt = eData["createAt"]
+                                    event.alarmAt = eData["alarmAt"]
+                                    
+                                    temp.content = event.alarmTime + " " + event.content
+                                    self.tableview.reloadData()
+                                }
+                            })
+                        }
+                        
+                        if temp.type == "Wish" {
+                            let bucketlistRef = Wilddog(url: SERVER+"/BucketList/\(temp.title)")
+                            bucketlistRef.observeEventType(.Value, withBlock: { (blSnapShot) in
+                                if blSnapShot.value != nil {
+                                    let data = blSnapShot.value as! [String:String]
+                                    
+                                    let bucketlist = BucketListItem()
+                                    bucketlist.id = blSnapShot.key
+                                    bucketlist.userId = data["userId"]
+                                    bucketlist.content = data["content"]
+                                    bucketlist.createAt = data["createAt"]
+                                    bucketlist.done = data["done"]
+                                    bucketlist.doneAt = data["doneAt"]
+                                    bucketlist.timeline = data["timeline"]
+                                    
+                                    temp.content = NSLocalizedString("MUST", comment: "Timeline") + " " + bucketlist.content
+                                    
+                                    self.tableview.reloadData()
+                                }
+                            })
+                        }
+                    }
+                    
                 }
                 self.dataForCells = tempList
+                self.lifeTimeline = tempLifeList
                 self.tableview.reloadData()
             }
         })
@@ -231,25 +280,25 @@ class TimelineViewController: UIViewController{
     
     @IBAction func menuBtnClick(sender: UIButton) {
 //        let menu = SideMenuView.sideMenuView(UIImage(named: "avatar1")!)
-        LEFTMENU.show()
-        LEFTMENU.menuDismissing = {
-            
+//        LEFTMENU.show()
+//        LEFTMENU.menuDismissing = {
+//            
 //            self.contentView.layer.anchorPoint = CGPointMake(1,1)
 //            UIView.animateWithDuration(0.5) {
 ////                self.contentView.layer.anchorPoint = CGPointMake(1,1)
 //                self.contentView.layer.transform = CATransform3DIdentity
 //            }
-            
-            UIView.animateWithDuration(0.3, animations: {
-                
-                self.contentView.layer.transform = CATransform3DIdentity
-                }, completion: { (complete) in
-                    if complete {
-                        
-                        self.setAnchorPoint(CGPointMake(0.5,0.5), forView: self.contentView)
-                    }
-            })
-        }
+//            
+//            UIView.animateWithDuration(0.3, animations: {
+//                
+//                self.contentView.layer.transform = CATransform3DIdentity
+//                }, completion: { (complete) in
+//                    if complete {
+//                        
+//                        self.setAnchorPoint(CGPointMake(0.5,0.5), forView: self.contentView)
+//                    }
+//            })
+//        }
         
 //        self.tableview.frame = CGRectMake(10, 60, self.tableview.frame.width, self.tableview.frame.height + 50)
         self.contentView.layer.anchorPoint = CGPointMake(1,1)
@@ -277,21 +326,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineCell") as! TimelineCell
         
-        let cellData = dataForCells[indexPath.row]
-        
-        cell.initCell("KangCheng",
-                      avatarImage: UIImage(named: "avatar2")!,
-                      title: cellData.title!,
-                      content: cellData.content!,
-                      time: cellData.timeToNow,
-                      location: cellData.location!,
-                      coverImage: (cellData.imageIdList?.count)! == 0 ? "" : (cellData.imageIdList?.first)!,
-                      type: cellData.type!,
-                      subtype: cellData.subtype!,
-                      commentCount: cellData.messageList.count,
-                      backgroundColor: cellData.bgColor!,
-                      icon: cellData.icon!
-        )
+        cell.initCell(dataForCells[indexPath.row])
         
         return cell
     }
@@ -327,9 +362,11 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableview.deselectRowAtIndexPath(indexPath, animated: false)
         
-        let vc = TempViewController.tempViewController(dataForCells, index: indexPath.row)
-        self.presentViewController(vc, animated: true) { 
-            
+        if dataForCells[indexPath.row].type == "Life" {
+            let vc = TempViewController.tempViewController(lifeTimeline, index: lifeTimeline.indexOf(dataForCells[indexPath.row])!)
+            self.presentViewController(vc, animated: true) {
+                
+            }
         }
     }
 }

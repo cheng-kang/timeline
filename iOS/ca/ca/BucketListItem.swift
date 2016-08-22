@@ -19,6 +19,7 @@ class BucketListItem: NSObject {
         }
     }
     var doneAt: String!
+    var timeline: String!
     
     var isDone: Bool!
 }

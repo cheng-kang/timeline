@@ -16,11 +16,16 @@ class TDCell1: UITableViewCell {
     
     var content: String! {
         didSet {
+            self.contentLbl.text = content
             
+            let height = content.heightThatFitsContentByWidth(SCREEN_WIDTH - 40 - 16)
+            self.contentLblHeightDif = height - self.contentLblHeight.constant
+            self.contentLblHeight.constant = height
         }
     }
     
     @IBOutlet weak var contentLblHeight: NSLayoutConstraint!
+    var contentLblHeightDif: CGFloat = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()

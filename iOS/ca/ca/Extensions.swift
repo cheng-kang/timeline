@@ -87,6 +87,14 @@ extension String {
         return data
     }
     
+    func heightThatFitsContentByWidth(width: CGFloat) -> CGFloat {
+        let lbl = UILabel()
+        lbl.numberOfLines = 0
+        lbl.text = self
+        let newSize = lbl.sizeThatFits(CGSize(width: width, height: CGFloat(MAXFLOAT)))
+        
+        return newSize.height
+    }
 }
 
 extension UIImage {
@@ -96,4 +104,12 @@ extension UIImage {
     var mediumQualityJPEGNSData: NSData  { return UIImageJPEGRepresentation(self, 0.5)!  }
     var lowQualityJPEGNSData: NSData     { return UIImageJPEGRepresentation(self, 0.25)! }
     var lowestQualityJPEGNSData:NSData   { return UIImageJPEGRepresentation(self, 0.0)!  }
+}
+
+extension NSRange {
+    func toRange(string: String) -> Range<String.Index> {
+        let startIndex = string.startIndex.advancedBy(self.location)
+        let endIndex = startIndex.advancedBy(self.length)
+        return startIndex..<endIndex
+    }
 }

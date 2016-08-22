@@ -28,4 +28,5 @@ class Photo: NSObject {
     var time: String!
     var date: String!
     var formattedDatetime: String!
+    var timeline: String = ""
 }

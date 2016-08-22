@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import Wilddog
 
 class NewBucketListItem: UIView {
@@ -16,6 +17,10 @@ class NewBucketListItem: UIView {
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var confirmBtn: UIButton!
     @IBOutlet weak var editingLbl: UILabel!
+    
+    let cl = CLLocationManager()
+    let gc = CLGeocoder()
+    var location = NSLocalizedString("Unknown", comment: "Location")
     
     var data: BucketListItem? {
         didSet {
@@ -30,6 +35,13 @@ class NewBucketListItem: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // get location
+        cl.delegate = self
+        cl.requestWhenInUseAuthorization()
+        cl.desiredAccuracy = kCLLocationAccuracyBest
+        cl.distanceFilter = 10
+        cl.requestLocation()
         
         self.titleLbl.text = NSLocalizedString("MUST", comment: "Bucket List")
         self.cancelBtn.setTitle(NSLocalizedString("Cancel", comment: "Bucket List"), forState: .Normal)
@@ -63,19 +75,49 @@ class NewBucketListItem: UIView {
         shadowBtnClick()
     }
     @IBAction func confirmBtnClick() {
-        let ref = Wilddog(url: SERVER+"/BucketList")
+        let timelineRef = Wilddog(url: SERVER+"/Timeline")
+        let bucketListRef = Wilddog(url: SERVER+"/BucketList")
+        
         if data == nil {
-            let newRef = ref.childByAutoId()
-            let newData: [String:AnyObject] = [
+            print("Creating timeline...")
+            let newTimelineRef = timelineRef.childByAutoId()
+            
+            var timelineDataImages = [String: String]()
+            timelineDataImages["count"] = "0"
+            let timelineData = [
                 "userId": "husband",
-                "content": self.textfield.text!,
+                "type": "Wish",
+                "subtype": "",
+                "title": "",
+                "content": "",
+                "images": timelineDataImages,
+                "location": self.location,
+                "icon": 0,//15
+                "bgColor": 0,//Int(arc4random_uniform(UInt32(BG_COLORS.count)))
                 "createAt": "\(NSDate().timeIntervalSince1970)",
-                "done": "NO",
-                "doneAt": ""
-            ]
-            newRef.setValue(newData)
+                "updateAt": "\(NSDate().timeIntervalSince1970)",
+                "messages": "",
+                "comments": "",
+                ]
+        
+            newTimelineRef.setValue(timelineData, withCompletionBlock: { (error, ntRef) in
+                
+                let newRef = bucketListRef.childByAutoId()
+                let newData: [String:AnyObject] = [
+                    "userId": "husband",
+                    "content": self.textfield.text!,
+                    "createAt": "\(NSDate().timeIntervalSince1970)",
+                    "done": "NO",
+                    "doneAt": "",
+                    "timeline": ntRef.key
+                ]
+                newRef.setValue(newData, withCompletionBlock: { (error, nblRef) in
+                    
+                    ntRef.updateChildValues(["title":nblRef.key])
+                })
+            })
         } else {
-            let updateRef = ref.childByAppendingPath(data!.id)
+            let updateRef = bucketListRef.childByAppendingPath(data!.id)
             let updateData: [String:AnyObject] = [
                 "content": self.textfield.text!
             ]
@@ -154,14 +196,6 @@ extension NewBucketListItem: UITextFieldDelegate {
     }
 }
 
-extension NSRange {
-    func toRange(string: String) -> Range<String.Index> {
-        let startIndex = string.startIndex.advancedBy(self.location)
-        let endIndex = startIndex.advancedBy(self.length)
-        return startIndex..<endIndex
-    }
-}
-
 // keyboard events
 extension NewBucketListItem {
     func keyboardWillShow(notification: NSNotification) {
@@ -186,4 +220,22 @@ extension NewBucketListItem {
     }
 }
 
+extension NewBucketListItem: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        gc.reverseGeocodeLocation(locations.first!) { (placemark, error) in
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            let address = (placemark?.first?.addressDictionary)!
+            
+            self.location = (address["State"] as! String) + ", " + (address["Country"] as! String)
+        }
+    }
+}
 

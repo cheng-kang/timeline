@@ -17,9 +17,17 @@ class TDCell3: UITableViewCell {
     
     @IBOutlet weak var contentLblHeight: NSLayoutConstraint!
     
+    var contentLblHeightDif: CGFloat = 0
+    
+    var updateCellHeightClosure: ((height: String)->())?
+    
     var content: String! {
         didSet {
+            contentLbl.text = content
             
+            let height = content.heightThatFitsContentByWidth(SCREEN_WIDTH - 40 - 60 - 8)
+            self.contentLblHeightDif = height - self.contentLblHeight.constant
+            self.contentLblHeight.constant = height
         }
     }
     

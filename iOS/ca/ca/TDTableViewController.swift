@@ -11,14 +11,29 @@ import UIKit
 class TDTableViewController: UITableViewController {
 
     var data: Timeline!
+    var currentIndex = 0
+    var timelineCount = 0
+    
+    var pullToLoadViewHeight: CGFloat = 60
+    
     var isMessage = true {
         didSet {
-            self.tableView.reloadData()
+            reloadDataClosure!()
         }
     }
     
+    let headerview = TDCell2.headerview()
+    
+    var reloadDataClosure: (()->())?
+    var didPullClosure: ((isUp: Bool)->())?
+    var addDisplayViewClosure: ((fullScreenDisplayView: UIScrollView)->())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
     }
 
     // MARK: - Table view data source
@@ -44,7 +59,13 @@ class TDTableViewController: UITableViewController {
                 cell.nameLbl.text = data.userId
                 cell.dateLbl.text = data.dateAndWeekday
                 cell.location = data.location
+                
+                cell.addDisplayViewClosure = { fullScreenDisplayView in
+                    self.addDisplayViewClosure!(fullScreenDisplayView: fullScreenDisplayView)
+                }
+                
                 cell.photos = data.imageIdList
+                
                 
                 return cell
             } else if indexPath.row == 1 {
@@ -74,9 +95,20 @@ class TDTableViewController: UITableViewController {
             if indexPath.row == 0 {
                 return 282
             } else if indexPath.row == 1 {
-                return 161
+                let height = data.content.heightThatFitsContentByWidth(SCREEN_WIDTH - 40 - 60 - 8)
+                let dif = height - 121
+                
+                return 161 + dif
             }
         } else if indexPath.section == 1 {
+            let list = isMessage ? data.messageList : data.commentList
+            if list.count > indexPath.row {
+                let temp = list[indexPath.row]
+                let height = temp.content!.heightThatFitsContentByWidth(SCREEN_WIDTH - 40 - 60 - 8)
+                let dif = height - 41.5
+                
+                return 84 + dif
+            }
             return 84
         }
         
@@ -89,12 +121,25 @@ class TDTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
-            let headerview = TDCell2.headerview()
+            // headerview btn closure
             headerview.messageBtnClosure = {
                 self.isMessage = true
             }
             headerview.commentBtnClosure = {
                 self.isMessage = false
+            }
+            headerview.commentSentClosure = { comment in
+                if self.isMessage {
+                    self.data.messageList.append(comment)
+                } else {
+                    self.data.commentList.append(comment)
+                }
+                self.reloadDataClosure!()
+            }
+            headerview.id = data.id
+            headerview.hasComment = isMessage ? data.messageList.count > 0 : data.commentList.count > 0
+            if headerview.isMessage != self.isMessage {
+                headerview.isMessage = self.isMessage
             }
             return headerview
         }
@@ -121,3 +166,82 @@ class TDTableViewController: UITableViewController {
     */
 
 }
+
+extension TDTableViewController {
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if let this = (scrollView as? TDTable) {
+            if scrollView.contentOffset.y < -60 {
+                scrollView.contentOffset.y = -60
+            }
+            
+            let frameHeight = this.frame.height
+            let contentSizeHeight = scrollView.contentSize.height
+            let displayHeight = contentSizeHeight > frameHeight ? contentSizeHeight : frameHeight
+            let bottomOffsetY = displayHeight - frameHeight
+            let maxOffsetY = bottomOffsetY + 60
+            
+            if scrollView.contentOffset.y > maxOffsetY {
+                scrollView.contentOffset.y = maxOffsetY
+            }
+            
+            if self.currentIndex > 0 {
+                print("aaa")
+                print((scrollView.contentOffset.y < -pullToLoadViewHeight*(11/16)))
+                if scrollView.contentOffset.y < -pullToLoadViewHeight*(11/16) {
+                    if this.pullToLoadTopView.isRotated == false {
+                        this.pullToLoadTopView.isRotated = true
+                        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+                            this.pullToLoadTopView.iconView.transform = CGAffineTransformMakeRotation((180 * CGFloat(M_PI)) / 180)
+                            }, completion: { (complete) in
+                        })
+                    }
+                } else {
+                    if this.pullToLoadTopView.isRotated == true {
+                        this.pullToLoadTopView.isRotated = false
+                        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+                            this.pullToLoadTopView.iconView.transform = CGAffineTransformIdentity
+                            }, completion: { (complete) in
+                        })
+                    }
+                }
+            }
+            
+            if currentIndex < timelineCount - 1 {
+                if this.contentOffset.y - bottomOffsetY > pullToLoadViewHeight*(11/16) {
+                    if this.pullToLoadBottomView.isRotated == false {
+                        this.pullToLoadBottomView.isRotated = true
+                        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+                            this.pullToLoadBottomView.iconView.transform = CGAffineTransformIdentity
+                            }, completion: { (complete) in
+                        })
+                    }
+                } else {
+                    if this.pullToLoadBottomView.isRotated == true {
+                        this.pullToLoadBottomView.isRotated = false
+                        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+                            this.pullToLoadBottomView.iconView.transform = CGAffineTransformMakeRotation((180 * CGFloat(M_PI)) / 180)
+                            }, completion: { (complete) in
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if let this = (scrollView as? TDTable) {
+            if this.pullToLoadTopView.isRotated == true && !this.refreshControl.refreshing {
+                this.refreshControl.beginRefreshing()
+                didPullClosure!(isUp: true)
+            }
+            if this.pullToLoadBottomView.isRotated == true && !this.refreshControl.refreshing {
+                this.refreshControl.beginRefreshing()
+                didPullClosure!(isUp: false)
+            }
+        }
+    }
+}
+

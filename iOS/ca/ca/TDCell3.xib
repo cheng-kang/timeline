@@ -17,11 +17,11 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="jjb-He-x7C" customClass="TDCell3" customModule="CA" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jjb-He-x7C" id="Zc1-zL-Bce">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="jjb-He-x7C" id="Zc1-zL-Bce">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="83.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kang Cheng" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpR-JP-mK0">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Kang Cheng" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpR-JP-mK0">
                         <rect key="frame" x="60" y="8" width="252" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="uei-GZ-6XH"/>
@@ -30,7 +30,7 @@
                         <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I love you so much babe!!!" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uw-of-Rw5">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="I love you so much babe!!!" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uw-of-Rw5">
                         <rect key="frame" x="60" y="42" width="252" height="41.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="41.5" id="0hd-e2-QhD"/>
@@ -39,14 +39,14 @@
                         <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1bJ-rt-qJy">
+                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1bJ-rt-qJy">
                         <rect key="frame" x="60" y="84" width="260" height="1"/>
                         <color key="backgroundColor" red="0.41176470590000003" green="0.69019607839999997" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="S1V-Qz-whQ"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-08-17 13:45" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNK-7z-GDL">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="2015-08-17 13:45" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNK-7z-GDL">
                         <rect key="frame" x="60" y="24" width="252" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="bPX-V9-pb4"/>
@@ -55,7 +55,7 @@
                         <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar2" translatesAutoresizingMaskIntoConstraints="NO" id="QQN-u8-O19" customClass="RoundedCornerImage" customModule="CA" customModuleProvider="target">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="avatar2" translatesAutoresizingMaskIntoConstraints="NO" id="QQN-u8-O19" customClass="RoundedCornerImage" customModule="CA" customModuleProvider="target">
                         <rect key="frame" x="8" y="8" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="HE5-K0-Tue"/>
@@ -64,6 +64,7 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="1bJ-rt-qJy" firstAttribute="top" secondItem="7uw-of-Rw5" secondAttribute="bottom" constant="4" id="2uA-zV-3aR"/>
                     <constraint firstItem="1bJ-rt-qJy" firstAttribute="leading" secondItem="Zc1-zL-Bce" secondAttribute="leading" constant="60" id="468-iO-kK1"/>
                     <constraint firstAttribute="trailing" secondItem="1bJ-rt-qJy" secondAttribute="trailing" id="89N-N0-spx"/>
                     <constraint firstItem="7uw-of-Rw5" firstAttribute="leading" secondItem="Zc1-zL-Bce" secondAttribute="leading" constant="60" id="Ar4-qT-Our"/>

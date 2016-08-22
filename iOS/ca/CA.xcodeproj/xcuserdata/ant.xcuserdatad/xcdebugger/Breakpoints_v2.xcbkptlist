@@ -82,11 +82,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ca/TimelineDetailViewController.swift"
-            timestampString = "492537369.702935"
+            timestampString = "493355488.024308"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "464"
-            endingLineNumber = "464"
+            startingLineNumber = "457"
+            endingLineNumber = "457"
             landmarkName = "handleSwipeGesture(_:)"
             landmarkType = "5">
          </BreakpointContent>

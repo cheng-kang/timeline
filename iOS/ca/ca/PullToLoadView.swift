@@ -10,51 +10,33 @@ import UIKit
 
 class PullToLoadView: UIView {
     
-    /*
-     // Only override drawRect: if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func drawRect(rect: CGRect) {
-     // Drawing code
-     }
-     */
-    
-    var viewHeight: CGFloat?
+    var viewHeight: CGFloat = 60
     var superViewWidth: CGFloat?
-    var iconHeight: CGFloat?
-    var iconTintColor: UIColor? {
-        didSet {
-            self.iconView.tintColor = iconTintColor
-        }
-    }
+    var iconHeight: CGFloat = 18
+    var iconTintColor = GREEN_THEME_COLOR
     
     let iconView = UIImageView()
     var isRotated = false
     var isUp = false
     
-    func initView(isUp: Bool,viewHeight: CGFloat, superViewWidth: CGFloat, superViewHeight: CGFloat, iconHeight: CGFloat = 18, iconTintColor: UIColor = UIColor.grayColor()) {
+    func initView(isUp: Bool, superViewWidth: CGFloat, superViewHeight: CGFloat) {
         self.isUp = isUp
-        self.viewHeight = viewHeight
         self.superViewWidth = superViewWidth
-        self.iconHeight = iconHeight
-        self.iconTintColor = iconTintColor
         
         self.frame = CGRectMake(0,
                                 isUp ? -viewHeight : superViewHeight,
                                 superViewWidth,
                                 viewHeight)
         
-        // special for this project
-        let lineView = UIView()
-        lineView.backgroundColor = GREY_THEME_COLOR
-        lineView.frame = CGRectMake((superViewWidth / 2) - 0.5, 0, 1, viewHeight)
-        
         // icon view
         let iconImage = UIImage(named: "Circled Up")!
         self.iconView.image = iconImage.imageWithRenderingMode(.AlwaysTemplate)
         self.iconView.tintColor = iconTintColor
         self.iconView.frame = CGRectMake((superViewWidth / 2) - (iconHeight / 2), (viewHeight / 2) - (iconHeight / 2), iconHeight, iconHeight)
+        if !isUp {
+            self.iconView.transform = CGAffineTransformMakeRotation((180 * CGFloat(M_PI)) / 180)
+        }
         
-        self.addSubview(lineView)
         self.addSubview(self.iconView)
     }
     

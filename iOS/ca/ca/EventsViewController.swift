@@ -110,6 +110,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
                     temp.content = data["content"]
                     temp.createAt = data["createAt"]
                     temp.alarmAt = data["alarmAt"]
+                    temp.timeline = data["timeline"]
                     
                     tempList.append(temp)
                 }

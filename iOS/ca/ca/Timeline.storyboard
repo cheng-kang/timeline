@@ -2321,29 +2321,20 @@ T</string>
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="322" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bSS-nc-XiG">
-                                <rect key="frame" x="20" y="50" width="280" height="518"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <sections/>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="y4t-Mp-F1U" firstAttribute="top" secondItem="NxW-KJ-nkk" secondAttribute="top" id="3u8-gF-InP"/>
                             <constraint firstItem="ryI-gk-xeg" firstAttribute="leading" secondItem="NxW-KJ-nkk" secondAttribute="leading" id="65w-FY-S24"/>
-                            <constraint firstItem="cXb-CJ-wj0" firstAttribute="top" secondItem="bSS-nc-XiG" secondAttribute="bottom" id="6qA-nf-kOk"/>
-                            <constraint firstItem="bSS-nc-XiG" firstAttribute="leading" secondItem="NxW-KJ-nkk" secondAttribute="leading" constant="20" id="AhQ-Da-2HS"/>
                             <constraint firstItem="y4t-Mp-F1U" firstAttribute="centerX" secondItem="NxW-KJ-nkk" secondAttribute="centerX" id="BI7-t7-8fx"/>
-                            <constraint firstAttribute="trailing" secondItem="bSS-nc-XiG" secondAttribute="trailing" constant="20" id="BfV-sW-OsZ"/>
                             <constraint firstAttribute="trailing" secondItem="ryI-gk-xeg" secondAttribute="trailing" id="H6R-6A-4A3"/>
                             <constraint firstAttribute="bottom" secondItem="y4t-Mp-F1U" secondAttribute="bottom" id="eAd-c4-Ahn"/>
-                            <constraint firstItem="bSS-nc-XiG" firstAttribute="top" secondItem="ryI-gk-xeg" secondAttribute="bottom" id="gX2-0v-vy0"/>
                             <constraint firstItem="ryI-gk-xeg" firstAttribute="top" secondItem="NxW-KJ-nkk" secondAttribute="top" id="qmK-cP-xyX"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="tableview" destination="bSS-nc-XiG" id="VZb-aN-yyE"/>
+                        <outlet property="navBar" destination="ryI-gk-xeg" id="Aeh-5s-1fg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edl-H2-2IX" userLabel="First Responder" sceneMemberID="firstResponder"/>

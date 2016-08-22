@@ -32,10 +32,15 @@
 /* Nav Title */
 "Oh!!! - bucket list" = "Oh!!! - 愿望清单";
 
-/* Places */
+/* Timeline */
+"Opps!" = "啊！出错了！";
+
+/* Places
+   Timeline */
 "Photo" = "张照片";
 
-/* Places */
+/* Places
+   Timeline */
 "Photos" = "张照片";
 
 /* Event */
@@ -49,6 +54,18 @@
 
 /* Nav Title */
 "Visited - photos" = "Visited - 相册";
+
+/* Timeline */
+"a Diary" = "一篇日记";
+
+/* Timeline */
+"a Moment" = "一个时刻";
+
+/* Timeline */
+"added a wish" = "添加了一个愿望";
+
+/* Timeline */
+"created an event" = "创建了一个事件";
 
 /* Time Label */
 "day" = "天";
@@ -70,6 +87,9 @@
 
 /* Time Label */
 "mins" = "分钟";
+
+/* Timeline */
+"posted" = "发布了";
 
 /* Time Label */
 "s" = "秒";

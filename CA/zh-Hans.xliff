@@ -84,6 +84,10 @@ from Ant</target>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
     </header>
     <body>
+      <trans-unit id="Alarm Set">
+        <source>Alarm Set</source>
+        <note>Toast</note>
+      </trans-unit>
       <trans-unit id="Cancel">
         <source>Cancel</source>
         <target>取消</target>
@@ -140,15 +144,22 @@ from Ant</target>
         <target>Oh!!! - 愿望清单</target>
         <note>Nav Title</note>
       </trans-unit>
+      <trans-unit id="Opps!">
+        <source>Opps!</source>
+        <target>啊！出错了！</target>
+        <note>Timeline</note>
+      </trans-unit>
       <trans-unit id="Photo">
         <source>Photo</source>
         <target>张照片</target>
-        <note>Places</note>
+        <note>Places
+   Timeline</note>
       </trans-unit>
       <trans-unit id="Photos">
         <source>Photos</source>
         <target>张照片</target>
-        <note>Places</note>
+        <note>Places
+   Timeline</note>
       </trans-unit>
       <trans-unit id="Post">
         <source>Post</source>
@@ -170,6 +181,26 @@ from Ant</target>
         <target>Visited - 相册</target>
         <note>Nav Title</note>
       </trans-unit>
+      <trans-unit id="a Diary">
+        <source>a Diary</source>
+        <target>一篇日记</target>
+        <note>Timeline</note>
+      </trans-unit>
+      <trans-unit id="a Moment">
+        <source>a Moment</source>
+        <target>一个时刻</target>
+        <note>Timeline</note>
+      </trans-unit>
+      <trans-unit id="added a wish">
+        <source>added a wish</source>
+        <target>添加了一个愿望</target>
+        <note>Timeline</note>
+      </trans-unit>
+      <trans-unit id="created an event">
+        <source>created an event</source>
+        <target>创建了一个事件</target>
+        <note>Timeline</note>
+      </trans-unit>
       <trans-unit id="day">
         <source>day</source>
         <target>天</target>
@@ -179,6 +210,10 @@ from Ant</target>
         <source>days</source>
         <target>天</target>
         <note>Time Label</note>
+      </trans-unit>
+      <trans-unit id="editing">
+        <source>editing</source>
+        <note>Bucket List</note>
       </trans-unit>
       <trans-unit id="hr">
         <source>hr</source>
@@ -204,6 +239,11 @@ from Ant</target>
         <source>mins</source>
         <target>分钟</target>
         <note>Time Label</note>
+      </trans-unit>
+      <trans-unit id="posted">
+        <source>posted</source>
+        <target>发布了</target>
+        <note>Timeline</note>
       </trans-unit>
       <trans-unit id="s">
         <source>s</source>

@@ -10,40 +10,64 @@ import Foundation
 import UIKit
 
 class Timeline: NSObject {
-    var id:String?
-    var userId: String?
-    var type:String?
-    var subtype:String?
-    var title: String?
-    var content: String?
-    var location: String?
-    var images: [String: AnyObject]? {
+    var id:String!
+    var userId: String = ""
+    var type:String = ""
+    var subtype:String = ""
+    var title: String = ""
+    var content: String = ""
+    var location: String = ""
+    var images: [String: AnyObject]! {
         didSet {
             if let count = images!["count"] {
-                imageIdList = [String]()
+                imageIdList.removeAll()
                 for i in 0..<Int(count as! String)! {
-                    imageIdList?.append(images!["\(i)"] as! String)
+                    imageIdList.append(images!["\(i)"] as! String)
                 }
             }
         }
     }
-    var imageIdList: [String]?
+    var imageIdList = [String]()
     var iconIndex: Int = 0 {
         didSet {
-            icon = UIImage(named: ICON_NAMES[iconIndex])
+            switch self.type {
+            case "Life":
+                icon = UIImage(named: ICON_NAMES[iconIndex])
+            case "Event":
+                icon = UIImage(named: ICON_NAMES[27])
+            case "Visited":
+                icon = UIImage(named: ICON_NAMES[imageIdList.count > 1 ? 20 : 5])
+            case "Wish":
+                icon = UIImage(named: ICON_NAMES[15])
+            default:
+                icon = UIImage(named: ICON_NAMES[iconIndex])
+            }
         }
     }
-    var icon: UIImage?
+    var icon: UIImage!
+    
+    let randomIndex = Int(arc4random_uniform(UInt32(BG_COLORS.count)))
     var bgColorIndex: Int = 0 {
         didSet {
-            bgColor = BG_COLORS[bgColorIndex]
+            switch self.type {
+            case "Life":
+                bgColor = BG_COLORS[bgColorIndex]
+            case "Event":
+                bgColor = BG_COLORS[randomIndex]
+            case "Visited":
+                bgColor = BG_COLORS[randomIndex]
+            case "Wish":
+                bgColor = BG_COLORS[randomIndex]
+            default:
+                bgColor = BG_COLORS[randomIndex]
+            }
         }
     }
-    var bgColor: UIColor?
-    var createAt: String? {
+    var bgColor: UIColor!
+    var createAt: String = "" {
         didSet {
             
-            let date = NSDate(timeIntervalSince1970: Double(createAt!)!)
+            let date = NSDate(timeIntervalSince1970: Double(createAt)!)
             let df = NSDateFormatter()
             df.dateFormat = "HH:mm"
             self.time = df.stringFromDate(date)
@@ -55,11 +79,11 @@ class Timeline: NSObject {
             self.dateAndWeekday = df.stringFromDate(date)
         }
     }
-    var updateAt: String?
-    var messages: [String:AnyObject]? {
+    var updateAt: String = ""
+    var messages: [String:AnyObject]! {
         didSet {
             if messages != nil{
-                messageList = [TimelineComment]()
+                var tempList = [TimelineComment]()
                 for (key, value) in messages! {
                     let data = value as! [String: String]
                     let temp = TimelineComment()
@@ -67,24 +91,28 @@ class Timeline: NSObject {
                     temp.userId = data["userId"]
                     temp.content = data["content"]
                     temp.createAt = data["createAt"]
-                    messageList.append(temp)
+                    tempList.append(temp)
                 }
+                self.messageList.removeAll()
+                self.messageList = tempList
             }
         }
     }
-    var comments: [String:AnyObject]? {
+    var comments: [String:AnyObject]! {
         didSet {
             if comments != nil{
-                commentList = [TimelineComment]()
-                for (key, value) in messages! {
+                var tempList = [TimelineComment]()
+                for (key, value) in comments! {
                     let data = value as! [String: String]
                     let temp = TimelineComment()
                     temp.id = key
                     temp.userId = data["userId"]
                     temp.content = data["content"]
                     temp.createAt = data["createAt"]
-                    messageList.append(temp)
+                    tempList.append(temp)
                 }
+                self.commentList.removeAll()
+                self.commentList = tempList
             }
         }
     }
@@ -93,16 +121,16 @@ class Timeline: NSObject {
     
     
     // eg: 17:32
-    var time: String?
+    var time: String = ""
     // eg: 23/May/2016
-    var date: String?
+    var date: String = ""
     // 2016-12-03 13:33
-    var datetime: String?
+    var datetime: String = ""
     // eg: Mon / Aug 17 / 2016
-    var dateAndWeekday: String?
+    var dateAndWeekday: String = ""
     
     var timeToNow: String {
-        let date = NSDate(timeIntervalSince1970: Double(createAt!)!)
+        let date = NSDate(timeIntervalSince1970: Double(createAt)!)
         
         let diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second], fromDate: date, toDate: NSDate(), options: NSCalendarOptions.init(rawValue: 0))
         let day = diffDateComponents.day

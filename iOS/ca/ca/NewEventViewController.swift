@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import Wilddog
 
 class NewEventViewController: UIViewController {
@@ -21,6 +22,9 @@ class NewEventViewController: UIViewController {
     
     @IBOutlet weak var datepicker: UIDatePicker!
     
+    let cl = CLLocationManager()
+    let gc = CLGeocoder()
+    var location = NSLocalizedString("Unknown", comment: "Location")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,21 +66,45 @@ class NewEventViewController: UIViewController {
 extension NewEventViewController {
     
     @IBAction func postBtnClick(sender: UIButton) {
+        let timelineRef = Wilddog(url: SERVER+"/Timeline")
         let ref = Wilddog(url: SERVER+"/Events")
         let newRef = ref.childByAutoId()
         
+        print("Creating timeline...")
+        let newTimelineRef = timelineRef.childByAutoId()
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-        let date = dateFormatter.dateFromString((self.datetimeBtn.titleLabel?.text)!)
-        
-        let newData: [String:AnyObject] = [
+        var timelineDataImages = [String: String]()
+        timelineDataImages["count"] = "0"
+        let timelineData = [
             "userId": "husband",
-            "content": self.eventinfoTextview.text!,
+            "type": "Event",
+            "subtype": "",
+            "title": "",
+            "content": "",
+            "images": timelineDataImages,
+            "location": self.location,
+            "icon": 0,//27
+            "bgColor": 0,//Int(arc4random_uniform(UInt32(BG_COLORS.count)))
             "createAt": "\(NSDate().timeIntervalSince1970)",
-            "alarmAt": "\(date!.timeIntervalSince1970)",
-        ]
-        newRef.setValue(newData)
+            "updateAt": "\(NSDate().timeIntervalSince1970)",
+            "messages": "",
+            "comments": "",
+            ]
+        newTimelineRef.setValue(timelineData) { (error, ntlRef) in
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+            let date = dateFormatter.dateFromString((self.datetimeBtn.titleLabel?.text)!)
+            
+            let newData: [String:AnyObject] = [
+                "userId": "husband",
+                "content": self.eventinfoTextview.text!,
+                "createAt": "\(NSDate().timeIntervalSince1970)",
+                "alarmAt": "\(date!.timeIntervalSince1970)",
+                "timeline": ntlRef.key
+                ]
+            newRef.setValue(newData)
+            ntlRef.updateChildValues(["title":newRef.key])
+        }
         
         self.dismissViewControllerAnimated(true) {
         }
@@ -100,5 +128,24 @@ extension NewEventViewController {
         self.datetimeBtn.setTitle(strDate, forState: .Normal)
         self.postBtn.enabled = true
         self.datepicker.hidden = true
+    }
+}
+
+extension NewEventViewController: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        gc.reverseGeocodeLocation(locations.first!) { (placemark, error) in
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            let address = (placemark?.first?.addressDictionary)!
+            
+            self.location = (address["State"] as! String) + ", " + (address["Country"] as! String)
+        }
     }
 }

@@ -93,6 +93,7 @@ class BucketListViewController: UIViewController{
                     temp.createAt = data["createAt"]
                     temp.done = data["done"]
                     temp.doneAt = data["doneAt"]
+                    temp.timeline = data["timeline"]
                     
                     if temp.isDone! {
                         tempListForDone.append(temp)

@@ -319,18 +319,12 @@ class TimelineDetailViewController: UIViewController {
     func setPullToLoad() {
         self.currentTableView.endUpdates()
         self.upView.initView(true,
-                             viewHeight: pullToLoadViewHeight,
                              superViewWidth: self.view.frame.width,
-                             superViewHeight: self.view.frame.height,
-                             iconHeight: pullToLoadViewIconHeight,
-                             iconTintColor: (self.timelineList[currentIndex].bgColor)!
+                             superViewHeight: self.view.frame.height
         )
         self.downView.initView(false,
-                             viewHeight: pullToLoadViewHeight,
                              superViewWidth: self.view.frame.width,
-                             superViewHeight: self.currentTableView.contentSize.height,
-                             iconHeight: pullToLoadViewIconHeight,
-                             iconTintColor: (self.timelineList[currentIndex].bgColor)!
+                             superViewHeight: self.currentTableView.contentSize.height
         )
         self.currentTableView.addSubview(upView)
         self.currentTableView.addSubview(downView)
@@ -411,7 +405,6 @@ class TimelineDetailViewController: UIViewController {
         self.currentTableView = newTableView
         self.currentTableView.tag = 1
         
-//        self.currentData = isUp ? prevData : nextData
         self.currentIndex = self.currentIndex + (isUp ? -1 : 1)
         
         self.hasNew = false
@@ -620,8 +613,8 @@ extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSour
         let cmtCount = cmts.count
         if row == 0 {
             let cell = tableview.dequeueReusableCellWithIdentifier("TopCell") as! TopCell
-            cell.dateLbl.text = cellData.date!
-            cell.timeLbl.text = cellData.time!
+            cell.dateLbl.text = cellData.date
+            cell.timeLbl.text = cellData.time
             cell.nameLbl.text = cellData.userId
             cell.iconBgView.backgroundColor = cellData.bgColor
             cell.iconImg.image = UIImage(named: "Two Hearts White")
@@ -629,8 +622,8 @@ extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSour
             return cell
         } else if row == 1{
             let cell = tableview.dequeueReusableCellWithIdentifier("ContentCell") as! ContentCell
-            if cellData.imageIdList?.count > 0 {
-                getImageByIdAndLocation((cellData.imageIdList?.first)!, location: cellData.location!, complete: { (image) in
+            if cellData.imageIdList.count > 0 {
+                getImageByIdAndLocation((cellData.imageIdList.first)!, location: cellData.location, complete: { (image) in
                     cell.coverImg.image = image
                 })
             }
@@ -638,12 +631,12 @@ extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSour
             cell.contentTextView.text = cellData.content
             cell.locationBtn.setTitle(cellData.location, forState: .Normal)
             cell.typeLbl.textColor = cellData.bgColor!
-            cell.typeLbl.text = getTypeLblText(cellData.type!, subtype: cellData.subtype!)
+            cell.typeLbl.text = getTypeLblText(cellData.type, subtype: cellData.subtype)
             
             cell.initCell(cellData.bgColor!,
-                          imgs: cellData.imageIdList!,
-                          location: cellData.location!,
-                          content: cellData.content!
+                          imgs: cellData.imageIdList,
+                          location: cellData.location,
+                          content: cellData.content
             )
             
             self.contentCellDif = cell.contentViewHeightDif
@@ -724,91 +717,91 @@ extension TimelineDetailViewController: UITableViewDelegate, UITableViewDataSour
         //        }
     }
 }
-
-extension TimelineDetailViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let this = (scrollView as? UITableView) {
-            if this == self.currentTableView {
-                //                print(this.contentOffset.y)
-                //                print(this.contentSize.height-70)
-                //                if this.contentOffset.y >= 80 && this.contentOffset.y <= (this.contentSize.height-70-this.frame.height) && this.contentOffset.y > lastScrollViewOffsetY+3 {
-                //                    enterFullScreen()
-                //                } else {
-                //                    exitFullScreen()
-                //                }
-                //                if this.contentOffset.y - lastScrollViewOffsetY > 3 {
-                //                    self.lastScrollViewOffsetY = this.contentOffset.y
-                //                }
-                if currentIndex > 0 {
-                    if scrollView.contentOffset.y < -pullToLoadViewHeight*(11/16) {
-                        if self.upView.isRotated == false {
-                            self.upView.isRotated = true
-                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
-                                self.upView.iconView.transform = CGAffineTransformMakeRotation((180 * CGFloat(M_PI)) / 180)
-                                }, completion: { (complete) in
-                            })
-                        }
-                        
-                        if scrollView.contentOffset.y < -pullToLoadViewHeight {
-                            scrollView.contentOffset.y = -pullToLoadViewHeight
-                        }
-                    } else {
-                        if self.upView.isRotated == true {
-                            self.upView.isRotated = false
-                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
-                                self.upView.iconView.transform = CGAffineTransformIdentity
-                                }, completion: { (complete) in
-                            })
-                        }
-                    }
-                    print(this.contentOffset.y)
-                    print(this.contentSize.height - pullToLoadViewHeight + pullToLoadViewHeight*(11/16))
-                }
-                
-                if currentIndex < timelineList.count - 1 {
-                    if this.contentOffset.y + this.frame.height > (this.contentSize.height + pullToLoadViewHeight*(11/16)) {
-                        if self.downView.isRotated == false {
-                            self.downView.isRotated = true
-                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
-                                self.downView.iconView.transform = CGAffineTransformMakeRotation((180 * CGFloat(M_PI)) / 180)
-                                }, completion: { (complete) in
-                            })
-                        }
-                        
-                        if this.contentOffset.y + this.frame.height > (this.contentSize.height + pullToLoadViewHeight) {
-                            this.contentOffset.y = (this.contentSize.height + pullToLoadViewHeight) - this.frame.height
-                        }
-                    } else {
-                        if self.downView.isRotated == true {
-                            self.downView.isRotated = false
-                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
-                                self.downView.iconView.transform = CGAffineTransformIdentity
-                                }, completion: { (complete) in
-                            })
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        if let this = (scrollView as? UITableView) {
-            if this == self.currentTableView {
-                if self.upView.isRotated == true && !self.refreshControl.refreshing {
-                    print(this.contentOffset)
-                    self.refreshControl.beginRefreshing()
-                    self.didPull(true)
-                }
-                if self.downView.isRotated == true && !self.refreshControl.refreshing {
-                    print(this.contentOffset)
-                    self.refreshControl.beginRefreshing()
-                    self.didPull(false)
-                }
-            }
-        }
-    }
-    
-}
+//
+//extension TimelineDetailViewController: UIScrollViewDelegate {
+//    
+//    func scrollViewDidScroll(scrollView: UIScrollView) {
+//        if let this = (scrollView as? UITableView) {
+//            if this == self.currentTableView {
+//                //                print(this.contentOffset.y)
+//                //                print(this.contentSize.height-70)
+//                //                if this.contentOffset.y >= 80 && this.contentOffset.y <= (this.contentSize.height-70-this.frame.height) && this.contentOffset.y > lastScrollViewOffsetY+3 {
+//                //                    enterFullScreen()
+//                //                } else {
+//                //                    exitFullScreen()
+//                //                }
+//                //                if this.contentOffset.y - lastScrollViewOffsetY > 3 {
+//                //                    self.lastScrollViewOffsetY = this.contentOffset.y
+//                //                }
+//                if currentIndex > 0 {
+//                    if scrollView.contentOffset.y < -pullToLoadViewHeight*(11/16) {
+//                        if self.upView.isRotated == false {
+//                            self.upView.isRotated = true
+//                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+//                                self.upView.iconView.transform = CGAffineTransformMakeRotation((180 * CGFloat(M_PI)) / 180)
+//                                }, completion: { (complete) in
+//                            })
+//                        }
+//                        
+//                        if scrollView.contentOffset.y < -pullToLoadViewHeight {
+//                            scrollView.contentOffset.y = -pullToLoadViewHeight
+//                        }
+//                    } else {
+//                        if self.upView.isRotated == true {
+//                            self.upView.isRotated = false
+//                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+//                                self.upView.iconView.transform = CGAffineTransformIdentity
+//                                }, completion: { (complete) in
+//                            })
+//                        }
+//                    }
+//                    print(this.contentOffset.y)
+//                    print(this.contentSize.height - pullToLoadViewHeight + pullToLoadViewHeight*(11/16))
+//                }
+//                
+//                if currentIndex < timelineList.count - 1 {
+//                    if this.contentOffset.y + this.frame.height > (this.contentSize.height + pullToLoadViewHeight*(11/16)) {
+//                        if self.downView.isRotated == false {
+//                            self.downView.isRotated = true
+//                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+//                                self.downView.iconView.transform = CGAffineTransformMakeRotation((180 * CGFloat(M_PI)) / 180)
+//                                }, completion: { (complete) in
+//                            })
+//                        }
+//                        
+//                        if this.contentOffset.y + this.frame.height > (this.contentSize.height + pullToLoadViewHeight) {
+//                            this.contentOffset.y = (this.contentSize.height + pullToLoadViewHeight) - this.frame.height
+//                        }
+//                    } else {
+//                        if self.downView.isRotated == true {
+//                            self.downView.isRotated = false
+//                            UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+//                                self.downView.iconView.transform = CGAffineTransformIdentity
+//                                }, completion: { (complete) in
+//                            })
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    
+//    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        
+//        if let this = (scrollView as? UITableView) {
+//            if this == self.currentTableView {
+//                if self.upView.isRotated == true && !self.refreshControl.refreshing {
+//                    print(this.contentOffset)
+//                    self.refreshControl.beginRefreshing()
+//                    self.didPull(true)
+//                }
+//                if self.downView.isRotated == true && !self.refreshControl.refreshing {
+//                    print(this.contentOffset)
+//                    self.refreshControl.beginRefreshing()
+//                    self.didPull(false)
+//                }
+//            }
+//        }
+//    }
+//    
+//}

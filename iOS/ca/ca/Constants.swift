@@ -11,6 +11,8 @@ import UIKit
 
 let SERVER = "https://weizhimiao.wilddogio.com"
 
+let SCREEN_WIDTH = UIScreen.mainScreen().bounds.width
+
 let PINK_THEME_COLOR = UIColor(red: 194/255, green: 96/255, blue: 111/255, alpha: 1)
 let BLUE_THEME_COLOR = UIColor(red: 93/255, green: 158/255, blue: 161/255, alpha: 1)
 let GREY_THEME_COLOR = UIColor(red: 233/255, green: 234/255, blue: 233/255, alpha: 1)
@@ -102,7 +104,7 @@ let BG_COLORS: [UIColor] = [J_GREEN().SEIHEKI,
 //                           FLAT_UI_COLOR().ASBESTOS,
 //]
 
-let ICON_NAMES: [String] = ["Bicycle Green", "Birthday Green", "Bridal Bouquet Green", "Bride Filled Green", "Butterfly Green", "Camera Green", "Cards Green", "Champagne Green", "Christmas Gift Green", "Christmas Star Green", "Christmas Tree Green", "Cool Green", "Date Man Woman Green", "Double Bed Green", "Groom Green", "Heart Balloon Green", "Heart With Arrow Green", "In Love Green", "Kiss Green", "Sad Green", "Stack of Photos Green", "Tie Green", "Two Hearts Green", "Wedding Cake Green", "Wedding Day Green", "Wedding Gift Green", "Women`s Shoe Green"]
+let ICON_NAMES: [String] = ["Bicycle Green", "Birthday Green", "Bridal Bouquet Green", "Bride Filled Green", "Butterfly Green", "Camera Green", "Cards Green", "Champagne Green", "Christmas Gift Green", "Christmas Star Green", "Christmas Tree Green", "Cool Green", "Date Man Woman Green", "Double Bed Green", "Groom Green", "Heart Balloon Green", "Heart With Arrow Green", "In Love Green", "Kiss Green", "Sad Green", "Stack of Photos Green", "Tie Green", "Two Hearts Green", "Wedding Cake Green", "Wedding Day Green", "Wedding Gift Green", "Women`s Shoe Green", "Alarm Clock Green"]
 
 
 

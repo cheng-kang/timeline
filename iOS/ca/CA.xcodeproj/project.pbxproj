@@ -36,6 +36,8 @@
 		ED18B0471D65C2A500892359 /* TDTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0461D65C2A500892359 /* TDTableViewController.swift */; };
 		ED18B0491D65CAC400892359 /* TDTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B0481D65CAC400892359 /* TDTable.xib */; };
 		ED18B04B1D65CC0600892359 /* TDTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B04A1D65CC0600892359 /* TDTable.swift */; };
+		ED18B04D1D66C00C00892359 /* NewTimelineCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B04C1D66C00C00892359 /* NewTimelineCommentView.xib */; };
+		ED18B04F1D66C31E00892359 /* NewTimelineComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B04E1D66C31E00892359 /* NewTimelineComment.swift */; };
 		ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED705FAC1D49E720003128F6 /* Extensions.swift */; };
 		ED705FB81D49F9EF003128F6 /* odstemplikBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB61D49F9BB003128F6 /* odstemplikBold.otf */; };
 		ED705FB91D49F9EF003128F6 /* odstemplik.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB41D49F96D003128F6 /* odstemplik.otf */; };
@@ -193,6 +195,8 @@
 		ED18B0461D65C2A500892359 /* TDTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDTableViewController.swift; sourceTree = "<group>"; };
 		ED18B0481D65CAC400892359 /* TDTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDTable.xib; sourceTree = "<group>"; };
 		ED18B04A1D65CC0600892359 /* TDTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDTable.swift; sourceTree = "<group>"; };
+		ED18B04C1D66C00C00892359 /* NewTimelineCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTimelineCommentView.xib; sourceTree = "<group>"; };
+		ED18B04E1D66C31E00892359 /* NewTimelineComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTimelineComment.swift; sourceTree = "<group>"; };
 		ED705FAC1D49E720003128F6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ED705FAE1D49F463003128F6 /* FZQKBYSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZQKBYSJW.TTF; sourceTree = "<group>"; };
 		ED705FAF1D49F58B003128F6 /* HomeRem.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeRem.ttf; sourceTree = "<group>"; };
@@ -805,6 +809,8 @@
 				EDCFCECA1D485B4800E2B030 /* PullDownToLoadView.swift */,
 				EDCFCECC1D48836F00E2B030 /* PullUpToLoadView.swift */,
 				EDCFCECE1D48842200E2B030 /* PullToLoadView.swift */,
+				ED18B04C1D66C00C00892359 /* NewTimelineCommentView.xib */,
+				ED18B04E1D66C31E00892359 /* NewTimelineComment.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1141,6 +1147,7 @@
 				ED18B03B1D65B98100892359 /* TDCell2.xib in Resources */,
 				ED8CD3AB1D4E29470070CAF8 /* Localizable.strings in Resources */,
 				ED89EB7C1D54A983000019BB /* ImagePickerPresentation.png in Resources */,
+				ED18B04D1D66C00C00892359 /* NewTimelineCommentView.xib in Resources */,
 				EDCFCEDD1D48A3D300E2B030 /* CommentBottomCell.xib in Resources */,
 				EDCFCE5D1D39E2BD00E2B030 /* CircularItemListMenu.xib in Resources */,
 				ED8CD3891D4A53120070CAF8 /* Events.storyboard in Resources */,
@@ -1365,6 +1372,7 @@
 				ED8CD3811D49FE980070CAF8 /* TimelineDetailTableViewController.swift in Sources */,
 				ED8CD3A11D4E22200070CAF8 /* BucketListCell.swift in Sources */,
 				ED8CD3911D4A680E0070CAF8 /* MonthCell.swift in Sources */,
+				ED18B04F1D66C31E00892359 /* NewTimelineComment.swift in Sources */,
 				ED18B04B1D65CC0600892359 /* TDTable.swift in Sources */,
 				EDCFCE7A1D43A99400E2B030 /* PopUpImageViewController.swift in Sources */,
 				ED89EB891D54A983000019BB /* ImageGalleryViewCell.swift in Sources */,

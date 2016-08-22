@@ -64,6 +64,9 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         let tempPhoto = Photo()
                         tempPhoto.id = key
                         tempPhoto.createAt = String(photoData["createAt"] as! Double)
+                        if let tl = photoData["timeline"] {
+                            tempPhoto.timeline = tl as! String
+                        }
                         tempPhotoList.append(tempPhoto)
                     }
                     
@@ -135,25 +138,25 @@ class PlacesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func menuBtnClick(sender: UIButton) {
         //        let menu = SideMenuView.sideMenuView(UIImage(named: "avatar1")!)
-        LEFTMENU.show()
-        LEFTMENU.menuDismissing = {
-            
+//        LEFTMENU.show()
+//        LEFTMENU.menuDismissing = {
+        
             //            self.contentView.layer.anchorPoint = CGPointMake(1,1)
             //            UIView.animateWithDuration(0.5) {
             ////                self.contentView.layer.anchorPoint = CGPointMake(1,1)
             //                self.contentView.layer.transform = CATransform3DIdentity
             //            }
             
-            UIView.animateWithDuration(0.3, animations: {
-                
-                self.contentView.layer.transform = CATransform3DIdentity
-                }, completion: { (complete) in
-                    if complete {
-                        
-                        self.setAnchorPoint(CGPointMake(0.5,0.5), forView: self.contentView)
-                    }
-            })
-        }
+//            UIView.animateWithDuration(0.3, animations: {
+//                
+//                self.contentView.layer.transform = CATransform3DIdentity
+//                }, completion: { (complete) in
+//                    if complete {
+//                        
+//                        self.setAnchorPoint(CGPointMake(0.5,0.5), forView: self.contentView)
+//                    }
+//            })
+//        }
         
         //        self.tableview.frame = CGRectMake(10, 60, self.tableview.frame.width, self.tableview.frame.height + 50)
         self.contentView.layer.anchorPoint = CGPointMake(1,1)

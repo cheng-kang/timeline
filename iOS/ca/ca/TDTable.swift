@@ -16,11 +16,24 @@ class TDTable: UITableView {
             tableViewController.data = data
         }
     }
+    var currentIndex = 0
+    var timelineCount = 0
     
-    class func tableview(data: Timeline) -> TDTable {
+    let pullToLoadTopView = PullToLoadView()
+    let pullToLoadBottomView = PullToLoadView()
+    let refreshControl = UIRefreshControl()
+    
+    var didPullClosure: ((isUp: Bool)->())?
+    var addDisplayViewClosure: ((fullScreenDisplayView: UIScrollView)->())?
+    
+    class func tableview(data: Timeline, currentIndex: Int, timelineCount: Int) -> TDTable {
         
         let vc = NSBundle.mainBundle().loadNibNamed("TDTable", owner: nil, options: nil).first as! TDTable
         vc.data = data
+        vc.timelineCount = timelineCount
+        vc.currentIndex = currentIndex
+        vc.tableViewController.timelineCount = timelineCount
+        vc.tableViewController.currentIndex = currentIndex
         return vc
     }
     
@@ -28,6 +41,22 @@ class TDTable: UITableView {
         super.awakeFromNib()
         self.delegate = tableViewController
         self.dataSource = tableViewController
+        
+        refreshControl.alpha = 0
+        
+        self.addSubview(refreshControl)
+        
+        tableViewController.currentIndex = self.currentIndex
+        tableViewController.timelineCount = self.timelineCount
+        tableViewController.reloadDataClosure = {
+            self.reloadData()
+        }
+        tableViewController.didPullClosure = { isUp in
+            self.didPullClosure!(isUp: isUp)
+        }
+        tableViewController.addDisplayViewClosure = { fullScreenDisplayView in
+            self.addDisplayViewClosure!(fullScreenDisplayView: fullScreenDisplayView)
+        }
         
         self.registerNib(UINib(nibName: "TDCell0", bundle: nil), forCellReuseIdentifier: "TDCell0")
         self.registerNib(UINib(nibName: "TDCell1", bundle: nil), forCellReuseIdentifier: "TDCell1")

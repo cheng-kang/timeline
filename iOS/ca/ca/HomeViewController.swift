@@ -268,68 +268,102 @@ extension HomeViewController: ImagePickerDelegate {
     }
     
     func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage]) {
+        let timelineRef = Wilddog(url: SERVER+"/Timeline")
         let photosRef = Wilddog(url: SERVER+"/Photos/\(self.location)")
         
-        print("Start uploading images...")
+        print("Creating timeline...")
+        let newTimelineRef = timelineRef.childByAutoId()
         
-        if images.count == 0 {
-            print("No image.")
-            return
-        }
-        
+        var timelineDataImages = [String: String]()
+        timelineDataImages["count"] = "\(images.count)"
         for i in 0..<images.count {
-            
-            print("Uploading image-\(i+1)...")
-            
-            let imageData = images[i].mediumQualityJPEGNSData
-            
-            let newPhotoRef = photosRef.childByAutoId()
-            let newPhotoData = [
-                "createAt": NSDate().timeIntervalSince1970
-            ]
-            newPhotoRef.setValue(newPhotoData, withCompletionBlock: { (error, npRef) in
-                
-                print("Image-\(i+1)(id: \(npRef.key)) Created.")
-                
-                let length = imageData.length
-                let chunkSize = 600000      // 1mb chunk sizes 1048576
-                print("Image chunk size is \(chunkSize) bytes.")
-                var offset = 0
-                var count = 0
-                
-                repeat {
-                    
-                    print("Uploading image-\(i+1)-chunk-\(count+1)...")
-                    
-                    // get the length of the chunk
-                    let thisChunkSize = ((length - offset) > chunkSize) ? chunkSize : (length - offset)
-                    
-                    // get the chunk
-                    let chunk = imageData.subdataWithRange(NSMakeRange(offset, thisChunkSize))
-                    
-                    // -----------------------------------------------
-                    // do something with that chunk of data...
-                    // -----------------------------------------------
-                    npRef.updateChildValues(["\(count)": chunk.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)], withCompletionBlock: { (error, countRef) in
-                        if error != nil {
-                            print(error)
-                            return
-                        }
-                        print("Finished uploading image-\(i+1)-chunk-\(count+1).")
-                    })
-                    
-                    // update the offset
-                    offset += thisChunkSize
-                    count += 1
-                } while (offset < length);
-                
-                print("Finished uploading image-\(i+1)(\(count) chunk(s)).")
-                
-                npRef.updateChildValues(["count": count])
-            })
-            
-            
+            timelineDataImages["\(i)"] = ""
         }
+        
+        let timelineData = [
+            "userId": "husband",
+            "type": "Visited",
+            "subtype": "",
+            "title": "",
+            "content": "\(images.count) "+(images.count > 1 ? NSLocalizedString("Photo", comment: "Timeline") :NSLocalizedString("Photos", comment: "Timeline")),
+            "images": timelineDataImages,
+            "location": self.location,
+            "icon": 0,
+            "bgColor": 0,
+            "createAt": "\(NSDate().timeIntervalSince1970)",
+            "updateAt": "\(NSDate().timeIntervalSince1970)",
+            "messages": "",
+            "comments": "",
+            ]
+        
+        newTimelineRef.setValue(timelineData) { (error, ntRef) in
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            print("Start uploading images...")
+            
+            if images.count == 0 {
+                print("No image.")
+                return
+            }
+            
+            for i in 0..<images.count {
+                
+                print("Uploading image-\(i+1)...")
+                
+                let imageData = images[i].mediumQualityJPEGNSData
+                
+                let newPhotoRef = photosRef.childByAutoId()
+                let newPhotoData = [
+                    "createAt": NSDate().timeIntervalSince1970,
+                    "timeline": ntRef.key
+                ]
+                newPhotoRef.setValue(newPhotoData, withCompletionBlock: { (error, npRef) in
+                    
+                    print("Image-\(i+1)(id: \(npRef.key)) Created.")
+                    
+                    let length = imageData.length
+                    let chunkSize = 600000      // 1mb chunk sizes 1048576
+                    print("Image chunk size is \(chunkSize) bytes.")
+                    var offset = 0
+                    var count = 0
+                    
+                    repeat {
+                        
+                        print("Uploading image-\(i+1)-chunk-\(count+1)...")
+                        
+                        // get the length of the chunk
+                        let thisChunkSize = ((length - offset) > chunkSize) ? chunkSize : (length - offset)
+                        
+                        // get the chunk
+                        let chunk = imageData.subdataWithRange(NSMakeRange(offset, thisChunkSize))
+                        
+                        // -----------------------------------------------
+                        // do something with that chunk of data...
+                        // -----------------------------------------------
+                        npRef.updateChildValues(["\(count)": chunk.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)], withCompletionBlock: { (error, countRef) in
+                            if error != nil {
+                                print(error)
+                                return
+                            }
+                            print("Finished uploading image-\(i+1)-chunk-\(count+1).")
+                        })
+                        
+                        // update the offset
+                        offset += thisChunkSize
+                        count += 1
+                    } while (offset < length);
+                    
+                    print("Finished uploading image-\(i+1)(\(count) chunk(s)).")
+                    
+                    npRef.updateChildValues(["count": count])
+                    ntRef.childByAppendingPath("images").updateChildValues(["\(i)":npRef.key])
+                })
+            }
+        }
+        
         imagePicker.dismissViewControllerAnimated(true) {
         }
     }

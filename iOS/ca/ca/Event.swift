@@ -27,6 +27,7 @@ class Event: NSObject {
             alarmTime = df.stringFromDate(date)
         }
     }
+    var timeline: String!
     
     var alarmWeekday: String!
     var alarmDay: String!

@@ -60,8 +60,8 @@ class TimelineDetailTableViewController: UITableViewController {
         } else if row == 1{
             let cell = tableView.dequeueReusableCellWithIdentifier("ContentCell") as! ContentCell
             
-            if cellData.imageIdList?.count > 0 {
-                getImageByIdAndLocation((cellData.imageIdList?.first)!, location: cellData.location!, complete: { (image) in
+            if cellData.imageIdList.count > 0 {
+                getImageByIdAndLocation((cellData.imageIdList.first)!, location: cellData.location, complete: { (image) in
                     cell.coverImg.image = image
                 })
             }
@@ -70,9 +70,9 @@ class TimelineDetailTableViewController: UITableViewController {
             cell.locationBtn.setTitle(cellData.location, forState: .Normal)
             
             cell.initCell(cellData.bgColor!,
-                          imgs: cellData.imageIdList!,
-                          location: cellData.location!,
-                          content: cellData.content!
+                          imgs: cellData.imageIdList,
+                          location: cellData.location,
+                          content: cellData.content
             )
             
             self.contentCellDif = cell.contentViewHeightDif
