@@ -79,6 +79,14 @@ class TempViewController: UIViewController {
         newTableView.pullToLoadBottomView.initView(false,
                                                    superViewWidth: superViewWidth,
                                                    superViewHeight: superViewHeight)
+        
+        newTableView.reloadDataClosure = {
+            let superViewHeight = newTableView.frame.height > newTableView.contentSize.height ? newTableView.frame.height : newTableView.contentSize.height
+            newTableView.pullToLoadTopView.updateFrame(superViewWidth,
+                                                    superViewHeight: superViewHeight)
+            newTableView.pullToLoadBottomView.updateFrame(superViewWidth,
+                                                          superViewHeight: superViewHeight)
+        }
     }
 
 }
@@ -141,6 +149,14 @@ extension TempViewController {
             newTableView.pullToLoadBottomView.initView(false,
                                                        superViewWidth: superViewWidth,
                                                        superViewHeight: superViewHeight)
+            
+            newTableView.reloadDataClosure = {
+                let superViewHeight = newTableView.frame.height > newTableView.contentSize.height ? newTableView.frame.height : newTableView.contentSize.height
+                newTableView.pullToLoadTopView.updateFrame(superViewWidth,
+                                                           superViewHeight: superViewHeight)
+                newTableView.pullToLoadBottomView.updateFrame(superViewWidth,
+                                                              superViewHeight: superViewHeight)
+            }
             
             
             let targetNewTableViewCenter = CGPointMake(self.currentTableView.center.x, self.currentTableView.center.y)

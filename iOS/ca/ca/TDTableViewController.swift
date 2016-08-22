@@ -134,7 +134,6 @@ class TDTableViewController: UITableViewController {
                 } else {
                     self.data.commentList.append(comment)
                 }
-                self.reloadDataClosure!()
             }
             headerview.id = data.id
             headerview.hasComment = isMessage ? data.messageList.count > 0 : data.commentList.count > 0

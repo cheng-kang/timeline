@@ -289,8 +289,8 @@ class TimelineDetailViewController: UIViewController {
         self.commentViewY = self.commentView.frame.origin.y
         
         self.currentTableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .None)
-        self.upView.updateFrame(pullToLoadViewHeight, superViewWidth: self.currentTableView.frame.width, superViewHeight: self.currentTableView.contentSize.height)
-        self.downView.updateFrame(pullToLoadViewHeight, superViewWidth: self.currentTableView.frame.width, superViewHeight: self.currentTableView.contentSize.height)
+        self.upView.updateFrame(self.currentTableView.frame.width, superViewHeight: self.currentTableView.contentSize.height)
+        self.downView.updateFrame(self.currentTableView.frame.width, superViewHeight: self.currentTableView.contentSize.height)
         
 //        self.currentTableView.beginUpdates()
 //        self.currentTableView.endUpdates()

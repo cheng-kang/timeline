@@ -40,7 +40,7 @@ class PullToLoadView: UIView {
         self.addSubview(self.iconView)
     }
     
-    func updateFrame(viewHeight: CGFloat, superViewWidth: CGFloat, superViewHeight: CGFloat) {
+    func updateFrame(superViewWidth: CGFloat, superViewHeight: CGFloat) {
         
         self.frame = CGRectMake(0,
                                 isUp ? -viewHeight : superViewHeight,

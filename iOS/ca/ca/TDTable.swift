@@ -23,6 +23,7 @@ class TDTable: UITableView {
     let pullToLoadBottomView = PullToLoadView()
     let refreshControl = UIRefreshControl()
     
+    var reloadDataClosure: (()->())?
     var didPullClosure: ((isUp: Bool)->())?
     var addDisplayViewClosure: ((fullScreenDisplayView: UIScrollView)->())?
     
@@ -50,6 +51,7 @@ class TDTable: UITableView {
         tableViewController.timelineCount = self.timelineCount
         tableViewController.reloadDataClosure = {
             self.reloadData()
+            self.reloadDataClosure!()
         }
         tableViewController.didPullClosure = { isUp in
             self.didPullClosure!(isUp: isUp)

@@ -41,12 +41,10 @@ from Ant</string>
                                         <color key="textColor" red="0.36470588240000001" green="0.61960784310000006" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fk-JW-NfI">
-                                        <rect key="frame" x="40" y="399" width="240" height="128"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0w7-kT-wNU">
+                                        <rect key="frame" x="36" y="329" width="248" height="196"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="240" id="6Gx-v1-Ixh"/>
-                                            <constraint firstAttribute="height" constant="128" id="bh5-np-eaV"/>
+                                            <constraint firstAttribute="height" constant="200" id="IcK-WG-luY"/>
                                         </constraints>
                                         <string key="text">"
 There are six billion people in the world
@@ -54,23 +52,23 @@ More or less
 And it makes me feel quite small
 But you're the one i love the most of all
 "</string>
+                                        <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="22"/>
                                         <color key="textColor" red="0.36470588240000001" green="0.61960784310000006" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="GillSans-Italic" family="Gill Sans" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="5fk-JW-NfI" firstAttribute="leading" secondItem="d1D-oB-Wk3" secondAttribute="leading" constant="40" id="9ZT-a9-Pyk"/>
+                                    <constraint firstItem="0w7-kT-wNU" firstAttribute="leading" secondItem="d1D-oB-Wk3" secondAttribute="leading" constant="40" id="Awe-38-NZx"/>
+                                    <constraint firstAttribute="bottom" secondItem="0w7-kT-wNU" secondAttribute="bottom" constant="40" id="GNf-Fo-HK4"/>
                                     <constraint firstItem="IY4-8P-fj6" firstAttribute="centerX" secondItem="d1D-oB-Wk3" secondAttribute="centerX" id="Kxw-xG-mVg"/>
                                     <constraint firstAttribute="trailing" secondItem="IUW-0t-BE4" secondAttribute="trailing" id="SqM-rk-XB9"/>
+                                    <constraint firstAttribute="trailing" secondItem="0w7-kT-wNU" secondAttribute="trailing" constant="40" id="V17-TM-qqS"/>
                                     <constraint firstItem="IY4-8P-fj6" firstAttribute="centerY" secondItem="d1D-oB-Wk3" secondAttribute="centerY" multiplier="0.5" id="WKg-ic-L8z"/>
                                     <constraint firstItem="IUW-0t-BE4" firstAttribute="leading" secondItem="d1D-oB-Wk3" secondAttribute="leading" id="aLO-yg-zoL"/>
                                     <constraint firstItem="IY4-8P-fj6" firstAttribute="leading" secondItem="d1D-oB-Wk3" secondAttribute="leading" id="dpK-G3-Jlz"/>
                                     <constraint firstAttribute="trailing" secondItem="IY4-8P-fj6" secondAttribute="trailing" id="jVw-BK-E0x"/>
                                     <constraint firstItem="IUW-0t-BE4" firstAttribute="top" secondItem="IY4-8P-fj6" secondAttribute="bottom" id="nb7-Nh-yZT"/>
-                                    <constraint firstAttribute="trailing" secondItem="5fk-JW-NfI" secondAttribute="trailing" constant="40" id="rBM-3D-UFT"/>
-                                    <constraint firstAttribute="bottom" secondItem="5fk-JW-NfI" secondAttribute="bottom" constant="40" id="tWp-HQ-m44"/>
                                     <constraint firstItem="IY4-8P-fj6" firstAttribute="centerX" secondItem="d1D-oB-Wk3" secondAttribute="centerX" id="uKG-u9-UKa"/>
                                 </constraints>
                                 <variation key="default">
