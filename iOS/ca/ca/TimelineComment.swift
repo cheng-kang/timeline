@@ -33,5 +33,22 @@ class TimelineComment: NSObject {
     // eg: 2016-08-12 12:33
     var datetime: String?
     
+//    func encodeWithCoder(aCoder: NSCoder) {
+//        aCoder.encodeObject(self.id, forKey: "id")
+//        aCoder.encodeObject(self.userId, forKey: "userId")
+//        aCoder.encodeObject(self.content, forKey: "content")
+//        aCoder.encodeObject(self.createAt, forKey: "createAt")
+//    }
+//    
+//    override init() {
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init()
+//        self.id = aDecoder.decodeObjectForKey("id") as! String
+//        self.userId = aDecoder.decodeObjectForKey("userId") as! String
+//        self.content = aDecoder.decodeObjectForKey("content") as! String
+//        self.createAt = aDecoder.decodeObjectForKey("createAt") as! String
+//    }
     
 }

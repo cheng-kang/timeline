@@ -38,6 +38,11 @@
 		ED18B04B1D65CC0600892359 /* TDTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B04A1D65CC0600892359 /* TDTable.swift */; };
 		ED18B04D1D66C00C00892359 /* NewTimelineCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED18B04C1D66C00C00892359 /* NewTimelineCommentView.xib */; };
 		ED18B04F1D66C31E00892359 /* NewTimelineComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B04E1D66C31E00892359 /* NewTimelineComment.swift */; };
+		ED18B0551D6BED3F00892359 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED18B0541D6BED3F00892359 /* User.storyboard */; };
+		ED18B0571D6BED9300892359 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0561D6BED9300892359 /* UserViewController.swift */; };
+		ED18B0591D6BEDC300892359 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B0581D6BEDC300892359 /* LoginViewController.swift */; };
+		ED18B05B1D6BEDCF00892359 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B05A1D6BEDCF00892359 /* RegisterViewController.swift */; };
+		ED18B05D1D6C3B4200892359 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED18B05C1D6C3B4200892359 /* UpdateProfileViewController.swift */; };
 		ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED705FAC1D49E720003128F6 /* Extensions.swift */; };
 		ED705FB81D49F9EF003128F6 /* odstemplikBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB61D49F9BB003128F6 /* odstemplikBold.otf */; };
 		ED705FB91D49F9EF003128F6 /* odstemplik.otf in Resources */ = {isa = PBXBuildFile; fileRef = ED705FB41D49F96D003128F6 /* odstemplik.otf */; };
@@ -197,6 +202,11 @@
 		ED18B04A1D65CC0600892359 /* TDTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDTable.swift; sourceTree = "<group>"; };
 		ED18B04C1D66C00C00892359 /* NewTimelineCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTimelineCommentView.xib; sourceTree = "<group>"; };
 		ED18B04E1D66C31E00892359 /* NewTimelineComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTimelineComment.swift; sourceTree = "<group>"; };
+		ED18B0541D6BED3F00892359 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		ED18B0561D6BED9300892359 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		ED18B0581D6BEDC300892359 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		ED18B05A1D6BEDCF00892359 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		ED18B05C1D6C3B4200892359 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		ED705FAC1D49E720003128F6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ED705FAE1D49F463003128F6 /* FZQKBYSJW.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZQKBYSJW.TTF; sourceTree = "<group>"; };
 		ED705FAF1D49F58B003128F6 /* HomeRem.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HomeRem.ttf; sourceTree = "<group>"; };
@@ -389,6 +399,42 @@
 				ED18B04A1D65CC0600892359 /* TDTable.swift */,
 			);
 			name = TimelineDetail;
+			sourceTree = "<group>";
+		};
+		ED18B0501D6BED0500892359 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				ED18B0531D6BED2000892359 /* Controllers */,
+				ED18B0521D6BED1900892359 /* Models */,
+				ED18B0511D6BED1400892359 /* Views */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		ED18B0511D6BED1400892359 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ED18B0541D6BED3F00892359 /* User.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		ED18B0521D6BED1900892359 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		ED18B0531D6BED2000892359 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ED18B0561D6BED9300892359 /* UserViewController.swift */,
+				ED18B0581D6BEDC300892359 /* LoginViewController.swift */,
+				ED18B05A1D6BEDCF00892359 /* RegisterViewController.swift */,
+				ED18B05C1D6C3B4200892359 /* UpdateProfileViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		ED705FB71D49F9CC003128F6 /* fonts */ = {
@@ -725,6 +771,7 @@
 			children = (
 				EDCFCE7B1D442FF100E2B030 /* Global.swift */,
 				EDD08A931D369AD1001E1459 /* Util */,
+				ED18B0501D6BED0500892359 /* User */,
 				ED8CD3841D4A52CA0070CAF8 /* Events */,
 				EDD08A881D353136001E1459 /* BucketList */,
 				EDD08A841D35302C001E1459 /* Places */,
@@ -1133,6 +1180,7 @@
 				ED18B0491D65CAC400892359 /* TDTable.xib in Resources */,
 				ED89EB751D54A983000019BB /* AUTO@3x.png in Resources */,
 				EDCFCE511D39D39400E2B030 /* Places.storyboard in Resources */,
+				ED18B0551D6BED3F00892359 /* User.storyboard in Resources */,
 				ED18B0391D65B71000892359 /* TDCell1.xib in Resources */,
 				EDCFCED31D48A39400E2B030 /* ContentCell.xib in Resources */,
 				ED89EB771D54A983000019BB /* focusIcon@3x.png in Resources */,
@@ -1303,6 +1351,7 @@
 			files = (
 				EDCFCE6B1D3C6D7A00E2B030 /* PostImageGridItem.swift in Sources */,
 				EDCFCE831D45FA7200E2B030 /* LoverCell.swift in Sources */,
+				ED18B0591D6BEDC300892359 /* LoginViewController.swift in Sources */,
 				EDD08A4B1D352887001E1459 /* HomeViewController.swift in Sources */,
 				ED8CD39B1D4B49A60070CAF8 /* Functions.swift in Sources */,
 				EDCFCE851D45FA7F00E2B030 /* MeCell.swift in Sources */,
@@ -1321,6 +1370,7 @@
 				EDCFCE7C1D442FF100E2B030 /* Global.swift in Sources */,
 				EDD08A491D352887001E1459 /* AppDelegate.swift in Sources */,
 				ED89EB881D54A983000019BB /* ImageGalleryView.swift in Sources */,
+				ED18B05B1D6BEDCF00892359 /* RegisterViewController.swift in Sources */,
 				ED18B0431D65BDB700892359 /* TDCell3.swift in Sources */,
 				ED89EB821D54A983000019BB /* CameraMan.swift in Sources */,
 				ED8CD3931D4A68DC0070CAF8 /* YearCell.swift in Sources */,
@@ -1356,6 +1406,7 @@
 				ED705FAD1D49E720003128F6 /* Extensions.swift in Sources */,
 				EDCFCE8B1D45FAB600E2B030 /* CommentBottomCell.swift in Sources */,
 				EDD08A9E1D36A65E001E1459 /* ElasticView.swift in Sources */,
+				ED18B0571D6BED9300892359 /* UserViewController.swift in Sources */,
 				EDCFCE811D45FA6200E2B030 /* ContentCell.swift in Sources */,
 				EDCFCE581D39E29000E2B030 /* CircularItemListMenu.swift in Sources */,
 				EDD08AA61D385A1A001E1459 /* RoundedCornerImage.swift in Sources */,
@@ -1379,6 +1430,7 @@
 				ED89EB8C1D54A983000019BB /* LocationManager.swift in Sources */,
 				EDCFCE691D3C6D2000E2B030 /* PostImageGrid.swift in Sources */,
 				EDCFCE7F1D45FA4E00E2B030 /* TopCell.swift in Sources */,
+				ED18B05D1D6C3B4200892359 /* UpdateProfileViewController.swift in Sources */,
 				EDCFCE551D39E0AF00E2B030 /* PlaceCell.swift in Sources */,
 				EDCFCE891D45FAA700E2B030 /* CommentCell.swift in Sources */,
 			);

@@ -58,7 +58,6 @@ func getImageByIdAndLocation(id: String, location: String, complete: ((image: UI
                     if let decodedImage = UIImage(data:imageData!) {
                         complete(image: decodedImage)
                         
-//                        imageData!.writeToFile(path, atomically: true)
                         print("Image: "+id+" data writted to file.")
                         NSUserDefaults.standardUserDefaults().setObject(imageData!, forKey: id)
 

@@ -17,12 +17,12 @@ class Timeline: NSObject {
     var title: String = ""
     var content: String = ""
     var location: String = ""
-    var images: [String: AnyObject]! {
+    var images: [String: AnyObject] = [String: AnyObject]()  {
         didSet {
-            if let count = images!["count"] {
+            if let count = images["count"] {
                 imageIdList.removeAll()
                 for i in 0..<Int(count as! String)! {
-                    imageIdList.append(images!["\(i)"] as! String)
+                    imageIdList.append(images["\(i)"] as! String)
                 }
             }
         }
@@ -154,5 +154,39 @@ class Timeline: NSObject {
             return NSLocalizedString("just now", comment: "Time Label")
         }
     }
+    
+//    override init() {
+//    }
+//    
+//    func encodeWithCoder(aCoder: NSCoder) {
+//        aCoder.encodeObject(self.id, forKey: "id")
+//        aCoder.encodeObject(self.userId, forKey: "userId")
+//        aCoder.encodeObject(self.type, forKey: "type")
+//        aCoder.encodeObject(self.subtype, forKey: "subtype")
+//        aCoder.encodeObject(self.title, forKey: "title")
+//        aCoder.encodeObject(self.content, forKey: "content")
+//        aCoder.encodeObject(self.location, forKey: "location")
+//        aCoder.encodeObject(self.imageIdList, forKey: "imageIdList")
+//        aCoder.encodeObject(self.iconIndex, forKey: "iconIndex")
+//        aCoder.encodeObject(self.bgColorIndex, forKey: "bgColorIndex")
+//        aCoder.encodeObject(self.createAt, forKey: "createAt")
+//        aCoder.encodeObject(self.updateAt, forKey: "updateAt")
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init()
+//        self.id = aDecoder.decodeObjectForKey("id") as! String
+//        self.userId = aDecoder.decodeObjectForKey("userId") as! String
+//        self.type = aDecoder.decodeObjectForKey("type") as! String
+//        self.subtype = aDecoder.decodeObjectForKey("subtype") as! String
+//        self.title = aDecoder.decodeObjectForKey("title") as! String
+//        self.content = aDecoder.decodeObjectForKey("content") as! String
+//        self.location = aDecoder.decodeObjectForKey("location") as! String
+//        self.imageIdList = aDecoder.decodeObjectForKey("imageIdList") as! [String]
+//        self.iconIndex = aDecoder.decodeObjectForKey("iconIndex") as! Int
+//        self.bgColorIndex = aDecoder.decodeObjectForKey("bgColorIndex") as! Int
+//        self.createAt = aDecoder.decodeObjectForKey("createAt") as! String
+//        self.updateAt = aDecoder.decodeObjectForKey("updateAt") as! String
+//    }
     
 }
