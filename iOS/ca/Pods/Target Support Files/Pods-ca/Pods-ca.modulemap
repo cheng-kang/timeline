@@ -1,6 +1,0 @@
-framework module Pods_ca {
-  umbrella header "Pods-ca-umbrella.h"
-
-  export *
-  module * { export * }
-}
