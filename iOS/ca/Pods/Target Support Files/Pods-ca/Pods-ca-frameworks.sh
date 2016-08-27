@@ -90,6 +90,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/HappyDNS/HappyDNS.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IDZSwiftCommonCrypto/IDZSwiftCommonCrypto.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Qiniu/Qiniu.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftValidators/SwiftValidators.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Toast/Toast.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Transform.swift/Transform_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Wilddog/Wilddog.framework"
 fi
@@ -100,6 +102,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/HappyDNS/HappyDNS.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IDZSwiftCommonCrypto/IDZSwiftCommonCrypto.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Qiniu/Qiniu.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftValidators/SwiftValidators.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Toast/Toast.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Transform.swift/Transform_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Wilddog/Wilddog.framework"
 fi

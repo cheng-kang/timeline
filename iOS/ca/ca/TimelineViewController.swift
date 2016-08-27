@@ -267,15 +267,10 @@ class TimelineViewController: UIViewController{
     }
     
     class func timelineViewController() -> TimelineViewController {
-        
         let sb = UIStoryboard(name: "Timeline", bundle: nil)
         let vc = sb.instantiateViewControllerWithIdentifier("TimelineViewController") as! TimelineViewController
         
         return vc
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func menuBtnClick(sender: UIButton) {

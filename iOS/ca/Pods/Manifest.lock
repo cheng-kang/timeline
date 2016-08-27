@@ -21,6 +21,8 @@ PODS:
   - Qiniu (7.1.0.1):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.3)
+  - SwiftValidators (3.0.0)
+  - Toast (3.0)
   - Transform.swift (0.1.2)
   - Wilddog (1.0.8)
 
@@ -29,6 +31,8 @@ DEPENDENCIES:
   - CryptoSwift
   - IDZSwiftCommonCrypto
   - Qiniu
+  - SwiftValidators
+  - Toast
   - Transform.swift
   - Wilddog
 
@@ -39,9 +43,11 @@ SPEC CHECKSUMS:
   HappyDNS: 17be04178df2dd09f0ee6ac33628589b7f9910e8
   IDZSwiftCommonCrypto: f4271e731bdeefa85832d425629134fc01efd659
   Qiniu: 0e92ff0d1b9afbc55275306671284e4ebeb08d03
+  SwiftValidators: 25d42833be4c6019f3996c62f15fe0facdf75280
+  Toast: 32c59229abfcf41850162b83bb9259dc84372473
   Transform.swift: 6c9e06696c7a92a470c93d9ca9cbb3060fcdc022
   Wilddog: f3c17be9c3f23a862fd494cd7d6a4669431af7af
 
-PODFILE CHECKSUM: beeb971a6a569b598e33aa29c86f7f58e3493d24
+PODFILE CHECKSUM: fa9f2f397f97de4984483b3a8489ae227b989bd2
 
 COCOAPODS: 1.0.0

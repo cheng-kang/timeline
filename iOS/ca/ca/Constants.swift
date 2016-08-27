@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import Wilddog
 
 let SERVER = "https://weizhimiao.wilddogio.com"
+let ROOT_REF = Wilddog(url: SERVER)
 
 let SCREEN_WIDTH = UIScreen.mainScreen().bounds.width
 

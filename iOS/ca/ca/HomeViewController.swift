@@ -43,6 +43,8 @@ class HomeViewController: UIViewController {
     let gc = CLGeocoder()
     var location = NSLocalizedString("Unknown", comment: "Location")
     
+    let ref = Wilddog(url: SERVER)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -56,7 +58,18 @@ class HomeViewController: UIViewController {
         
         ipc.delegate = self
         
-        setUpUI()
+        ref.observeAuthEventWithBlock { (authdata) in
+            if authdata != nil {
+                self.setUpUI()
+            } else {
+                let vc = LoginViewController.vc()
+                self.presentViewController(vc, animated: true, completion: { 
+                })
+            }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
     }
     
     

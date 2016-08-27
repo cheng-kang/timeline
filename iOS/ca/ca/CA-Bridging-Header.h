@@ -9,5 +9,6 @@
 #ifndef CA_Bridging_Header_h
 #define CA_Bridging_Header_h
 #import <CommonCrypto/CommonCrypto.h>
+#import <Toast/UIView+Toast.h>
 
 #endif /* CA_Bridging_Header_h */

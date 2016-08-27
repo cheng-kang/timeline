@@ -49,6 +49,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftValidators.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Toast.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Transform.swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,7 +72,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>154282C899AD2F570C07F87F1FD09B8D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>247054E352546BBE2969375157730571</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +92,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54DEFF1918A8AFC796A4168C2282908D</key>
+		<key>37EA78FDF9AC73A0B5B0649B39E2D1C2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>528A9AA4301464BB5B432C8379999E2A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +122,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8AD7DFDDCCDD6ADBFD687D492651669B</key>
+		<key>A67E1DD10F09B5E4DE00BC8509667546</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,12 +132,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BC0B1D26323467C333E59A817E3C21ED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BCEE9E53FED25B84CDA41D7B3D3BBBA2</key>
+		<key>D5A2176D862CF820875FA72486982EE8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

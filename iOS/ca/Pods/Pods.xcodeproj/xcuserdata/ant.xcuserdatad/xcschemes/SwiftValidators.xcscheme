@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D5A2176D862CF820875FA72486982EE8'
-               BlueprintName = 'Wilddog'
+               BlueprintIdentifier = '247054E352546BBE2969375157730571'
+               BlueprintName = 'SwiftValidators'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Wilddog.framework'>
+               BuildableName = 'SwiftValidators.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

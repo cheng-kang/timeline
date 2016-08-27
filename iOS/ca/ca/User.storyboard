@@ -52,7 +52,7 @@
         <!--Update Profile View Controller-->
         <scene sceneID="5mW-8S-2er">
             <objects>
-                <viewController id="ugs-4H-bbw" customClass="UpdateProfileViewController" customModule="CA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpdateProfileViewController" id="ugs-4H-bbw" customClass="UpdateProfileViewController" customModule="CA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tS0-cJ-riY"/>
                         <viewControllerLayoutGuide type="bottom" id="UHr-1C-67C"/>
@@ -248,7 +248,7 @@
         <!--Login View Controller-->
         <scene sceneID="jXP-B9-eDG">
             <objects>
-                <viewController id="dce-sN-g0x" customClass="LoginViewController" customModule="CA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="dce-sN-g0x" customClass="LoginViewController" customModule="CA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QeU-en-H5L"/>
                         <viewControllerLayoutGuide type="bottom" id="HYp-rL-h5P"/>
@@ -426,7 +426,7 @@
         <!--Register View Controller-->
         <scene sceneID="6wf-5s-gME">
             <objects>
-                <viewController id="rYN-8U-6hr" customClass="RegisterViewController" customModule="CA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="rYN-8U-6hr" customClass="RegisterViewController" customModule="CA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lr3-uR-typ"/>
                         <viewControllerLayoutGuide type="bottom" id="3E3-fu-AjI"/>

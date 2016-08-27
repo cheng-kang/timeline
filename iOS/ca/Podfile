@@ -14,6 +14,8 @@ target 'ca' do
   pod 'CryptoSwift'
   pod 'IDZSwiftCommonCrypto'
   pod 'Wilddog'
+  pod 'SwiftValidators'
+  pod 'Toast'
 
   target 'caTests' do
     inherit! :search_paths
